@@ -4,7 +4,7 @@ require_once("./coach_connect.php");
 $sqlTotal = "SELECT * FROM coach WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫
 $totalUser = $resultTotal->num_rows; //列出來?
-$perPage = 3;
+$perPage = 5;
 $pageCount = ceil($totalUser / $perPage);
 
 

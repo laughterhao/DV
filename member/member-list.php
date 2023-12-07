@@ -1,15 +1,18 @@
 <?php
-require_once("../Diving/db-connect.php");
-$sql = "SELECT * FROM member WHERE valid=1";
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
+require_once("db-connect.php");
+// $sql = "SELECT * FROM member WHERE valid=1";
 
-if (isset($_GET["srearch"])) {
+if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $sql = "SELECT * FROM member WHERE name, phone, email LIKE '%$search%' AND valid=1";
+    $sql = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1";
+ 
 } else {
     $sql = "SELECT * FROM member WHERE valid=1";
 }
+
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
 
 
 
@@ -48,13 +51,15 @@ if (isset($_GET["srearch"])) {
                         <option value="3">生日</option>
                     </select>
                 </div>
-                <div class="input-group mb-3 col-md">
-                    <!-- 收尋使用form，在本頁action=""，送出之後會在本頁執行 -->
-                    <form action="">
+                <form action="" class="col-md">
+                    <div class="input-group mb-3 ">
+
+                        <!-- 收尋使用form，在本頁action=""，送出之後會在本頁執行 -->
                         <input type="text" class="form-control" name="search">
-                        <button class="btn btn-outline-secondary" type="submit" id="searchBtn" ><i class="bi bi-search"></i></button>
-                    </form>
-                </div>
+                        <button class="btn btn-outline-secondary" type="submit" id="searchBtn"><i class="bi bi-search"></i></button>
+
+                    </div>
+                </form>
             </div>
 
             <table class="member-table table text-center mt-4" id="example">
@@ -73,8 +78,9 @@ if (isset($_GET["srearch"])) {
                 </thead>
 
                 <tbody>
-                    <?php foreach ($rows as $row) : ?>
-                        <?php if (isset($_GET["search"])) : ?>
+                    <?php if (isset($_GET["search"])) : ?>
+                        <?php foreach ($rows as $row) : ?>
+
                             <tr>
                                 <td><?= $row["id"] ?></td>
                                 <td><?= $row["name"] ?></td>
@@ -89,8 +95,9 @@ if (isset($_GET["srearch"])) {
                                     <a class="btn" href="">刪除</a>
                                 </td>
                             </tr>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
 
 

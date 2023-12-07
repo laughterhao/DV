@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once("../Diving/db-connect.php");
+require_once("db-connect.php");
 
 
 if (!isset($_POST["email"])) {

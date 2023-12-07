@@ -1,0 +1,52 @@
+:root {
+    --main-color  : #437281;
+    --second-color: #D6D6D6 ;
+}
+body {
+    background: var(--second-color);
+}
+.btn{
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+}
+.btn:hover{
+    background: var(--main-color);
+    color: #fff;
+}
+.member-block{
+    width: 95%;
+    height: 90%;
+    background: #fff;
+    padding: 40px;
+    margin-top: 80px;
+    margin-inline:  auto;
+    border-radius: 20px;
+    & h3{
+        color: var(--main-color);
+    }
+}
+.filter-block{
+    width: 50%;
+}
+.member-table{
+    & th{
+        color: var(--main-color);
+    }
+}
+.pagination{
+    & a{
+        color: var(--main-color);
+    }
+}
+.page-link:hover {
+    background: var(--main-color);
+    color: #fff;
+}
+.page-link {
+    &:focus{
+        box-shadow: none;
+        background: var(--main-color);
+        color: #fff;
+    }
+    
+}

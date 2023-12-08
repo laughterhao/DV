@@ -3,44 +3,46 @@ require_once("db-connect.php");
 session_start();
 //得出資料總筆數
 $sqlTotal = "SELECT * FROM member WHERE valid=1"; //得出所有資料
-$resultTotal = $conn->query($sqlTotal); 
+$resultTotal = $conn->query($sqlTotal);
 $totalMember = $resultTotal->num_rows; //算出所有會員筆數
-$rows = $resultTotal->fetch_all(MYSQLI_ASSOC); //列出所有會員陣列
 
+$page = 1; //先設一個頁數=1
 $perPage = 13; //每頁有13筆項目
 //總頁數＝全部筆數/每頁項目 //ceil無條件進位，算出總頁數
 $pageCount = ceil($totalMember / $perPage);
 $resultPerPage = $resultTotal->num_rows;
 
-$page = 1;
 if (isset($_GET["search"])) {
 
     $search = $_GET["search"];
     $_SESSION["search"] = $search; //儲存search讓下面抓得到
-    $sql = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1 LIMIT $perPage";
 
-    //抓收尋的總數，算出總頁數
-    // $searchTotal = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1";
-    // $resultTotal = $conn->query($searchTotal);
-    // $totalMember  = $resultTotal->num_rows;
-    // $pageCount = ceil($totalMember  / $perPage);
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+        $startItem = ($page - 1) * $perPage;
+        // var_dump($startItem);
+        $sql = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1 LIMIT $startItem, $perPage";
+    } else {
+        $sql = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1 LIMIT $perPage";
+    }
 
+    //另外抓收尋的總數，算出總頁數
+    $searchTotal = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1";
+    $resultTotal = $conn->query($searchTotal);
+    $totalMember  = $resultTotal->num_rows;
+    $pageCount = ceil($totalMember  / $perPage);
 } elseif (isset($_GET["page"])) {
     $page = $_GET["page"];
     // 每頁開始的項目＝當前的頁碼-1 * 每頁項目
     $startItem = ($page - 1) * $perPage;
     $sql = "SELECT * FROM member WHERE valid=1 LIMIT $startItem,$perPage";
 } else {
-
+    unset($_SESSION["search"]);
     $sql = "SELECT * FROM member WHERE valid=1 LIMIT 0,$perPage";
 }
 
-$result = $conn->query($sql);
-
-
-
-
-var_dump($sql);
+$result = $conn->query($sql); //把上面$sql連接資料庫
+$rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
 
 
 
@@ -69,12 +71,13 @@ var_dump($sql);
     <div class="container">
         <div class="member-block">
             <h3>會員列表</h3>
-            
+            <!-- 算出每頁得到人數相加後的總人數 -->
+            <?php $rowMembers = $perPage * ($totalMember  / $perPage) ?>
             <div class="mt-3">
                 <?php if (isset($_GET["search"])) : ?>
                     <a href="member-list.php">回使用者列表</a>
                 <?php endif; ?>
-                / 共<?= $totalMember  ?>人
+                / 共<?= $rowMembers ?>人
             </div>
             <div class="filter-block row mt-4 ">
                 <div class="col-md-5">
@@ -140,12 +143,18 @@ var_dump($sql);
             <ul class="pagination justify-content-center ">
 
                 <!-- 上一頁 -->
-                <?php  ?>
-                <?php if ($page < 1) : ?>
+
+                <?php if ($page > 1) : ?>
                     <li class="page-item">
-                        <a class="page-link" href="member-list.php?page=<?= $page  - 1 ?>">
+                    <?php if (isset($_GET["search"])) : ?>
+                        <a class="page-link" href="member-list.php?page=<?= $page  - 1 ?>&search=<?= $search ?>">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
+                        <?php else:?>
+                            <a class="page-link" href="member-list.php?page=<?= $page  - 1 ?>">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        <?php endif; ?>
                     </li>
                 <?php endif; ?>
 
@@ -161,18 +170,22 @@ var_dump($sql);
                 <!-- 下一頁 -->
                 <?php if ($page < $pageCount) : ?>
                     <li class="page-item">
-                        <a class="page-link" href="member-list.php?page=<?= $page + 1 ?>">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
+                        <?php if (isset($_GET["search"])) : ?>
+                            <a class="page-link" href="member-list.php?page=<?= $page + 1 ?>&search=<?= $search ?>"> <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        <?php else : ?>
+                            <a class="page-link" href="member-list.php?page=<?= $page + 1 ?>"> <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        <?php endif; ?>
+
                     </li>
                 <?php endif; ?>
-                <?php
 
-
-                ?>
             </ul>
         </nav>
     </div>
+
+
 
 
     <!-- Bootstrap JavaScript Libraries -->

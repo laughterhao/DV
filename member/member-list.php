@@ -1,19 +1,46 @@
 <?php
 require_once("db-connect.php");
-// $sql = "SELECT * FROM member WHERE valid=1";
+session_start();
+//得出資料總筆數
+$sqlTotal = "SELECT * FROM member WHERE valid=1"; //得出所有資料
+$resultTotal = $conn->query($sqlTotal); 
+$totalMember = $resultTotal->num_rows; //算出所有會員筆數
+$rows = $resultTotal->fetch_all(MYSQLI_ASSOC); //列出所有會員陣列
 
+$perPage = 13; //每頁有13筆項目
+//總頁數＝全部筆數/每頁項目 //ceil無條件進位，算出總頁數
+$pageCount = ceil($totalMember / $perPage);
+$resultPerPage = $resultTotal->num_rows;
+
+$page = 1;
 if (isset($_GET["search"])) {
+
     $search = $_GET["search"];
-    $sql = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1";
- 
+    $_SESSION["search"] = $search; //儲存search讓下面抓得到
+    $sql = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1 LIMIT $perPage";
+
+    //抓收尋的總數，算出總頁數
+    // $searchTotal = "SELECT * FROM member WHERE name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' AND valid=1";
+    // $resultTotal = $conn->query($searchTotal);
+    // $totalMember  = $resultTotal->num_rows;
+    // $pageCount = ceil($totalMember  / $perPage);
+
+} elseif (isset($_GET["page"])) {
+    $page = $_GET["page"];
+    // 每頁開始的項目＝當前的頁碼-1 * 每頁項目
+    $startItem = ($page - 1) * $perPage;
+    $sql = "SELECT * FROM member WHERE valid=1 LIMIT $startItem,$perPage";
 } else {
-    $sql = "SELECT * FROM member WHERE valid=1";
+
+    $sql = "SELECT * FROM member WHERE valid=1 LIMIT 0,$perPage";
 }
 
 $result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
 
 
+
+
+var_dump($sql);
 
 
 
@@ -42,7 +69,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <div class="container">
         <div class="member-block">
             <h3>會員列表</h3>
-            <div class="filter-block row mt-5 ">
+            
+            <div class="mt-3">
+                <?php if (isset($_GET["search"])) : ?>
+                    <a href="member-list.php">回使用者列表</a>
+                <?php endif; ?>
+                / 共<?= $totalMember  ?>人
+            </div>
+            <div class="filter-block row mt-4 ">
                 <div class="col-md-5">
                     <select class="form-select">
                         <option selected>增加篩選條件</option>
@@ -53,16 +87,15 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 </div>
                 <form action="" class="col-md">
                     <div class="input-group mb-3 ">
-
                         <!-- 收尋使用form，在本頁action=""，送出之後會在本頁執行 -->
                         <input type="text" class="form-control" name="search">
-                        <button class="btn btn-outline-secondary" type="submit" id="searchBtn"><i class="bi bi-search"></i></button>
+                        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
 
                     </div>
                 </form>
             </div>
 
-            <table class="member-table table text-center mt-4" id="example">
+            <table class="member-table table text-center mt-4">
                 <thead>
                     <tr class="text-nowrap">
                         <th>會員編號</th>
@@ -78,47 +111,65 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 </thead>
 
                 <tbody>
-                    <?php if (isset($_GET["search"])) : ?>
-                        <?php foreach ($rows as $row) : ?>
+                    <?php foreach ($rows as $row) : ?>
 
-                            <tr>
-                                <td><?= $row["id"] ?></td>
-                                <td><?= $row["name"] ?></td>
-                                <td><?= $row["gender"] ?></td>
-                                <td><?= $row["birth"] ?></td>
-                                <td><?= $row["email"] ?></td>
-                                <td><?= $row["phone"] ?></td>
-                                <td><?= $row["city"] ?></td>
-                                <td><?= $row["created_at"] ?></td>
-                                <td>
-                                    <a class="btn" href="">修改</a>
-                                    <a class="btn" href="">刪除</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td><?= $row["id"] ?></td>
+                            <td><?= $row["name"] ?></td>
+                            <td><?= $row["gender"] ?></td>
+                            <td><?= $row["birth"] ?></td>
+                            <td><?= $row["email"] ?></td>
+                            <td><?= $row["phone"] ?></td>
+                            <td><?= $row["city"] ?></td>
+                            <td><?= $row["created_at"] ?></td>
+                            <td>
+                                <a class="btn btn-sm" href="">列入黑名單</a>
+                                <a class="btn btn-sm" href="">修改</a>
+                            </td>
+                        </tr>
 
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                    <?php endforeach; ?>
+
                 </tbody>
 
 
             </table>
         </div>
         <!-- 分頁 -->
-        <nav>
-            <ul class="pagination justify-content-center mt-5">
-                <li class="page-item">
-                    <a class="page-link" href="#">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
+        <nav class="mt-4 mb-5">
+            <ul class="pagination justify-content-center ">
+
+                <!-- 上一頁 -->
+                <?php  ?>
+                <?php if ($page < 1) : ?>
+                    <li class="page-item">
+                        <a class="page-link" href="member-list.php?page=<?= $page  - 1 ?>">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <!-- 頁數 -->
+                <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
+                    <?php if (isset($_SESSION["search"])) : ?>
+                        <li class="page-item"><a class="page-link" href="member-list.php?page=<?= $i ?>&search=<?= $_SESSION["search"] ?>"><?= $i ?></a></li>
+                    <?php else : ?>
+                        <li class="page-item"><a class="page-link" href="member-list.php?page=<?= $i ?>"><?= $i ?></a></li>
+                    <?php endif; ?>
+                <?php endfor; ?>
+
+                <!-- 下一頁 -->
+                <?php if ($page < $pageCount) : ?>
+                    <li class="page-item">
+                        <a class="page-link" href="member-list.php?page=<?= $page + 1 ?>">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php
+
+
+                ?>
             </ul>
         </nav>
     </div>

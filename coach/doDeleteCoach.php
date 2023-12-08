@@ -11,7 +11,7 @@ if (!isset($_GET["id"])) {
 $id = $_GET["id"];
 
 // 改成valid=0 修改valid這個欄位的值 阿資料還是存在 只是看不到
-$sql = "UPDATE users SET valid='0' WHERE id=$id";
+$sql = "UPDATE coach SET valid='0' WHERE id=$id";
 
 // echo $sql;
 // exit;

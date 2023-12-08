@@ -28,7 +28,7 @@ $row = $result->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <?php
-    include("coach-css.php");
+    include("css-coach.php");
     ?>
 
 </head>
@@ -43,7 +43,7 @@ $row = $result->fetch_assoc();
             <h1>使用者不存在</h1>
         <?php else : ?> <!-- 就列出table以下資訊  保留上面那個按鈕-->
 
-            <div class="container">
+            <div class="container text-nowrap">
                 <div class="row">
                     <div class="col-md-5">
                         <img class="img-fluid" src="/img/<?= $row["img"] ?>" alt="<?= $row["img"] ?>">
@@ -100,7 +100,7 @@ $row = $result->fetch_assoc();
             </div>
             <!-- 在這邊加上修改資料的功能 -->
             <div class="py-2">
-                <a class="btn btn-info" href="coach-edit.php" title="修改資料"><i class="bi bi-pencil-fill text-white"></i></a>
+                <a class="btn btn-info" href="coach-edit.php?id=<?= $row["id"] ?>" title="修改資料"><i class="bi bi-pencil-fill text-white"></i></a>
                 <!-- F12可以看 按鈕的id有沒有跟著變 跟user id 一樣 -->
             </div>
         <?php endif ?>

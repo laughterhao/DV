@@ -20,20 +20,22 @@
 
 
     <div class="container rounded-3 m-5 border  flex-nowrap">
-        <form class="row" action="doAddCoach.php" method="post">
+        <form class="row" action="doAddCoach.php" method="post" enctype="multipart/form-data">
             <h4>新增教練</h4>
 
             <div class="col-4">
                 <img class="ratio ratio-1x1 mb-4 img-thumbnail rounded-circle my-3 img-fluid" id="output" />
-                <input class="form-control" type="file" accept="image/*" onchange="loadFile(event)" id="upload" name="myFile">
 
-                <input class="form-control my-3" type="text" placeholder="專長" aria-label="skill" id="skill" name="skill" required>
-                <a href="" class="ps-3 nav-link "><i class="bi bi-plus-circle "></i>　新增專長</a>
+                <input class="form-control " type="file" accept="image/*" onchange="loadFile(event)" id="imgfile" name="imgfile">
+
+                <input class="form-control my-3 " type="text" placeholder="專長" aria-label="skill" id="skill" name="skill" required>
+                <a href="" class="ps-3 nav-link "><i class="btn bi bi-plus-circle "></i>　新增專長</a>
 
                 <input class="form-control my-3" type="text" placeholder="地區" id="city" name="city" required>
                 <a href="" class="ps-3 nav-link"><i class="bi bi-plus-circle"></i>　新增地區</a>
+
             </div>
-            <div class="col-7 ms-3 mt-5">
+            <div class="col-7 ms-3">
                 <div class="row g-3">
                     <div class="col-6">
                         <label for="">姓名</label>
@@ -66,10 +68,16 @@
 
 
                     <div class="col-6 ">
-                        <label for="phone" class="">電話號碼</label>
-                        <input type="phone" class="form-control" id="phone" placeholder="請輸入電話號碼" name="phone[]" required>
-                        <label for="phone" class="">電話號碼2</label>
-                        <input type="phone" class="form-control" id="phone" placeholder="請輸入電話號碼" name="phone[]">
+                        <!-- <label for="phone" class="">電話號碼</label>
+                        <input type="tel" class="form-control" placeholder="請輸入電話號碼" name="phones[]" id="phones" required>
+                        <label for="tel" class="">電話號碼2</label>
+                        <input type="phone" class="form-control" placeholder="請輸入電話號碼" id="phones" name="phones[]"> -->
+                        <div class="col">
+                            <input type="tel" class="form-control" name="phones[]">
+                        </div>
+                        <div class="col">
+                            <input type="tel" class="form-control" name="phones[] ">
+                        </div>
                     </div>
 
 
@@ -116,8 +124,6 @@
                 </div>
         </form>
     </div>
-
-    </form>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">

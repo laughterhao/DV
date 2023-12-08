@@ -4,7 +4,7 @@ require_once("./coach_connect.php");
 $sqlTotal = "SELECT * FROM coach WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫
 $totalUser = $resultTotal->num_rows; //列出來?
-$perPage = 5;
+$perPage = 10;
 $pageCount = ceil($totalUser / $perPage);
 
 
@@ -76,8 +76,12 @@ $result = $conn->query($sql);
 
     <div class="d-grid gap-2 d-flex justify-content-between">
       <h3>教練管理</h3>
-      <a class="btn btn-primary my-3" href="add-coach.php">新增教練</a>
+      <div>
+        <a class="btn btn-primary my-3" href="add-coach.php">新增教練</a>
+        <a class="btn btn-outline-primary my-3" href="coach-hide-list.php">已隱藏教練</a>
+      </div>
     </div>
+
 
     <?php
     $userCount = $result->num_rows;
@@ -103,7 +107,6 @@ $result = $conn->query($sql);
           </div>
         </form>
       </div>
-
 
 
       <?php if (!isset($_GET["search"])) : ?>
@@ -154,7 +157,7 @@ $result = $conn->query($sql);
               <td><?= $row["skill"] ?></td>
               <td><?= $row["experience"] ?></td>
               <td><?= $row["city"] ?></td>
-              <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href=""><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href=""><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
+              <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href="doHideCoach.php?id=<?= $row["id"] ?>"><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -178,7 +181,6 @@ $result = $conn->query($sql);
       目前無此教練
     <?php endif; ?>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
   </script>
 

@@ -1,0 +1,28 @@
+:root {
+    --main-color  : #437281;
+    --second-color: #eee ;
+}
+
+.diving-block{
+    width: 77%;
+    margin-left:300px;
+    margin-top: 20px;
+    height: 90%;
+    & h3{
+        color: var(--main-color);
+    }
+}
+.memberinfo-block{
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    height: 100%;
+}
+.order-block{
+    
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    margin-left: 30px;
+
+}

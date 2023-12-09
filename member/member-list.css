@@ -1,6 +1,6 @@
-:root {
+/* :root {
     --main-color  : #437281;
-    --second-color: #D6D6D6 ;
+    --second-color: #fff ;
 }
 body {
     background: var(--second-color);
@@ -12,15 +12,15 @@ body {
 .btn:hover{
     background: var(--main-color);
     color: #fff;
-}
+} */
 .member-block{
-    width: 95%;
+    width: 77%;
     height: 90%;
     background: #fff;
-    padding: 40px;
-    margin-top: 80px;
-    margin-inline:  auto;
-    border-radius: 20px;
+    padding: 30px;
+    margin-top: 20px;
+    margin-left: 285px;
+    border-radius: 10px;
     & h3{
         color: var(--main-color);
     }

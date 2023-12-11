@@ -1,52 +1,55 @@
-/* :root {
+:root {
     --main-color  : #437281;
-    --second-color: #fff ;
+    --second-color: #eee;
 }
-body {
-    background: var(--second-color);
-}
-.btn{
-    color: var(--main-color);
-    border: 1px solid var(--main-color);
-}
-.btn:hover{
-    background: var(--main-color);
-    color: #fff;
-} */
-.member-block{
-    width: 77%;
-    height: 90%;
-    background: #fff;
-    padding: 30px;
-    margin-top: 20px;
-    margin-left: 285px;
+
+.member-block {
+    width        : 77%;
+    height       : 90%;
+    background   : #fff;
+    padding      : 30px;
+    margin-top   : 20px;
+    margin-left  : 285px;
     border-radius: 10px;
-    & h3{
+
+    & h3 {
         color: var(--main-color);
     }
 }
-.filter-block{
+
+.filter-block {
     width: 50%;
 }
-.member-table{
-    & th{
+
+.member-table {
+    & th {
+        color: var(--main-color);
+
+    }
+
+    & a {
+        color: #333;
+    }
+
+
+}
+
+.pagination {
+    & a {
         color: var(--main-color);
     }
 }
-.pagination{
-    & a{
-        color: var(--main-color);
-    }
-}
+
 .page-link:hover {
     background: var(--main-color);
-    color: #fff;
+    color     : #fff;
 }
+
 .page-link {
-    &:focus{
+    &:focus {
         box-shadow: none;
         background: var(--main-color);
-        color: #fff;
+        color     : #fff;
     }
-    
+
 }

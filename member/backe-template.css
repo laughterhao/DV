@@ -4,8 +4,10 @@
 }
 
 body {
-    
     background: var(--second-color);
+}
+main{
+    width: 100%;
 }
 .main-nav{
     color: #fff;

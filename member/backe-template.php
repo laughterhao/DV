@@ -14,26 +14,28 @@
 </head>
 
 <body>
-    <main class="row">
-        <nav class="main-nav col-lg-2 p-0">
-            <h1 class="my-4 text-center">DiVING</h1>
-            <ul class="main-ul list-unstyle p-0">
-                <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
-            </ul>
-        </nav>
+    <main>
+        <div class="row mx-0">
+            <nav class="main-nav col-lg-2 p-0">
+                <h1 class="my-4 text-center">DiVING</h1>
+                <ul class="main-ul list-unstyle p-0">
+                    <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                    <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+                </ul>
+            </nav>
 
-        <div class=" px-0">
-            <div class="main-top">
-                <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
+            <div class="main-top px-0">
+                <div class="main-top">
+                    <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
+                </div>
+
             </div>
-            
         </div>
     </main>
 

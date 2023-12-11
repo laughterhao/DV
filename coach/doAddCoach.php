@@ -1,6 +1,6 @@
 <!-- 命名=丟資料的用階梯式命名 利於找資料 -->
 <?php
-require_once("./coach_connect.php");
+require_once("../mysql-db-conn.php");
 
 if (!isset($_POST["name"])) {
     echo "請循正常管道進入";
@@ -35,7 +35,7 @@ if (isset($_POST['phones'])) {
         // 請確保將這些值插入到資料庫的適當位置
     }
 }
-//如果user沒寫東西啦 給他顯示請輸入資料啦 就算你已經html加requied了也要  避免他輸入無效資料進去 前後端都要擋~~ 
+//如果user沒寫東西啦 給他顯示請輸入資料啦 就算你已經html加requied了也要  避免他輸入無效資料進去 前後端都要擋~~
 if (empty($name) || empty($email) || empty($phones)) {
     echo "請輸入資料";
     die;
@@ -89,7 +89,7 @@ var_dump($phones);
 
 
 $conn->close();
-//header("location: add-user.php"); 回到原本的頁面~ 回到哪頁可以選的喔~ 會跳過上面剛剛那些 user就看不到了~  
+//header("location: add-user.php"); 回到原本的頁面~ 回到哪頁可以選的喔~ 會跳過上面剛剛那些 user就看不到了~
 
 // 最好的方法是可以讓管理者再看到新增資料成功 看到所有使用者
 // header("location: coach-list.php");

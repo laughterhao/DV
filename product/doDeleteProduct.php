@@ -1,5 +1,5 @@
 <?php
-require_once("product-db-connect.php");
+require_once("../mysql-db-conn.php");
 
 if(!isset($_GET["id"])){
     echo "請循正常管道進入此頁";
@@ -8,7 +8,7 @@ if(!isset($_GET["id"])){
 
 $id=$_GET["id"];
 
-$sql="UPDATE product SET valid=0 
+$sql="UPDATE product SET valid=0
 WHERE id=$id";
 
 

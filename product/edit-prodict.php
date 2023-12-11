@@ -1,11 +1,11 @@
 <?php
-require_once("product-db-connect.php");
+require_once("../mysql-db-conn.php");
 
-if(!isset($_GET["id"])){ 
-    header("location: product-list.php"); 
+if(!isset($_GET["id"])){
+    header("location: product-list.php");
 }
 
-$id=$_GET["id"]; 
+$id=$_GET["id"];
 
 $sql="SELECT * FROM product WHERE id=$id";
 $result=$conn->query($sql);
@@ -23,14 +23,14 @@ $row=$result->fetch_assoc();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <?php include("../diving/css.php") ?>
+    <?php include("css.php") ?>
 </head>
 
 <body>
     <div class="container">
         <form action="doEditProduct.php" method="post" enctype="multipart/form-data">
             <h1 class="text-center p-3">修改商品內容</h1>
-            
+
 
             <!-- 返回商品列表按鈕 -->
             <div class="p-3 d-flex text-white justify-content-end">

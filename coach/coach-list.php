@@ -1,5 +1,5 @@
 <?php
-require_once("./coach_connect.php");
+require_once("../mysql-db-conn.php");
 
 $sqlTotal = "SELECT * FROM coach WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫
@@ -54,7 +54,7 @@ SELECT * FROM coach LIMIT 4, 4
 $result = $conn->query($sql);
 
 ?>
-?>
+
 
 <!doctype html>
 <html lang="en">

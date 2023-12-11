@@ -6,8 +6,8 @@ if (!isset($_GET["id"])) {
 
 $id = $_GET["id"]; //裝起來
 
-require("./coach_connect.php");
-// $sql= "SELECT * FROM coachs WHERE id=2"; 
+require("../mysql-db-conn.php");
+// $sql= "SELECT * FROM coachs WHERE id=2";
 // 把那個id=2變成變數↓ 才能在網頁上輸入誰就可以找誰
 $sql = "SELECT * FROM coach WHERE id=$id  AND valid=1";
 

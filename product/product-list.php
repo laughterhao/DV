@@ -1,5 +1,5 @@
 <?php
-require_once("product-db-connect.php");
+require_once("../mysql-db-conn.php");
 
 $sqlTotal = " SELECT * FROM product WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal);
@@ -10,11 +10,11 @@ $pageCount = ceil($totalProduct / $perPage);
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $sql = "SELECT * FROM product WHERE 
-            name LIKE '%$search%' OR 
-            size LIKE '%$search%' OR 
-            count LIKE '%$search%' OR 
-            price LIKE '%$search%' OR 
+    $sql = "SELECT * FROM product WHERE
+            name LIKE '%$search%' OR
+            size LIKE '%$search%' OR
+            count LIKE '%$search%' OR
+            price LIKE '%$search%' OR
             info LIKE '%$search%' AND valid=1";
 } elseif (isset($_GET["page"]) && isset($_GET["order"])) {
     $page = $_GET["page"];
@@ -52,11 +52,11 @@ $result = $conn->query($sql);
 
 <!-- if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $sql = "SELECT * FROM product WHERE 
-            name LIKE '%$search%' OR 
-            size LIKE '%$search%' OR 
-            count LIKE '%$search%' OR 
-            price LIKE '%$search%' OR 
+    $sql = "SELECT * FROM product WHERE
+            name LIKE '%$search%' OR
+            size LIKE '%$search%' OR
+            count LIKE '%$search%' OR
+            price LIKE '%$search%' OR
             info LIKE '%$search%' AND valid=1";
 } else {
     $sql = "SELECT * FROM product WHERE valid=1";
@@ -70,7 +70,7 @@ $result = $conn->query($sql);
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php include("../diving/css.php") ?>
+    <?php include("css.php") ?>
     <style>
         .object-fit-cover {
             width: 100px;
@@ -219,7 +219,7 @@ $result = $conn->query($sql);
                     <!-- 使用for，讓li可以一直跑出迴圈 -->
                     <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
 
-                        <li class="page-item <?php if ($page == $i) echo "active"; ?>"> 
+                        <li class="page-item <?php if ($page == $i) echo "active"; ?>">
                         <!-- <?php if ($page == $i) echo "active"; ?>是樣式 -->
                             <a class="page-link" href="product-list.php?page=<?= $i ?>&order=<?= $order ?>"> <?= $i ?> </a>
                         </li>

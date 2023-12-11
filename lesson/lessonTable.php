@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../mysql-db-conn.php");
 
 // 建立課程資料表
 $sql = "CREATE TABLE lesson (

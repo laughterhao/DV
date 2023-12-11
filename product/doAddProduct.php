@@ -1,5 +1,5 @@
 <?php
-require_once("product-db-connect.php");
+require_once("../mysql-db-conn.php");
 
 
 
@@ -9,7 +9,7 @@ $count=$_POST["count"];
 $price=$_POST["price"];
 $info=$_POST["info"];
 $fileName=$_FILES["file"]["name"]; //file==輸入類型;name==檔案名稱
-date_default_timezone_set("Asia/Taipei"); 
+date_default_timezone_set("Asia/Taipei");
 $time=date('Y-m-d H:i:s');
 
 
@@ -41,9 +41,9 @@ if($_FILES["file"]["error"]==0){
 if ($conn->query($sql) === TRUE) {
     echo "新增資料完成";
     $last_id = $conn->insert_id;
-    echo "最新一筆為序號".$last_id; 
+    echo "最新一筆為序號".$last_id;
 } else {
-    echo "新增資料錯誤: " . 
+    echo "新增資料錯誤: " .
     $conn->error;
 }
 

@@ -1,5 +1,5 @@
 <?php
-require_once("product-db-connect.php");
+require_once("../mysql-db-conn.php");
 
 
 if(!isset($_POST["name"])){
@@ -7,7 +7,7 @@ if(!isset($_POST["name"])){
     exit;
 }
 
-$id=$_POST["id"]; 
+$id=$_POST["id"];
 $name=$_POST["name"];
 $size=$_POST["size"];
 $count=$_POST["count"];

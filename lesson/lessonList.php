@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../mysql-db-conn.php");
 
 $sql = "SELECT * FROM lesson";
 $result = $conn->query($sql);

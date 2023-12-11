@@ -6,8 +6,8 @@ if (!isset($_GET["id"])) {
 
 $id = $_GET["id"]; //裝起來
 
-require("./coach_connect.php");
-// $sql= "SELECT * FROM users WHERE id=2"; 
+require("../mysql-db-conn.php");
+// $sql= "SELECT * FROM users WHERE id=2";
 // 把那個id=2變成變數↓ 才能在網頁上輸入誰就可以找誰
 $sql = "SELECT * FROM coach WHERE id=$id";
 
@@ -63,7 +63,7 @@ $row = $result->fetch_assoc();
                 <h4>編輯教練</h4>
                 <input type="hidden" name="id" value="<?= $row["id"] ?>">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <!-- 把原本的a 改成button 就不是超連結了 因為要呼叫上面那個modal 
+                    <!-- 把原本的a 改成button 就不是超連結了 因為要呼叫上面那個modal
                     沒寫type=button的話 預設會是submit喔-->
                     <button type="button" data-bs-toggle="modal" data-bs-target="#alertModal" class="btn btn-danger">刪除教練</button>
 

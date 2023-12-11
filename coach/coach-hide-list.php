@@ -1,5 +1,5 @@
 <?php
-require_once("./coach_connect.php");
+require_once("../mysql-db-conn.php");
 
 $sqlTotal = "SELECT * FROM coach WHERE valid=2";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫

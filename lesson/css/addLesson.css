@@ -1,6 +1,7 @@
 /* Global */
 :root {
     --main-color-: #437281;
+    --hover-color-: #51899C;
     --sidebar-with-: 16vw;
 }
 
@@ -22,9 +23,9 @@ a {
     text-decoration: none;
 }
 
-.row{
+/* .row{
     margin-block: 16px;   
-}
+} */
 
 .btn {
     font-size: 14px;
@@ -99,19 +100,15 @@ header {
         font-size: 20px;
         font-weight: normal;
     }
-    & h4{
-        font-size: 14px;
-        font-weight: normal;
-        margin: 0;
-        line-height: 2;
+    & .dropzone{
+        height: 240px;
+        border: 1px dashed #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    & .pic{
-        width: 240px;
-        height: 200px;
-        /* border: 1px solid #ccc; */
-        
-    }
-    & .input-height{
+
+    & .input-style{
         height: 160px;
     }
 }

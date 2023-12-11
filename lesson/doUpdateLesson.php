@@ -6,6 +6,7 @@ require_once("./db_connect.php");
 //     exit;
 // }
 
+$id = $_POST["id"];
 $image = "01.jpg";
 $name = $_POST["name"];
 $info = $_POST["info"];
@@ -13,12 +14,18 @@ $content = $_POST["content"];
 $sort = $_POST["sort"];
 $location = $_POST["location"];
 $price = $_POST["price"];
-$maxPerson = $_POST["max-person"];
-$time = date("Y-m-d H:i:s");
+$maxPerson = $_POST["max_person"];
 
-
-$sql = "INSERT INTO lesson (image, name, info, content, sort, location,  price, max_person, valid, created_at)
-VALUES ('$image', '$name', '$info', '$content', '$sort', '$location', '$price', '$maxPerson', '1', '$time')";
+$sql = "UPDATE lesson
+        SET image = '$image',
+            name = '$name',
+            info = '$info',
+            content = '$content',
+            sort = '$sort',
+            location = '$location',
+            price = '$price',
+            max_person = '$maxPerson'
+        WHERE id = $id";
 
 
 if ($conn->query($sql) === TRUE) {

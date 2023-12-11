@@ -22,6 +22,14 @@ a {
     text-decoration: none;
 }
 
+input {
+    color: var(--main-color-);
+}
+
+.text-main-color{
+    color: var(--main-color-);    
+}
+
 .btn {
     font-size: 14px;
     color: var(--main-color-);
@@ -99,14 +107,21 @@ header {
 
 .search-box {
     margin-left: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    >.search {
+    & .search-btn {
+        padding: 4px 10px;
+    }
+
+    & .search {
         padding: 4px 8px;
         border: 1px solid #ccc;
         border-radius: 4px;
 
         &:focus-visible {
-            outline: var(--main-color-) solid 1px;
+            outline: none;
         }
 
         &::placeholder {
@@ -151,11 +166,8 @@ header {
         }
     }
 
-    >tbody {
-        height: 100vh;
-        & td {
-            vertical-align: middle;
-        }
+    & td {
+        vertical-align: middle;
     }
 }
 
@@ -166,11 +178,23 @@ header {
 
 .page {
     margin: 20px 0;
+    & a{
+        padding: 6px 12px;
+    }
+    & .page-item{
+        padding: 0;
+    }
 }
+
 
 /* php style */
 .active {
     color: var(--main-color-);
+}
+
+.page-active{
+    color: #fff;
+    background-color: var(--main-color-);
 }
 
 .inactive {

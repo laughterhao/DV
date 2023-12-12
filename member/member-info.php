@@ -51,102 +51,105 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                     <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
                 </ul>
             </nav>
-
-            <div class="px-0">
-                <div class="main-top">
-                    <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
-                </div>
-                <!-- modal -->
-                <div class="modal fade" id="blackModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">確定將"<?= $row["name"] ?>"列入黑名單嗎？</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                列入黑名單後，此顧客無法再購任何商品
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn " data-bs-dismiss="modal">取消</button>
-                                <a class="btn" href="memberDelect.php?id=<?=$row["id"] ?>">確定</a>
-                            </div>
-                        </div>
+            <div class="container-fluid m-0 p-0">
+                <div class="px-0">
+                    <div class="main-top">
+                        
+                        <a href="" class="logout"><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                     </div>
-                </div>
-
-
-                <?php if ($memberCount == 0) : ?>
-                    <h1>使用者不存在</h1>
-                <?php else : ?>
-                    <!-- 會員資訊 -->
-                    <div class="diving-block row ">
-                        <div class="memberinfo-block">
-                            <form action="member-edit.php" method="post">
-
-                                <div class="d-flex justify-content-between mb-4 ">
-                                    <h3>會員資訊</h3>
-                                    <div>
-                                        <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#blackModal">列入黑名單</button>
-                                        <a class="btn btn-sm" href="member-edit.php?id=<?= $row["id"] ?>">編輯</a>
-                                    </div>
+                    <!-- modal -->
+                    <div class="modal fade" id="blackModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">確定將"<?= $row["name"] ?>"列入黑名單嗎？</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-
-                                <table class="text-nowrap">
-                                    <tr>
-                                        <th>會員編號：</th>
-                                        <td><?= $row["id"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>姓名：</th>
-                                        <td id="tdInfo"><?= $row["name"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>性別：</th>
-                                        <td><?= $row["gender"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>生日：</th>
-                                        <td id="tdInfo"><?= $row["birth"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>信箱：</th>
-                                        <td id="tdInfo"><?= $row["email"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>電話：</th>
-                                        <td id="tdInfo"><?= $row["phone"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>地址：</th>
-                                        <td id="tdInfo"><?= $row["city"] . $row["address"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>註冊時間：</th>
-                                        <td><?= $row["created_at"] ?></td>
-                                    </tr>
-                                </table>
-
-                            </form>
-                        </div>
-                        <!-- 訂單 -->
-                        <div class="order-block ">
-                            <h3 class="mb-4">歷史訂單</h3>
-                            <table>
-                                <thead>
-                                    <tr class="text-nowrap">
-                                        <th>訂單號碼</th>
-                                        <th>訂單日期</th>
-                                        <th>訂單狀態</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                            </table>
+                                <div class="modal-body">
+                                    列入黑名單後，此顧客無法再購任何商品
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn " data-bs-dismiss="modal">取消</button>
+                                    <a class="btn" href="memberDelect.php?id=<?= $row["id"] ?>">確定</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                <?php endif; ?>
 
+
+                    <?php if ($memberCount == 0) : ?>
+                        <h1>使用者不存在</h1>
+                    <?php else : ?>
+                        <!-- 會員資訊 -->
+                        <div class="diving-block row ">
+                            <div class="memberinfo-block">
+                                <form action="member-edit.php" method="post">
+
+                                    <div class="d-flex justify-content-between mb-2 ">
+                                        <h3>會員資訊</h3>
+                                        <div>
+                                            <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#blackModal">列入黑名單</button>
+                                            <a class="btn btn-sm" href="member-edit.php?id=<?= $row["id"] ?>">編輯</a>
+                                        </div>
+                                    </div>
+
+                                    <table class="text-nowrap">
+                                        <tr>
+                                            <th>會員編號：</th>
+                                            <td><?= $row["id"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>姓名：</th>
+                                            <td id="tdInfo"><?= $row["name"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>性別：</th>
+                                            <td><?= $row["gender"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>生日：</th>
+                                            <td id="tdInfo"><?= $row["birth"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>信箱：</th>
+                                            <td id="tdInfo"><?= $row["email"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>電話：</th>
+                                            <td id="tdInfo"><?= $row["phone"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>地址：</th>
+                                            <td id="tdInfo"><?= $row["city"] . $row["address"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>註冊時間：</th>
+                                            <td><?= $row["created_at"] ?></td>
+                                        </tr>
+                                    </table>
+
+                                </form>
+                            </div>
+                            <!-- 訂單 -->
+                            <div class="order-block ">
+                                <h3 class="mb-4">歷史訂單</h3>
+                                <table>
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th>訂單號碼</th>
+                                            <th>訂單日期</th>
+                                            <th>訂單狀態</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
             </div>
+
         </div>
     </main>
 

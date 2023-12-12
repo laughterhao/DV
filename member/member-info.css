@@ -23,6 +23,12 @@
         margin-top: 20px;
     }
 }
+.main-top{
+    .back-btn{
+        position: absolute;
+        left: 400px;
+    }
+}
 .order-block{
     width: 55%;
     background: #fff;

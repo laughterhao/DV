@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <main>
+    <main class="container-fluid">
         <div class="row mx-0">
             <nav class="main-nav col-lg-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>

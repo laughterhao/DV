@@ -4,12 +4,12 @@
 }
 
 .member-block {
-    width        : 77%;
+    /* width        : 77%; */
     height       : 90%;
     background   : #fff;
     padding      : 30px;
     margin-top   : 20px;
-    margin-left  : 285px;
+    margin-left  : 240px;
     border-radius: 10px;
 
     & h3 {
@@ -24,16 +24,17 @@
 .member-table {
     & th {
         color: var(--main-color);
-
     }
-
-    & a {
-        color: #333;
-    }
-
-
 }
-
+.order-btn{
+    & a {
+        color: #ccc;
+    }
+    & a:hover {
+        color: var(--main-color);
+    }
+    
+} 
 .pagination {
     & a {
         color: var(--main-color);

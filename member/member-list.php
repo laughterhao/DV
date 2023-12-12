@@ -18,13 +18,31 @@ if (isset($_GET["search"])) {
     $search = $_GET["search"];
     $_SESSION["search"] = $search; //儲存search讓下面抓得到
 
+    //search之後如果有抓到order
+    if (isset($_GET["order"])) {
+        $order = $_GET["order"];
+    } else {
+        $order = 1;
+    }
+    switch ($order) {
+        case 1:
+            $orderSql = "ASC";
+            break;
+        case 2:
+            $orderSql = "DESC";
+            break;
+        default:
+            $orderSql = "ASC";
+            break;
+    }
+
+    //search之後如果有抓到page
     if (isset($_GET["page"])) {
 
         $page = $_GET["page"];
-
         $startItem = ($page - 1) * $perPage;
         // var_dump($startItem);
-        $sql = "SELECT * FROM member WHERE (name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' OR gender LIKE '%$search%' OR birth LIKE '%$search%') AND valid=1  LIMIT $startItem, $perPage";
+        $sql = "SELECT * FROM member WHERE (name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' OR gender LIKE '%$search%' OR birth LIKE '%$search%') AND valid=1 ORDER BY id $orderSql  LIMIT $startItem, $perPage";
     } else {
         $sql = "SELECT * FROM member WHERE (name LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' OR gender LIKE '%$search%' OR birth LIKE '%$search%') AND valid=1  LIMIT $perPage";
     }
@@ -34,15 +52,26 @@ if (isset($_GET["search"])) {
     $resultTotal = $conn->query($searchTotal);
     $totalMember  = $resultTotal->num_rows;
     $pageCount = ceil($totalMember  / $perPage);
-} elseif (isset($_GET["page"]) && isset($_GET["order"])) {
+} elseif (isset($_GET["page"])) {
     $page = $_GET["page"];
-    $order = $_GET["order"];
+    // $order = $_GET["order"];
+
+    //判斷如果也有order
+    if (isset($_GET["order"])) {
+        $order = $_GET["order"];
+    } else {
+        $order = 1; //沒有抓到order就是ASC
+    }
+
     switch ($order) {
         case 1:
             $orderSql = "ASC";
             break;
         case 2:
             $orderSql = "DESC";
+            break;
+        default:
+            $orderSql = "ASC";
             break;
     }
     // 每頁開始的項目＝當前的頁碼-1 * 每頁項目
@@ -74,16 +103,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="backe-template.css">
+    <link rel="stylesheet" href="backe-template.css?time<?= time() ?>">
     <link rel="stylesheet" href="member-list.css">
 
 
 </head>
 
 <body>
-    <main>
+    <main class="container-fluid p-0">
         <div class="row mx-0">
-            <nav class="main-nav p-0">
+            <nav class="main-nav p-0 col-2">
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
                     <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
@@ -102,7 +131,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
                     <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                 </div>
                 <!-- 會員列表 -->
-                <div class="m-0">
+                <div class="container-fluid m-0">
                     <div class="member-block pb-3 mb-5">
                         <h3>會員列表</h3>
                         <div class="d-flex justify-content-between align-items-center">
@@ -143,8 +172,13 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
                                             <p class="m-0">編號 </p>
                                         </div>
                                         <div class="order-btn">
+                                            <?php if (isset($_GET["search"])) : ?>
+                                                <a href="member-list.php?page=<?= $page ?>&order=1&search=<?= $search ?>"><i class="bi bi-caret-down-fill"></i></a>
+                                                <a href="member-list.php?page=<?= $page ?>&order=2&search=<?= $search ?>"><i class="bi bi-caret-up-fill"></i></a>
+                                            <?php else : ?>
                                                 <a href="member-list.php?page=<?= $page ?>&order=1"><i class="bi bi-caret-down-fill"></i></a>
                                                 <a href="member-list.php?page=<?= $page ?>&order=2"><i class="bi bi-caret-up-fill"></i></a>
+                                            <?php endif ?>
                                         </div>
                                     </th>
                                     <th>姓名</th>
@@ -189,11 +223,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
                                 <?php if ($page > 1) : ?>
                                     <li class="page-item">
                                         <?php if (isset($_GET["search"])) : ?>
-                                            <a class="page-link" href="member-list.php?page=<?= $page  - 1 ?>&search=<?= $search ?>">
+                                            <a class="page-link" href="member-list.php?page=<?= $page  - 1 ?>&search=<?= $search ?>&order=<?= $order ?>">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         <?php else : ?>
-                                            <a class="page-link" href="member-list.php?page=<?= $page  - 1 ?>">
+                                            <a class="page-link" href="member-list.php?page=<?= $page  - 1 ?>&order=<?= $order ?>">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         <?php endif; ?>
@@ -213,10 +247,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
                                 <?php if ($page < $pageCount) : ?>
                                     <li class="page-item">
                                         <?php if (isset($_GET["search"])) : ?>
-                                            <a class="page-link" href="member-list.php?page=<?= $page + 1 ?>&search=<?= $search ?>"> <span aria-hidden="true">&raquo;</span>
+                                            <a class="page-link" href="member-list.php?page=<?= $page + 1 ?>&search=<?= $search ?>&order=<?= $order ?>"> <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         <?php else : ?>
-                                            <a class="page-link" href="member-list.php?page=<?= $page + 1 ?>"> <span aria-hidden="true">&raquo;</span>
+                                            <a class="page-link" href="member-list.php?page=<?= $page + 1 ?>&order=<?= $order ?>"> <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         <?php endif; ?>
 

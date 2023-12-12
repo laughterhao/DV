@@ -166,9 +166,8 @@ require_once('select_new.php')
 
    <script>
       $('#edit').on('show.bs.modal', function(event) {
-         var button = $(event.relatedTarget) // Button that triggered the modal
-         var id = button.data('id') // Extract info from data-* attributes
-         // TODO: Use the id to fill the modal with the correct data.
+         var button = $(event.relatedTarget)
+         var id = button.data('id')
       });
       $('#del<?= $row['id'] ?>').on('show.bs.modal', function(event) {
          var button = $(event.relatedTarget) // Button that triggered the modal

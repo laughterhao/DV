@@ -30,7 +30,7 @@
             </ul>
         </nav>
 
-        <div class=" px-0">
+        <div class="col-10 px-0" style="margin-left: 16.66%;">
             <div class="main-top">
                 <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
             </div>

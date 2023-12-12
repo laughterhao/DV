@@ -46,9 +46,11 @@ body {
 }
 .main-top{
     width: 100%;
-    position: relative;
+    position: sticky;
+    top: 0;
     height: 50px;
     background: #fff;
+    box-shadow: 0 3px 5px #c3c3c3;
     & a{
         position: absolute;
         right: 35px;

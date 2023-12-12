@@ -28,7 +28,7 @@ $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
     <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script defer src="script.js"></script>
     
-    <link rel="stylesheet" href="backe-template.css">
+    <link rel="stylesheet" href="backe-template.css?time=<?=time()?>">
 
 </head>
 

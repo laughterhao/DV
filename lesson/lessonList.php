@@ -20,6 +20,25 @@ if (isset($_GET["search"])) {
     $sql = "SELECT * FROM lesson ORDER BY id DESC LIMIT 0,$perPage";
 }
 
+// 用來計算課程筆數 & 頁面數量
+$sqlTotal = "SELECT * FROM lesson WHERE valid=1";
+$resultTotal = $conn->query($sqlTotal);
+$totalLesson = $resultTotal->num_rows;
+$perPage = 5;
+$pageCount = ceil($totalLesson / $perPage);
+
+if (isset($_GET["search"])) {
+    $search = $_GET["search"];
+    $sql = "SELECT * FROM lesson WHERE name LIKE '%$search%' AND valid=1 ORDER BY id DESC";
+} elseif (isset($_GET["page"])) {
+    $page = $_GET["page"];
+    $startItem = ($page - 1) * $perPage;
+    $sql = "SELECT * FROM lesson ORDER BY id DESC LIMIT $startItem,$perPage";
+} else {
+    $page = 1;
+    $sql = "SELECT * FROM lesson ORDER BY id DESC LIMIT 0,$perPage";
+}
+
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 ?>
@@ -59,11 +78,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
     <!-- modal end -->
-    <header class="d-flex flex-row-reverse">
-        <div class="logo d-flex align-items-center">
-            <a href="" class=""><i class="bi bi-box-arrow-in-right me-2"></i>LOG OUT</a>
-        </div>
-    </header>
+    <header></header>
     <main>
         <div class="sidebar text-white">
             <div class="w-100">

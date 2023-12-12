@@ -26,8 +26,8 @@ input {
     color: var(--main-color-);
 }
 
-.text-main-color {
-    color: var(--main-color-);
+.text-main-color{
+    color: var(--main-color-);    
 }
 
 .btn {
@@ -217,12 +217,10 @@ header {
 
 .page {
     margin: 20px 0;
-
-    & a {
+    & a{
         padding: 6px 12px;
     }
-
-    & .page-item {
+    & .page-item{
         padding: 0;
     }
 }
@@ -233,7 +231,7 @@ header {
     color: var(--main-color-);
 }
 
-.page-active {
+.page-active{
     color: #fff;
     background-color: var(--main-color-);
 }

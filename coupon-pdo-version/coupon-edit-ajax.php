@@ -1,13 +1,13 @@
 <?php
 session_start();
 
+require_once("../DB_conn.php");
+
 if(!isset($_GET["id"])){
     header("location: coupon-list.php");
 }
 
 $id=$_GET["id"];
-
-require_once("pdo-connect.php");
 
 $stmt=$conn->prepare('SELECT * FROM `coupon` WHERE id =:id ');
 $stmt->execute([':id' => $id]);
@@ -25,7 +25,7 @@ $couponCount =$stmt->rowCount();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <?php
-     include("css.php");
+        include("../css/css.php");
     ?>
 
 </head>
@@ -204,7 +204,7 @@ $couponCount =$stmt->rowCount();
                 console.log(data);
                 $.ajax({
                         method: "POST", //or GET
-                        url: "api/doEditCoupon.php",
+                        url: "../api/doEditCoupon.php",
                         dataType: "json",
                         data: data
                     })

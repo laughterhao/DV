@@ -1,6 +1,6 @@
 <?php
 
-require_once("../pdo-connect.php");
+require_once("../DB_conn.php");
 
 $id=$_GET["id"];
 
@@ -19,4 +19,4 @@ try {
   }
   $conn = null;
 
-  header("location: ../coupon-list.php");
+  header("location: ../coupon-pdo-version/coupon-list.php");

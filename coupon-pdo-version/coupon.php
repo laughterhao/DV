@@ -5,7 +5,7 @@ if(!isset($_GET["id"])){
 
 $id=$_GET["id"];
 
-require_once("pdo-connect.php");
+require_once("../DB_conn.php");
 
 $stmt=$conn->prepare('SELECT * FROM `coupon` WHERE id =:id ');
 $stmt->execute([':id' => $id]);
@@ -23,7 +23,7 @@ $couponCount =$stmt->rowCount();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <?php
-     include("css.php");
+       include("../css/css.php");
     ?>
 
 </head>

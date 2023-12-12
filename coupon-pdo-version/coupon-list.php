@@ -1,5 +1,5 @@
 <?php
-require_once("pdo-connect.php");
+require_once("../DB_conn.php");
 
 $stmtTotal=$conn->prepare('SELECT * FROM coupon WHERE valid=1');
 $stmtTotal->execute();
@@ -19,16 +19,16 @@ $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <?php
-  include("css.php");
+  include("../css/css.php");
   ?>
 
     <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <!-- <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> -->
-    <script defer src="dataTables.js"></script>
+    <script defer src="../js/dataTables.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-    <script defer src="script.js"></script>
+    <script defer src="../js/script.js"></script>
     
-    <link rel="stylesheet" href="backe-template.css">
+    <link rel="stylesheet" href="../css/backe-template.css">
 
 </head>
 

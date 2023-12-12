@@ -8,6 +8,4 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
-<link rel="stylesheet" href="../css/style.css">
-
-<link rel="stylesheet" href="backe-template.css">
+<link rel="stylesheet" href="../css/backe-template.css">

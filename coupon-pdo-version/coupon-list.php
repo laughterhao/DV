@@ -48,7 +48,7 @@ $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
             <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
           </ul>
       </div>
-      <div class="col-10 p-0">
+      <div class="col-10 p-0" style="margin-left: 16.66%;">
         <div class="main-top" style="width: auto;">
           <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
         </div>

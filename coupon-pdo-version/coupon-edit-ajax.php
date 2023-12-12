@@ -66,10 +66,11 @@ $couponCount =$stmt->rowCount();
                 </ul>
             </nav>
 
-            <div class="col-10 px-0">
+            <div class="col-10 px-0" style="margin-left: 16.66%;">
                 <div class="main-top">
                     <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                 </div>
+                <div class="container">
                 <div class="py-2">
                     <a class="btn btn-info text-white" href="coupon-list.php" title="回優惠券列表">
                         <i class="bi bi-arrow-90deg-left"></i>
@@ -141,67 +142,6 @@ $couponCount =$stmt->rowCount();
                 </tr>
             </table>
                 </div>
-            <!-- <table class="table table-bordered">
-                <input type="hidden" name="id" id="id" value="<?=$row["id"]?>">
-                <tr>
-                    <th>優惠券名稱</th>
-                    <td>
-                        <input type="text" class="form-control" name="name" id="name" value="<?=$row["name"]?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th>優惠碼</th>
-                    <td>
-                        <input type="text" pattern="\S*" class="form-control" name="code" id="code" value="<?=$row["code"]?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th>可使用人數</th>
-                    <td>
-                        <input type="number" class="form-control" name="max_count" id="max_count" value="<?=$row["max_count"]?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th>折扣方式</th>
-                    <td>
-                        <div class="form-check col-auto">
-                            <input class="form-check-input" type="radio" name="discount_method" id="discount_cash" value="discount_cash" <?php if(isset($row["discount_cash"])) :?>checked<?php endif; ?>>
-                            <label class="form-check-label" for="discount_cash">
-                                現金折抵
-                            </label>
-                        </div>
-                        <div class="form-check col-auto">
-                            <input class="form-check-input" type="radio" name="discount_method" id="discount_pa" value="discount_pa" <?php if(isset($row["discount_pa"])) :?>checked<?php endif; ?>>
-                            <label class="form-check-label" for="discount_pa">
-                                折扣
-                            </label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <?php 
-                    $a = isset($row["discount_pa"]);
-                    ?>
-                    <th>折扣額數</th>
-                    <td>
-                        <input type="number" class="form-control" name="discount" id="discount" value="<?php echo ($a ? $row["discount_pa"] : $row["discount_cash"]) ?>" >
-                    </td>
-                </tr>
-                <tr>
-                    <th>使用期間</th>
-                    <td>
-                        <div class="col-auto">
-                            <input type="date" class="form-control" name="start" id="start" value="<?=$row["start"]?>">
-                        </div>
-                        <div class="col-auto">
-                            to
-                        </div>
-                        <div class="col-auto">
-                            <input type="date" class="form-control" name="end" id="end" value="<?=$row["end"]?>">
-                        </div>
-                    </td>
-                </tr>
-            </table> -->
             <div class="py-2 d-flex justify-content-between">
                 <div>
                     <button class="btn btn-info text-white" id="send">儲存</button>
@@ -210,6 +150,7 @@ $couponCount =$stmt->rowCount();
                 <div>
                     <button type="button" data-bs-toggle="modal" data-bs-target="#alertModal" class="btn btn-danger">刪除</button>
                 </div>
+            </div>
             </div>
         <?php endif; ?>
             </div>

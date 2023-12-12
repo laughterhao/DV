@@ -10,6 +10,9 @@ body {
 .main-nav{
     color: #fff;
     background: var(--main-color) ;
+    height: 100%;
+    position: fixed;
+    left: 0;
     z-index: 1;
     & h1{
         font-size: 50px;
@@ -18,6 +21,7 @@ body {
 .main-ul{
     .main-li{
         letter-spacing: 1px;
+        width: 100%;
         padding-left: 60px;
         padding-block: 20px;
         & a{
@@ -41,6 +45,8 @@ body {
     list-style: none;
 }
 .main-top{
+    width: 100%;
+    position: relative;
     height: 50px;
     background: #fff;
     & a{

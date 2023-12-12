@@ -5,7 +5,7 @@ if(!isset($_GET["id"])){
 
 $id=$_GET["id"];
 
-require_once("pdo-connect.php");
+require_once("../DB_conn.php");
 
 $stmt=$conn->prepare('SELECT * FROM `coupon` WHERE id =:id ');
 $stmt->execute([':id' => $id]);
@@ -23,13 +23,33 @@ $couponCount =$stmt->rowCount();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <?php
-     include("css.php");
+       include("../css/css.php");
     ?>
 
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
+    <main class="row">
+        <nav class="main-nav col-lg-2 p-0">
+            <h1 class="my-4 text-center">DiVING</h1>
+            <ul class="main-ul list-unstyle p-0">
+                <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+            </ul>
+        </nav>
+
+        <div class="col-10 px-0" style="margin-left: 16.66%;">
+            <div class="main-top">
+                <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
+            </div>
+            <div class="container">
         <div class="py-2">
         <a class="btn btn-info text-white" href="coupon-list.php" title="回優惠券列表">
                 <i class="bi bi-arrow-90deg-left"></i>
@@ -78,6 +98,10 @@ $couponCount =$stmt->rowCount();
             </a>
         </div>
         <?php endif; ?>
+    </div>
+
+        </div>
+    </main>
     </div>
 
     <!-- Bootstrap JavaScript Libraries -->

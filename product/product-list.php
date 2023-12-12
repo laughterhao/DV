@@ -60,7 +60,7 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="backe-template.css">
-    <?php include("../diving/css.php") ?>
+    <?php include("css.php") ?>
     <style>
         .object-fit-cover {
             width: 100px;

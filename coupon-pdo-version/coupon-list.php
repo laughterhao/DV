@@ -28,7 +28,7 @@ $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
     <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script defer src="script.js"></script>
     
-    <link rel="stylesheet" href="backe-template.css?time=<?=time()?>">
+    <link rel="stylesheet" href="backe-template.css">
 
 </head>
 
@@ -48,7 +48,7 @@ $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
             <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
           </ul>
       </div>
-      <div class="col-10 p-0" style="margin-left: 16.66%;">
+      <div class="col-10 p-0" style="margin-left:16.66%;">
         <div class="main-top" style="width: auto;">
           <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
         </div>

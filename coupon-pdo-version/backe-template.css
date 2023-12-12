@@ -10,6 +10,7 @@ body {
 .main-nav{
     color: #fff;
     background: var(--main-color) ;
+    width: 16.66vw;
     height: 100%;
     position: fixed;
     left: 0;
@@ -21,10 +22,10 @@ body {
 .main-ul{
     .main-li{
         letter-spacing: 1px;
-        width: 100%;
-        padding-left: 60px;
-        padding-block: 20px;
+        padding-inline: 0;
         & a{
+            padding-left: 60px;
+            padding-block: 20px;
             display: block;
             width: 100%;
             font-size: 16px;
@@ -71,4 +72,8 @@ body {
 .btn:hover{
     background: var(--main-color);
     color: #fff;
+}
+
+.pagination{
+    --bs-pagination-active-bg:var(--main-color);
 }

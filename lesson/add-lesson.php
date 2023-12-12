@@ -17,7 +17,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <!-- font-awesome v6.5.1 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../lesson/css/addLesson.css">
+    <link rel="stylesheet" href="./css/addLesson.css">
 </head>
 
 <body>
@@ -45,45 +45,75 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         <div class="sidebar"></div>
         <section class="right-content">
             <div class="body">
-                <div class="breadcrumb">課程管理 > 編輯</div>
-                <form action="" method="post">
+                <div class="breadcrumb">課程管理 > 新增</div>
+                <form action="doAddLesson.php" method="post" enctype="multipart/form-data">
                     <div class="list-box scroll-x">
                         <div class="container">
-                            <div class="row align-items-center mb-3">
+                            <div class="row align-items-center my-3">
                                 <h3 class="col-12 border-bottom pb-1">課程資訊</h3>
                                 <div class="row align-items-center">
-                                    <h4 class="col-2">課程圖片</h4>
-                                    <div class="col-6">
-                                        <img src="./images/01.jpg" alt="" class="object-fit">
+                                    <label for="image" class="col-2">課程圖片</label>
+                                    <div class="col-4 dropzone">
+                                        <div class="row justify-content-center fs-4">
+                                            拖放圖片到這裡
+                                            <button type="button" class="btn col-4 mt-2">新增圖片</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <h4 class="col-2">課程名稱</h4>
-                                    <input type="text" class="col d-inline-block ms-2">
-                                </div>
-                                <div class="row">
-                                    <h4 class="col-2">課程簡介</h4>
-                                    <input type="text" class="col-12 d-inline-block ms-2 input-height">
-                                </div>
-                                <div class="row">
-                                    <h4 class="col-2">課程內容</h4>
-                                    <input type="text" class="col-12 d-inline-block ms-2 input-height">
-                                </div>
+                                <label for="name" class="col-2">課程名稱</label>
+                                <input type="text" name="name" id="name" class="col-10 d-inline-block">
+                                <label class="col-2" for="info">課程簡介</label>
+                                <input type="text" name="info" id="info" class="col-12 d-inline-block ms-2 input-style">
+                                <label for="" class="col-2">課程內容</label>
+                                <input type="text" name="content" id="content" class="col-12 d-inline-block ms-2 input-style">
                                 <h3 class="col-12 border-bottom pb-1">分類</h3>
+                                <div class="col-6">
+                                    <label for="sort" class="">所屬分類</label>
+                                    <select name="sort" id="sort">
+                                        <option value="">請選擇</option>
+                                        <option value="1">自由潛水</option>
+                                        <option value="2">水肺潛水</option>
+                                        <option value="3">技術潛水</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="location" class="">所屬地區</label>
+                                    <select name="location" id="location">
+                                        <option value="">請選擇</option>
+                                        <option value="1">東北角</option>
+                                        <option value="2">澎湖</option>
+                                        <option value="3">小琉球</option>
+                                        <option value="4">墾丁</option>
+                                        <option value="5">蘭嶼</option>
+                                        <option value="6">綠島</option>
+                                    </select>
+                                </div>
                                 <h3 class="col-12 border-bottom pb-1">價格和數量</h3>
+                                <div class="col-6">
+                                    <label for="price">原價</label>
+                                    <input type="text" name="price" id="price">
+                                </div>
+                                <div class="col-6">
+                                    <label for="max-person">人數上限</label>
+                                    <input type="text" name="max-person" id="max-person">
+                                </div>
+                                <div class="col-6">
+                                    <label for="">特價</label>
+                                    <input type="text">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- LIST BOX END -->
-                </form>
-                <div class="foot">
-                    <div class="d-flex flex-row-reverse">
-                        <div class="btn-group">
-                            <button class="btn">儲存</button>
-                            <button class="btn">取消</button>
+                    <!-- list box end -->
+                    <div class="foot">
+                        <div class="d-flex flex-row-reverse">
+                            <div class="btn-group">
+                                <button type="submit" class="btn">新增</button>
+                                <button type="button" class="btn" id="cancel">取消</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
     </main>
@@ -94,13 +124,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
     <script>
-        document.getElementById('selectAll').addEventListener('change', function() {
-            var checkboxes = document.getElementsByClassName('checkbox');
-            // console.log(checkboxes);
-            for (i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = this.checked;
-            }
-        });
+        // cancel function
+        document.getElementById('cancel').addEventListener('click', function(){
+            location.href = 'http://localhost/DV/lesson/lessonList.php'
+        })
     </script>
 </body>
 

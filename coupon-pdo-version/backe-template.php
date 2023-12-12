@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div class="container-fluid">
     <main class="row">
         <nav class="main-nav col-lg-2 p-0">
             <h1 class="my-4 text-center">DiVING</h1>
@@ -33,59 +34,12 @@
             <div class="main-top">
                 <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
             </div>
-            <div class="container">
-        <div class="py-2">
-        <a class="btn btn-info text-white" href="coupon-list.php" title="回優惠券列表">
-                <i class="bi bi-arrow-90deg-left"></i>
-            </a>
-        </div>
-        <?php  if($couponCount == 0):?>
-            <h1>優惠券不存在</h1>
-        <?php else: ?>
-        <table class="table table-bordered">
-            <tr>
-                <th>ID</th>
-                <td><?=$row["id"]?></td>
-            </tr>
-            <tr>
-                <th>優惠券名稱</th>
-                <td><?=$row["name"]?></td>
-            </tr>
-            <tr>
-                <th>優惠碼</th>
-                <td><?=$row["code"]?></td>
-            </tr>
-            <tr>
-                <th>可使用人數</th>
-                <td><?=$row["max_count"]?></td>
-            </tr>
-            <tr>
-                <th>以使用人數</th>
-                <td><?=$row["used_count"]?></td>
-            </tr>
-            <tr>
-                <th>折扣金額</th>
-                <td>
-                    <?php if(isset($row["discount_pa"])) : ?><?= $row["discount_pa"] ?>折
-                    <?php elseif(isset($row["discount_cash"])) : ?><?= $row["discount_cash"] ?>NTD
-                    <?php endif; ?>   
-                </td>
-            </tr>
-            <tr>
-                <th>可使用時間</th>
-                <td><?= $row["start"] ?> ~ <?= $row["end"] ?></td>
-            </tr>
-        </table>
-        <div class="py-2">
-            <a class="btn btn-info text-white" href="coupon-edit-ajax.php?id=<?=$row["id"]?>" title="修改資料" >
-                <i class="bi bi-pencil-fill"></i>
-            </a>
-        </div>
-        <?php endif; ?>
-    </div>
-
+            <div class="continer">
+                //內容
+            </div>
         </div>
     </main>
+    </div>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

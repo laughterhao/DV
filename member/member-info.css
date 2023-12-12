@@ -5,8 +5,8 @@
 
 .diving-block{
     width: 80%;
-    margin-left:285px;
-    margin-top: 20px;
+    margin-left:280px;
+    margin-top: 40px;
     height: 90%;
     & h3{
         color: var(--main-color);
@@ -23,11 +23,12 @@
         margin-top: 20px;
     }
 }
-.main-top{
-    .back-btn{
-        position: absolute;
-        left: 400px;
-    }
+.back-btn{
+    text-decoration: none;
+    color: #adadad;
+}
+.back-btn:hover{
+    color: var(--main-color);
 }
 .order-block{
     width: 55%;

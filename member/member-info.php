@@ -51,41 +51,41 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                     <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
                 </ul>
             </nav>
-            <div class="container-fluid m-0 p-0">
-                <div class="px-0">
-                    <div class="main-top">
-                        
-                        <a href="" class="logout"><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
-                    </div>
-                    <!-- modal -->
-                    <div class="modal fade" id="blackModal" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">確定將"<?= $row["name"] ?>"列入黑名單嗎？</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    列入黑名單後，此顧客無法再購任何商品
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn " data-bs-dismiss="modal">取消</button>
-                                    <a class="btn" href="memberDelect.php?id=<?= $row["id"] ?>">確定</a>
-                                </div>
+
+            <div class="px-0">
+                <div class="main-top">
+                    <a href="" class="logout"><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
+                </div>
+                <!-- modal -->
+                <div class="modal fade" id="blackModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">確定將"<?= $row["name"] ?>"列入黑名單嗎？</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                列入黑名單後，此顧客無法再購任何商品
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn " data-bs-dismiss="modal">取消</button>
+                                <a class="btn" href="memberDelect.php?id=<?= $row["id"] ?>">確定</a>
                             </div>
                         </div>
                     </div>
+                </div>
 
 
-                    <?php if ($memberCount == 0) : ?>
-                        <h1>使用者不存在</h1>
-                    <?php else : ?>
-                        <!-- 會員資訊 -->
+                <?php if ($memberCount == 0) : ?>
+                    <h1>使用者不存在</h1>
+                <?php else : ?>
+                    <!-- 會員資訊 -->
+                    <div class="container-fluid m-0 p-0">
                         <div class="diving-block row ">
                             <div class="memberinfo-block">
                                 <form action="member-edit.php" method="post">
-
-                                    <div class="d-flex justify-content-between mb-2 ">
+                                    <a class="back-btn" href="member-list.php"><i class="bi bi-arrow-bar-left"></i>回到使用者列表</a>
+                                    <div class="d-flex justify-content-between my-2 ">
                                         <h3>會員資訊</h3>
                                         <div>
                                             <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#blackModal">列入黑名單</button>
@@ -145,10 +145,11 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                                 </table>
                             </div>
                         </div>
-                    <?php endif; ?>
+                    </div>
+                <?php endif; ?>
 
-                </div>
             </div>
+
 
         </div>
     </main>

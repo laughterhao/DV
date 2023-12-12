@@ -57,7 +57,7 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                 <div class="main-top">
                     <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                 </div>
-                <div class="container-fluid m-0">
+                <div class="container-fluid m-0 p-0">
                     <?php if ($memberCount == 0) : ?>
                         <h1>使用者不存在</h1>
                     <?php else : ?>
@@ -69,7 +69,7 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                                     <div class="d-flex justify-content-between mb-4 ">
                                         <h3>會員資訊</h3>
                                         <div>
-                                            <a  class="btn btn-sm">取消</a>
+                                            <a href="member-info.php?id=<?=$row["id"]?>"  class="btn btn-sm">取消</a>
                                             <button type="submit" class="btn btn-sm okbtn">確認</button>
                                         </div>
                                     </div>
@@ -128,8 +128,8 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                                                 <select name="city" class="form-select mt-2" aria-label="Default select example">
                                                     <!-- <option value="<?= $row["city"] ?>"></option> -->
                                                     <option value="台北市" <?php if ($row["city"] === "台北市") echo 'selected' ?>>台北市</option>
-                                                    <option value="新北市"  <?php if ($row["city"] === "新北市") echo 'selected' ?>>新北市</option>
-                                                    <option value="桃園市"  <?php if ($row["city"] === "桃園市") echo 'selected' ?>>桃園市</option>
+                                                    <option value="新北市" <?php if ($row["city"] === "新北市") echo 'selected' ?>>新北市</option>
+                                                    <option value="桃園市" <?php if ($row["city"] === "桃園市") echo 'selected' ?>>桃園市</option>
                                                     <option value="新竹縣" <?php if ($row["city"] === "新竹縣") echo 'selected' ?>>新竹縣</option>
                                                     <option value="新竹市" <?php if ($row["city"] === "新竹市") echo 'selected' ?>>新竹市</option>
                                                     <option value="苗栗縣" <?php if ($row["city"] === "苗栗縣") echo 'selected' ?>>苗栗縣</option>
@@ -144,7 +144,7 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                                                     <option value="花蓮縣" <?php if ($row["city"] === "花蓮縣") echo 'selected' ?>>花蓮縣</option>
                                                     <option value="宜蘭縣" <?php if ($row["city"] === "宜蘭縣") echo 'selected' ?>>宜蘭縣</option>
                                                 </select>
-                                                
+
                                                 <input style="width: 300px;" type="text" class="form-control" name="address" value="<?= $row["address"] ?>">
                                             </td>
                                         </tr>
@@ -176,7 +176,7 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                 </div>
             </div>
         </div>
-        </div>
+
     </main>
 
 

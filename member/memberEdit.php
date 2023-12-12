@@ -28,7 +28,7 @@ WHERE id=$id";
 // var_dump($sql);
 
 if ($conn->query($sql) === TRUE) {
-    header("location:member-info.php");
+    header("location:member-info.php?id=$id");
     exit;
 } else {
     echo "更新錯誤";

@@ -1,7 +1,7 @@
 /* Global */
 :root {
     --main-color-: #437281;
-    --sidebar-with-: 16vw;
+    --sidebar-with-: 240px;
 }
 
 body {
@@ -26,8 +26,8 @@ input {
     color: var(--main-color-);
 }
 
-.text-main-color{
-    color: var(--main-color-);    
+.text-main-color {
+    color: var(--main-color-);
 }
 
 .btn {
@@ -56,6 +56,16 @@ header {
     position: relative;
     z-index: 1;
 
+    & .logo {
+        margin-right: 35px;
+
+        & a {
+            color: var(--main-color-);
+            font-size: 16px;
+            line-height: 50px;
+            font-weight: bold;
+        }
+    }
 }
 
 .sidebar {
@@ -66,8 +76,37 @@ header {
     top: 0;
     left: 0;
     z-index: 2;
+
+    & h1 {
+        font-size: 50px;
+    }
+
 }
 
+.main-li {
+    padding-inline: 0px;
+    letter-spacing: 1px;
+    width: 100%;
+
+    &:hover {
+        background: #335661;
+    }
+
+    & a {
+        display: block;
+        padding-left: 60px;
+        padding-block: 20px;
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+
+        & i {
+            margin-right: 10px;
+            font-size: 20px;
+
+        }
+    }
+}
 
 .right-content {
     width: calc(100% - var(--sidebar-with-));
@@ -178,10 +217,12 @@ header {
 
 .page {
     margin: 20px 0;
-    & a{
+
+    & a {
         padding: 6px 12px;
     }
-    & .page-item{
+
+    & .page-item {
         padding: 0;
     }
 }
@@ -192,7 +233,7 @@ header {
     color: var(--main-color-);
 }
 
-.page-active{
+.page-active {
     color: #fff;
     background-color: var(--main-color-);
 }

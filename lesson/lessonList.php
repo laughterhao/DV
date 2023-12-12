@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../mysql-db-conn.php");
 
 // 用來計算課程筆數 & 頁面數量
 $sqlTotal = "SELECT * FROM lesson WHERE valid=1";

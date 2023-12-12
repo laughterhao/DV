@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../mysql-db-conn.php");
 
 if(isset($_POST["sale"])){
     $id = $_POST["sale"];

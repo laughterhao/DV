@@ -140,9 +140,9 @@ $result = $conn->query($sql);
                         <?php if (!isset($_GET["search"])) : ?>
                             <div class="py-2 px-3">
                                 <!-- 價格排序 -->
-                                <a id="btn" class="btn <?php if ($order == 1) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=1"><i class="bi bi-sort-numeric-down-alt"></i></a>
+                                <a id="btn" class="btn <?php if ($order == 1) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=1"><i class="bi bi-sort-numeric-down"></i></a>
 
-                                <a id="btn" class="btn <?php if ($order == 2) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=2"><i class="bi bi-sort-numeric-down"></i></a>
+                                <a id="btn" class="btn <?php if ($order == 2) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=2"><i class="bi bi-sort-numeric-down-alt"></i></a>
                                 <!-- id排序 -->
                                 <a id="btn" class="btn <?php if ($order == 3) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=3"><i class="bi bi-sort-down-alt"></i></a>
 

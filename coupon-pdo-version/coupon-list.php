@@ -1,13 +1,13 @@
 <?php
 require_once("../DB_conn.php");
 
-$stmtTotal=$conn->prepare('SELECT * FROM coupon WHERE valid=1');
+$stmtTotal = $conn->prepare('SELECT * FROM coupon WHERE valid=1');
 $stmtTotal->execute();
-$totalCouponCount=$stmtTotal->rowCount();
+$totalCouponCount = $stmtTotal->rowCount();
 
-$stmt=$conn->prepare('SELECT * FROM coupon WHERE valid=1');
+$stmt = $conn->prepare('SELECT * FROM coupon WHERE valid=1');
 $stmt->execute();
-$rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!doctype html>
@@ -22,13 +22,13 @@ $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
   include("../css/css.php");
   ?>
 
-    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <!-- <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> -->
-    <script defer src="../js/dataTables.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-    <script defer src="../js/script.js"></script>
-    
-    <link rel="stylesheet" href="../css/backe-template.css">
+  <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <!-- <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> -->
+  <script defer src="../js/dataTables.js"></script>
+  <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  <script defer src="../js/script.js"></script>
+
+  <link rel="stylesheet" href="../css/backe-template.css">
 
 </head>
 
@@ -37,16 +37,16 @@ $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
       <div class="col-2 main-nav p-0">
         <h1 class="my-4 text-center">DiVING</h1>
-          <ul class="main-ul list-unstyle p-0">
-            <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-            <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-            <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-            <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-            <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-            <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-            <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-            <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
-          </ul>
+        <ul class="main-ul list-unstyle p-0">
+          <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
+          <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
+          <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+          <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
+          <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
+          <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
+          <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
+          <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+        </ul>
       </div>
       <div class="col-10 p-0" style="margin-left:16.66%;">
         <div class="main-top" style="width: auto;">
@@ -55,49 +55,49 @@ $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="container">
           <a class="btn btn-info text-white" href="add-coupon-ajax.php" title="增加優惠券"><i class="bi bi-person-fill-add"></i></a>
           <?php if ($totalCouponCount > 0) : ?>
-          <table id="example" class="table table-bordered">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>優惠券名稱</th>
-                <th>優惠碼</th>
-                <th>可使用人數</th>
-                <th>以使用人數</th>
-                <th>折扣金額</th>
-                <th>可使用時間</th>
-                <th>詳細</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($rows as $row) : ?>
+            <table id="example" class="table table-bordered">
+              <thead>
                 <tr>
-                  <td><?= $row["id"] ?></td>
-                  <td><?= $row["name"] ?></td>
-                  <td><?= $row["code"] ?></td>
-                  <td><?= $row["max_count"] ?></td>
-                  <td><?= $row["used_count"] ?></td>
-                  <td>
-                    <?php if(isset($row["discount_pa"])) : ?>
-                      <?= $row["discount_pa"] ?>折
-                    <?php elseif(isset($row["discount_cash"])) : ?>
-                      <?= $row["discount_cash"] ?>NTD
-                      <?php endif; ?>
-                  </td>
-                  <td><?= $row["start"] ?> ~ <?= $row["end"] ?></td>
-                  <td>
-                    <a class="btn btn-info text-white" href="coupon.php?id=<?= $row["id"] ?>" title="詳細資料"><i class="bi bi-info-circle-fill"></i></a>
-                  </td>
+                  <th>ID</th>
+                  <th>優惠券名稱</th>
+                  <th>優惠碼</th>
+                  <th>可使用人數</th>
+                  <th>以使用人數</th>
+                  <th>折扣金額</th>
+                  <th>可使用時間</th>
+                  <th>詳細</th>
                 </tr>
-              <?php endforeach; ?>
+              </thead>
+              <tbody>
+                <?php foreach ($rows as $row) : ?>
+                  <tr>
+                    <td><?= $row["id"] ?></td>
+                    <td><?= $row["name"] ?></td>
+                    <td><?= $row["code"] ?></td>
+                    <td><?= $row["max_count"] ?></td>
+                    <td><?= $row["used_count"] ?></td>
+                    <td>
+                      <?php if (isset($row["discount_pa"])) : ?>
+                        <?= $row["discount_pa"] ?>折
+                      <?php elseif (isset($row["discount_cash"])) : ?>
+                        <?= $row["discount_cash"] ?>NTD
+                      <?php endif; ?>
+                    </td>
+                    <td><?= $row["start"] ?> ~ <?= $row["end"] ?></td>
+                    <td>
+                      <a class="btn btn-info text-white" href="coupon.php?id=<?= $row["id"] ?>" title="詳細資料"><i class="bi bi-info-circle-fill"></i></a>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
         </div>
-      <?php if(!isset($_GET["search"])): ?>
+        <?php if (!isset($_GET["search"])) : ?>
+        <?php endif; ?>
+      <?php else : ?>
+        目前無優惠券
       <?php endif; ?>
-    <?php else : ?>
-      目前無優惠券
-    <?php endif; ?>
       </div>
     </div>
 

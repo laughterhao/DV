@@ -1,29 +1,33 @@
 :root {
-    --main-color  : #437281;
-    --second-color: #eee ;
+    --main-color: #437281;
+    --second-color: #eee;
 }
 
 body {
-    
+
     background: var(--second-color);
 }
-.main-nav{
+
+.main-nav {
     color: #fff;
-    background: var(--main-color) ;
+    background: var(--main-color);
     width: 16.66vw;
     height: 100%;
     position: fixed;
     left: 0;
     z-index: 1;
-    & h1{
+
+    & h1 {
         font-size: 50px;
     }
 }
-.main-ul{
-    .main-li{
+
+.main-ul {
+    .main-li {
         letter-spacing: 1px;
         padding-inline: 0;
-        & a{
+
+        & a {
             padding-left: 60px;
             padding-block: 20px;
             display: block;
@@ -31,49 +35,57 @@ body {
             font-size: 16px;
             color: #fff;
             text-decoration: none;
-            & i{
+
+            & i {
                 margin-right: 10px;
                 font-size: 20px;
-                
+
             }
         }
     }
 }
-.main-li:hover{
-    background:#335661 ;
+
+.main-li:hover {
+    background: #335661;
 }
-.list-unstyle{
+
+.list-unstyle {
     list-style: none;
 }
-.main-top{
+
+.main-top {
     width: 100%;
     position: sticky;
     top: 0;
     height: 50px;
     background: #fff;
     box-shadow: 0 3px 5px #c3c3c3;
-    & a{
+
+    & a {
         position: absolute;
         right: 35px;
         text-decoration: none;
         color: var(--main-color);
         font-size: 16px;
         line-height: 50px;
-        font-weight:bold ;
-        & i{
+        font-weight: bold;
+
+        & i {
             margin-right: 10px;
         }
     }
 }
-.btn{
+
+.btn {
     color: var(--main-color);
     border: 1px solid var(--main-color);
 }
-.btn:hover{
+
+.btn:hover {
     background: var(--main-color);
     color: #fff;
 }
 
-.pagination{
-    --bs-pagination-active-bg:var(--main-color);
+.pagination {
+    --bs-pagination-active-bg: var(--main-color);
 }

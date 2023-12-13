@@ -1,4 +1,4 @@
-<?php require_once("notice/select_new.php") ?>
+<?php require_once("select_new.php") ?>
 <!doctype html>
 <html lang="en">
 
@@ -122,7 +122,7 @@
                             </div>
                             <div class="">
                                 <button type="button" class="btn btn-info">
-                                    <a href="new_create.html"><i class="bi bi-newspaper px-2"></i>新增資訊</a>
+                                    <a href="add_notice.php"><i class="bi bi-newspaper px-2"></i>新增資訊</a>
                                 </button>
                             </div>
                         </div>

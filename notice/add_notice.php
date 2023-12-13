@@ -1,4 +1,4 @@
-<?php require_once("notice/select_new.php") ?>
+<?php require_once("select_new.php") ?>
 <!doctype html>
 <html lang="en">
 
@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="backe-template.css">
+    <link rel="stylesheet" href="asider.css">
 </head>
 
 <body>
@@ -40,7 +40,7 @@
                   <h2 class="text-center">新增公告</h2>
                </div>
                <div class="m-3">
-                  <form action="add_new.php" method="post">
+                  <form action="do_add_notice.php" method="post">
                      <div class="mb-3">
                         <label for="title_img" class="form-label">縮圖</label>
                         <input
@@ -63,8 +63,7 @@
                      </div>
                      <div class="mb-3">
                         <label for="content" class="form-label">內文</label>
-                        <textarea type="text" class="form-control" id="content" name="content" >
-                        </textarea>
+                        <textarea type="text" class="form-control" id="content" name="content" ></textarea>
                         <div class="form-text">輸入內容</div>
                      </div>
                      <div class="mb-3">

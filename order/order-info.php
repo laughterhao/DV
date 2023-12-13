@@ -11,7 +11,6 @@ $stmtData = $conn->prepare('SELECT order_data.*, member.name AS name FROM order_
 $stmtData->execute([':id' => $id]);
 $rowData = $stmtData->fetch();
 
-print_r($rowData);
 $totalPrice=0;
 ?>
 
@@ -127,7 +126,7 @@ $totalPrice=0;
                                     </table>
                                 </form>
                             </div>
-                            
+
                         </div>
 
                         <!-- 商品詳情 -->

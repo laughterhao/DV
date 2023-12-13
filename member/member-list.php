@@ -1,5 +1,5 @@
 <?php
-require_once("db-connect.php");
+require_once("..\mysql-db-conn.php");
 session_start();
 //得出資料總筆數
 $sqlTotal = "SELECT * FROM member WHERE valid=1"; //得出所有資料
@@ -117,8 +117,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
                 <ul class="main-ul list-unstyle p-0">
                     <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
                     <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
                     <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
                     <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
                     <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
@@ -126,13 +126,13 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
                 </ul>
             </nav>
 
-            <div class="px-0">
+            <div class="px-0 col-10" style="margin-left: 16.66%;">
                 <div class="main-top">
                     <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                 </div>
                 <!-- 會員列表 -->
-                <div class="container-fluid m-0">
-                    <div class="member-block pb-3 mb-5">
+                <div class="">
+                    <div class="member-block pb-3 mb-5 mx-auto">
                         <h3>會員列表</h3>
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- 算出每頁得到人數相加後的總人數 -->

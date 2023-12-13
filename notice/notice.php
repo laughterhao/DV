@@ -59,7 +59,7 @@
                                 <input type="date" class="form-control" id="end_date" name="end_date" value="<?= $row['Exp_date'] ?>" />
                                 <div class="form-text">輸入內容</div>
                             </div>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn">
                                 送出
                             </button>
                         </form>
@@ -80,8 +80,8 @@
                         確定要刪除嗎?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                        <a class="btn btn-danger" href="del_notice.php?id=<?= $row['id'] ?>">確定</a>
+                        <button type="button" class="btn " data-bs-dismiss="modal">取消</button>
+                        <a class="btn" href="del_notice.php?id=<?= $row['id'] ?>">確定</a>
                     </div>
                 </div>
             </div>
@@ -93,62 +93,59 @@
             <nav class="main-nav col-lg-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
-                    <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
-                </ul>
+                    <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                    <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href="notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
+                    </ul>
             </nav>
 
             <div class="col-lg-10 px-0" style="margin-left: 16.66%;">
                 <div class="main-top">
                     <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                 </div>
-                <div class="continer mx-3">
-                    <div class="pt-5">
-                        <h2 class="text-center">最新公告</h2>
-                    </div>
-                    <div class="">
-                        <div class="d-flex justify-content-between py-2">
-                            <div class="input-group w-25">
-                                <input type="text" class="form-control" placeholder="search" />
-                                <button type="button" class="btn btn-info">
-                                    <i class="bi bi-search"></i>search
-                                </button>
-                            </div>
-                            <div class="">
-                                <button type="button" class="btn btn-info">
-                                    <a href="add_notice.php"><i class="bi bi-newspaper px-2"></i>新增資訊</a>
-                                </button>
-                            </div>
+                <div class="continer">
+                    <div class="row m-3">
+                        <div class="pt-5">
+                            <h2 class="text-center">最新公告</h2>
                         </div>
-                        <div class="table-responsive border border-dark rounded-3 mb-2">
-                            <table class="table table-striped table-hover table-borderless table-primary align-middle m-0">
-                                <thead class="table-light table-responsive table-striped">
-                                    <tr class="text-nowrap text-center">
-                                        <th>縮圖</th>
-                                        <th>
-                                            <i class="bi bi-sort-alpha-up"></i><i class="bi bi-sort-alpha-down-alt"></i>標題
-                                        </th>
-                                        <th>內文</th>
-                                        <th>圖片</th>
-                                        <th>
-                                            <i class="bi bi-sort-numeric-down-alt"></i><i class="bi bi-sort-numeric-up"></i>上架時間
-                                        </th>
-                                        <th>
-                                            <i class="bi bi-sort-numeric-down-alt"></i><i class="bi bi-sort-numeric-up"></i>下架時間
-                                        </th>
-                                        <th>操作</th>
-                                    </tr>
-                                </thead>
+                        <div class="px-3">
+                            <div class="d-flex justify-content-between py-2">
+                                <div class="input-group w-25">
+                                    <input type="text" class="form-control" placeholder="search" />
+                                    <button type="button" class="btn border border-dark">
+                                        <i class="bi bi-search"></i>search
+                                    </button>
+                                </div>
+                                <a href="add_notice.php" class="btn border border-dark "><i class="bi bi-newspaper px-2"></i>新增資訊</a>
+                            </div>
+                            <div class="table-responsive border border-dark rounded-3   mb-2">
+                                <table class="table table-hover  align-middle m-0">
+                                    <thead class="table-light table-responsive table-striped">
+                                        <tr class="text-nowrap text-center">
+                                            <th>縮圖</th>
+                                            <th>
+                                                <i class="bi bi-sort-alpha-up"></i><i class="bi bi-sort-alpha-down-alt"></i>標題
+                                            </th>
+                                            <th>內文</th>
+                                            <th>圖片</th>
+                                            <th>
+                                                <i class="bi bi-sort-numeric-down-alt"></i><i class="bi bi-sort-numeric-up"></i>上架時間
+                                            </th>
+                                            <th>
+                                                <i class="bi bi-sort-numeric-down-alt"></i><i class="bi bi-sort-numeric-up"></i>下架時間
+                                            </th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
 
-                                <tbody class="table-group-divider nowrap">
-                                    <tr class="table-primary">
-                                        <?php foreach ($rows as $row) : ?>
+                                    <tbody class="table-group-divider nowrap">
+                                        <tr class="table-primary">
+                                            <?php foreach ($rows as $row) : ?>
                                             <td scope="row">
                                                 <img src="https://picsum.photos/50/50/?random=10">
                                             </td>
@@ -158,15 +155,15 @@
                                             <td><?= $row['Create_at'] ?></td>
                                             <td><?= $row['Exp_date'] ?></td>
                                             <td class="text-nowrap">
-                                                <a type="button" class="btn btn-success text-white" data-bs-toggle="modal" data-bs-target="#edit-<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>"><i class="bi bi-pencil-square"></i></a>
+                                                <a type="button" class="btn border border-dark" data-bs-toggle="modal" data-bs-target="#edit-<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>"><i class="bi bi-pencil-square"></i></a>
 
-                                                <a type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#del-<?= $row["id"] ?>" data-id="<?php echo $row['id']; ?>"><i class="bi bi-trash3"></i></i></a>
+                                                <a type="button" class="btn border border-dark" data-bs-toggle="modal" data-bs-target="#del-<?= $row["id"] ?>" data-id="<?php echo $row['id']; ?>"><i class="bi bi-trash3"></i></a>
                                             </td>
-                                    </tr>
-                                <?php endforeach ?>
-                                </tbody>
-
-                            </table>
+                                        </tr>
+                                    <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

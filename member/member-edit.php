@@ -1,11 +1,10 @@
 <?php
-require_once("db-connect.php");
+require("..\mysql-db-conn.php");
 
 if (!isset($_GET["id"])) { //如果沒有得到id的值會導倒會員列表
     header("location: member-list.php");
     exit;
 }
-
 
 //Get => 利用網址上面的變數去抓不同的內容
 $id = $_GET["id"];
@@ -13,16 +12,11 @@ $sql = "SELECT * FROM member WHERE id=$id AND valid=1";
 $result = $conn->query($sql);
 $memberCount = $result->num_rows; //如果得到的id值的資料筆數為0
 $row = $result->fetch_assoc(); //只要抓一筆資料
-
 // var_dump($rows);
-
-
 ?>
-
 
 <!doctype html>
 <html lang="en">
-
 <head>
     <title>Member Info</title>
     <!-- Required meta tags -->
@@ -42,17 +36,16 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
             <nav class="main-nav col-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
-                    <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
-                </ul>
+                    <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                    <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
+                    </ul>
             </nav>
-
             <div class=" col-10 px-0" style="margin-left: 16.66%;">
                 <div class="main-top">
                     <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
@@ -62,7 +55,7 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                         <h1>使用者不存在</h1>
                     <?php else : ?>
                         <!-- 會員資訊 -->
-                       
+
                         <div class="diving-block row ">
                             <div class="col-5">
                                 <div class="memberinfo-block">
@@ -177,39 +170,15 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                             </div>
                         </div>
                     <?php endif; ?>
-
                 </div>
             </div>
         </div>
-
     </main>
 
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <!-- <script>
-        function memberUpdate() {
-            var getInfo = document.getElementById("#tdInfo").innerText;
-            var inputEl = document.createElement("input");
-
-            //inputEl一開始的值為getInfo得到的值
-            inputEl.value = getInfo;
-
-            inputEl.addEventListener("blur", function() {
-                var newInfo = inputEl.value;
-                document.getElementById("#tdInfo").innerText = newInfo;
-            })
-
-            document.getElementById('#tdInfo').replaceWith(inputEl);
-
-            // 自動聚焦到 input 元素，使使用者可以立即編輯
-            inputEl.focus();
-
-        } -->
-
-    // console.log(newInfo);
-    </script>
 </body>
 
 </html>

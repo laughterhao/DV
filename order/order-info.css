@@ -1,0 +1,43 @@
+:root {
+    --main-color  : #437281;
+    --second-color: #eee ;
+}
+
+.diving-block{
+    width: 80%;
+    margin-left:260px;
+    margin-top: 30px;
+    height: 90%;
+    & h3{
+        color: var(--main-color);
+    }
+}
+.block-style{
+   
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    & th{
+        padding-block: 10px;
+        color: var(--main-color);
+        margin-top: 10px;
+    }
+}
+.back-btn{
+    text-decoration: none;
+    color: #adadad;
+}
+.back-btn:hover{
+    color: var(--main-color);
+}
+.stutas-btn{
+    background: orange;
+    color: #fff;
+    border: 0px;
+}
+.figure{
+    width: 90px;
+    height: 90px;
+    border: 1px solid #ccc
+}

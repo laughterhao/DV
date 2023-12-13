@@ -1,5 +1,5 @@
 <?php
-require_once("../mysql-db-conn.php");
+require_once("./coach_connect.php");
 
 $sqlTotal = "SELECT * FROM coach WHERE valid=2";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫
@@ -70,111 +70,118 @@ $result = $conn->query($sql);
 </head>
 
 <body>
+    <div class="container-fluid">
+        <main class="row">
+            <nav class="main-nav col-lg-2 p-0">
+                <h1 class="my-4 text-center">DiVING</h1>
+                <ul class="main-ul list-unstyle p-0">
+                    <li class="main-li"><a href="index.php"><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href="order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href="coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                    <li class="main-li"><a href="coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+                </ul>
+            </nav>
 
-    <div class="container">
+            <div class="col-10 px-0" style="margin-left: 16.66%;">
+                <div class="main-top">
+                    <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
+                </div>
 
-        <div class="d-grid gap-2 d-flex justify-content-between">
-            <h3>已隱藏教練</h3>
+                <div class="container p-5">
 
-        </div>
+                    <a class="btn mb-3" href="coach-list.php" title="回教練列表"><i class="bi bi-arrow-left"></i></a>
+                    <?php
+                    $userCount = $result->num_rows;
+                    ?>
+                    <h3>已隱藏教練</h3>
+                    <div class="d-grid gap-2 d-flex justify-content-end align-items-center text-nowrap mb-3">
+                        <div class="d-grid d-flex gap-3 align-items-center">
+                            <div>
+                                <?php
+                                if (isset($_GET["search"])) : ?>
+                                    <a class="btn" href="coach-list.php" title="回已隱藏教練列表"><i class="bi bi-arrow-left"></i></a>
+                                    搜尋<?= $_GET["search"] ?> 的結果,
+                                    <?php endif;
+                                    ?>共 <?= $userCount ?> 人
+                            </div>
 
-        <?php
-        $userCount = $result->num_rows;
-        ?>
-        <div class="d-grid gap-2 d-flex justify-content-end align-items-center text-nowrap mb-3">
-            <div>
-                <?php
-                if (isset($_GET["search"])) : ?>
-                    <a class="btn btn-info text-white" href="coach-list.php" title="回教練列表"><i class="bi bi-arrow-left"></i></a>
-                    搜尋<?= $_GET["search"] ?> 的結果,
-                    <?php endif;
-                    ?>共 <?= $userCount ?> 人
+                            <div class="py-2">
+                                <form action="">
+                                    <div class=" input-group">
+                                        <input type="text" class="form-control" placeholder="Search.." name="search">
 
-            </div>
+                                        <button class="btn" type="submit"><i class="bi bi-search" name="search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 
-            <div class="py-2">
-                <form action="">
-                    <div class=" input-group">
-
-                        <input type="text" class="form-control" placeholder="Search.." name="search">
-
-                        <button class="btn btn-primary text-white" type="submit"><i class="bi bi-search" name="search"></i></button>
                     </div>
-                </form>
+
+                    <div>
+                        <?php
+                        $rows = $result->fetch_all(MYSQLI_ASSOC);  //括號可以帶參數 MYQSLI_NUM=索引式陣列/ MYQSLI_BOTH=同時有關聯式又有索引式陣列
+                        // var_dump($rows);
+                        // 直接把整個關聯式陣列撈出來 不是一筆一筆撈
+                        ?>
+                    </div>
+                    <?php if ($userCount > 0) : ?>
+                        <table class="table table-light table-hover mt-2">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">教練姓名</th>
+                                    <th scope="col">性別</th>
+                                    <th scope="col">電話號碼</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">專長</th>
+                                    <th scope="col">教學年資</th>
+                                    <th scope="col">地區</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($rows as $row) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $row["id"] ?></th>
+                                        <td><?= $row["name"] ?></td>
+                                        <td><?= $row["gender"] ?></td>
+                                        <td><?= $row["phone"] ?></td>
+                                        <td><?= $row["email"] ?></td>
+                                        <td><?= $row["skill"] ?></td>
+                                        <td><?= $row["experience"] ?></td>
+                                        <td><?= $row["city"] ?></td>
+                                        <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href="doApperCoach.php?id=<?= $row["id"] ?>"><i class="bi bi-person-fill-up ms-4" title="顯示"></i></a></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <?php if (!isset($_GET["search"])) :
+                        ?>
+                            <div class="py-2">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
+                                            <li class="page-item <?php if ($page == $i) echo "active"; ?> ">
+                                            </li>
+                                            <a class="page-link" href="coach-list.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
+                                            </li>
+                                        <?php endfor; ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        在隱藏的教練找不到唷
+                    <?php endif; ?>
+                </div>
+
             </div>
-
-
-            <?php if (!isset($_GET["search"])) : ?>
-                <div class="dropdown">
-                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        排序依據
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item <?php if ($order == 1) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=1">ID-小到大</a></li>
-                        <li><a class="dropdown-item <?php if ($order == 2) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=2">ID-大到小</a></li>
-                        <li><a class="dropdown-item <?php if ($order == 3) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=3">教學年資-小到大</a></li>
-                        <li><a class="dropdown-item dropdown-item <?php if ($order == 4) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=4">教學年資-大到小</a></li>
-                    </ul>
-                </div>
-            <?php endif; ?>
-        </div>
-
-        <div>
-            <?php
-            $rows = $result->fetch_all(MYSQLI_ASSOC);  //括號可以帶參數 MYQSLI_NUM=索引式陣列/ MYQSLI_BOTH=同時有關聯式又有索引式陣列
-            // var_dump($rows);
-            // 直接把整個關聯式陣列撈出來 不是一筆一筆撈
-            ?>
-        </div>
-        <?php if ($userCount > 0) : ?>
-            <table class="table table-light table-hover mt-2">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">教練姓名</th>
-                        <th scope="col">性別</th>
-                        <th scope="col">電話號碼</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">專長</th>
-                        <th scope="col">教學年資</th>
-                        <th scope="col">地區</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($rows as $row) : ?>
-                        <tr>
-                            <th scope="row"><?= $row["id"] ?></th>
-                            <td><?= $row["name"] ?></td>
-                            <td><?= $row["gender"] ?></td>
-                            <td><?= $row["phone"] ?></td>
-                            <td><?= $row["email"] ?></td>
-                            <td><?= $row["skill"] ?></td>
-                            <td><?= $row["experience"] ?></td>
-                            <td><?= $row["city"] ?></td>
-                            <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href=""><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            <?php if (!isset($_GET["search"])) :
-            ?>
-                <div class="py-2">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
-                                <li class="page-item <?php if ($page == $i) echo "active"; ?> ">
-                                </li>
-                                <a class="page-link" href="coach-list.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
-                                </li>
-                            <?php endfor; ?>
-                        </ul>
-                    </nav>
-                </div>
-            <?php endif; ?>
-        <?php else : ?>
-            目前無此教練
-        <?php endif; ?>
+        </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">

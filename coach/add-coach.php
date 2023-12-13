@@ -10,9 +10,6 @@
     <?php
     include("css-coach.php");
     ?>
-    <style>
-
-    </style>
 
 </head>
 
@@ -24,15 +21,15 @@
             <h4>新增教練</h4>
 
             <div class="col-4">
-                <img class="ratio ratio-1x1 mb-4 img-thumbnail rounded-circle my-3 img-fluid" id="output" />
+                <img class="ratio ratio-1x1 bg-transparent mb-4 img-thumbnail rounded-circle my-3 img-fluid" id="output" style="height: 300px;" />
 
                 <input class="form-control " type="file" accept="image/*" onchange="loadFile(event)" id="imgfile" name="imgfile">
 
-                <input class="form-control my-3 " type="text" placeholder="專長" aria-label="skill" id="skill" name="skill" required>
-                <a href="" class="ps-3 nav-link "><i class="btn bi bi-plus-circle "></i>　新增專長</a>
+                <label for="" class="mt-3">專長</label>
+                <input class="form-control " type="text" placeholder="專長" aria-label="skill" id="skill" name="skill" required>
 
-                <input class="form-control my-3" type="text" placeholder="地區" id="city" name="city" required>
-                <a href="" class="ps-3 nav-link"><i class="bi bi-plus-circle"></i>　新增地區</a>
+                <label for="" class="mt-3">地區</label>
+                <input class="form-control" type="text" placeholder="地區" id="city" name="city" required>
 
             </div>
             <div class="col-7 ms-3">
@@ -44,11 +41,11 @@
                     <div class="col-6">
                         <label for="" class="mb-2">性別</label><br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="男">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="1">
                             <label class="form-check-label" for="male">男</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="女">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="2">
                             <!-- 兩個input設定同一個name才能做單選；設定value才能帶到後端去 -->
                             <label class="form-check-label" for="female">女</label>
                             <!-- 性別資料 存到資料庫時通常會用1或2 不會用單字 -->
@@ -68,54 +65,46 @@
 
 
                     <div class="col-6 ">
-                        <!-- <label for="phone" class="">電話號碼</label>
-                        <input type="tel" class="form-control" placeholder="請輸入電話號碼" name="phones[]" id="phones" required>
-                        <label for="tel" class="">電話號碼2</label>
-                        <input type="phone" class="form-control" placeholder="請輸入電話號碼" id="phones" name="phones[]"> -->
-                        <div class="col">
-                            <input type="tel" class="form-control" name="phones[]">
-                        </div>
-                        <div class="col">
-                            <input type="tel" class="form-control" name="phones[] ">
-                        </div>
+                        <label for="phone" class="">電話號碼</label>
+                        <input type="tel" class="form-control" name="phone">
                     </div>
 
 
 
-                    <div class="col-3 ">
+                    <div class="col-4 ">
                         <label for="number" class="">教學年資</label>
-                        <input type="number" class="form-control" placeholder="請輸入數字" id="experience" name="experience">
-
-                    </div>
-
-                    <div class="col-12 ">
-                        <div class="license ">
-                            <label for="" class="me-3">證照</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="skill" value="1" name="license">
-                                <label class="form-check-label" for="inlineCheckbox1">PADI</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="skill" value="2" name="license">
-                                <label class="form-check-label" for="inlineCheckbox2">NAUI</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="skill" value="3" name="license">
-                                <label class="form-check-label" for="inlineCheckbox3">SSI</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="skill" value="4" name="license">
-                                <label class="form-check-label" for="inlineCheckbox4">CMAS</label>
-                            </div>
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="請輸入數字" id="experience" name="experience">
+                            <label class="input-group-text" for="inputGroupSelect02">年</label>
                         </div>
-                    </div>
 
+                    </div>
 
                     <div class="mb-3">
                         <label for="info" class="form-label">教練介紹</label>
-                        <textarea class="form-control" id="info" name="info" rows="5"></textarea>
+                        <textarea class="form-control" id="info" name="info" rows="5" placeholder="介紹一下自己吧！"></textarea>
                     </div>
 
+                </div>
+
+                <div class="license ">
+                    <label for="" class="me-3">證照</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="license" value="1" name="license[]">
+                        <label class="form-check-label" for="license1">PADI</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="license" value="2" name="license[]">
+                        <label class="form-check-label" for="license2">NAUI</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="license" value="3" name="license[]">
+                        <label class="form-check-label" for="license3">SSI</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="license" value="4" name="license[]">
+                        <label class="form-check-label" for="license4">CMAS</label>
+                    </div>
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -123,6 +112,7 @@
                     <button class="btn btn-primary" type="submit">新增</button>
                 </div>
         </form>
+
     </div>
 
 

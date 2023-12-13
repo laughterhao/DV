@@ -24,6 +24,7 @@ $userCount = $result->num_rows;
 
 $row = $result->fetch_assoc();
 // var_dump($row);
+
 ?>
 
 <!doctype html>
@@ -102,7 +103,9 @@ $row = $result->fetch_assoc();
                                         </tr>
                                         <tr>
                                             <th>性別</th>
-                                            <td><?= $row["gender"] ?> </td>
+                                            <?php $genderText = ($row["gender"] == 1) ? '男' : '女';
+                                            ?>
+                                            <td><?= $genderText; ?> </td>
                                         </tr>
                                         <tr>
                                             <th>生日</th>

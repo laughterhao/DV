@@ -13,12 +13,6 @@ $id = $_GET["id"];
 // 改成valid=0 修改valid這個欄位的值 阿資料還是存在 只是看不到
 $sql = "UPDATE coach SET valid='0' WHERE id=$id";
 
-if (isset($_GET["license_ids"])) {
-    $sql = "SELECT license_id FROM coach_license WHERE coach_id = $id";
-    $result = $conn->query($sql);
-    $sql = "DELETE FROM coach_license WHERE coach_id = $id";
-}
-
 // 確認有沒有成功連到這一頁
 
 if ($conn->query($sql) === TRUE) {

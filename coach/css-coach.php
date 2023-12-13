@@ -11,11 +11,8 @@
         height: 100%;
         object-fit: contain;
     }
-<<<<<<< HEAD
 
     th {
         text-wrap: nowrap;
     }
-=======
->>>>>>> caf1f789349335e50b2b3f3f4f985c8f0e8703cf
 </style>

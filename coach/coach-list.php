@@ -180,7 +180,6 @@ $result = $conn->query($sql);
       </div>
     </div>
   </div>
-
   <!-- Modal -->
   <div class="container-fluid">
     <main class="row">
@@ -283,13 +282,17 @@ $result = $conn->query($sql);
                   <tr>
                     <th scope="row"><?= $row["id"] ?></th>
                     <td><?= $row["name"] ?></td>
-                    <td><?= $row["gender"] ?></td>
+
+                    <?php $genderText = ($row["gender"] == 1) ? '男' : '女';
+                    ?>
+                    <td><?= $genderText; ?></td>
+
                     <td><?= $row["phone"] ?></td>
                     <td><?= $row["email"] ?></td>
                     <td><?= $row["skill"] ?></td>
                     <td><?= $row["experience"] ?></td>
                     <td><?= $row["city"] ?></td>
-                    <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href="doHideCoach.php?id=<?= $row["id"] ?>"><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
+                    <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href="doHideCoach.php?id=<?= $row["id"] ?>" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -301,8 +304,7 @@ $result = $conn->query($sql);
                   <ul class="pagination justify-content-center">
                     <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
                       <li class="page-item <?php if ($page == $i) echo "active"; ?> ">
-                      </li>
-                      <a class="page-link" href="coach-list.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
+                        <a class="page-link" href="coach-list.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
                       </li>
                     <?php endfor; ?>
                   </ul>
@@ -331,6 +333,7 @@ $result = $conn->query($sql);
       }
     };
   </script>
+
 
 </body>
 

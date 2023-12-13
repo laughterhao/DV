@@ -1,5 +1,5 @@
 <?php
-require_once("DB_conn.php");
+require_once("../DB_conn.php");
 
 try {
   $sql = "SELECT * FROM notice WHERE valid = '1'";

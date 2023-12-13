@@ -1,0 +1,178 @@
+/* Global */
+:root {
+    --main-color-: #437281;
+    --sidebar-with-: 16vw;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 14px;
+    color: var(--main-color-);
+    /* 不讓多餘的畫面造成滾動 */
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    font-size: 14px;
+    color: var(--main-color-);
+    border: 1px solid #ccc;
+
+    &:hover {
+        color: #fff;
+        background-color: var(--main-color-);
+    }
+}
+
+.object-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* header */
+header {
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    box-shadow: 0 2px 10px #ccc;
+    position: relative;
+    z-index: 1;
+
+}
+
+.sidebar {
+    width: var(--sidebar-with-);
+    height: 100%;
+    background-color: var(--main-color-);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+
+.right-content {
+    width: calc(100% - var(--sidebar-with-));
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: auto;
+
+    >.body {
+        padding: 50px 20px 0;
+        position: relative;
+
+        >.breadcrumb {
+            margin-top: 20px;
+            color: var(--main-color-);
+        }
+    }
+}
+
+.list-box {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    >.list-action {
+        padding: 8px 14px;
+        border-bottom: 1px solid #ccc;
+        overflow: hidden;
+    }
+
+    >.scroll-x {
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+.search-box {
+    margin-left: 16px;
+
+    >.search {
+        padding: 4px 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+
+        &:focus-visible {
+            outline: var(--main-color-) solid 1px;
+        }
+
+        &::placeholder {
+            color: var(--main-color-);
+            opacity: .8;
+        }
+    }
+}
+
+.table {
+    min-width: 960px;
+    width: 100%;
+    margin-bottom: 0;
+
+    >thead {
+        & .selectAll {
+            width: 5%;
+        }
+
+        & .img {
+            width: 15%;
+        }
+
+        & .name {
+            width: 15%;
+        }
+
+        & .price {
+            width: 10%;
+        }
+
+        & .status {
+            width: 10%;
+        }
+
+        & .created-at {
+            width: 10%;
+        }
+
+        & .edit-box {
+            width: 15%;
+        }
+    }
+
+    >tbody {
+        height: 100vh;
+        & td {
+            vertical-align: middle;
+        }
+    }
+}
+
+
+.table>:not(caption)>*>* {
+    color: var(--main-color-);
+}
+
+.page {
+    margin: 20px 0;
+}
+
+/* php style */
+.active {
+    color: var(--main-color-);
+}
+
+.inactive {
+    color: #ccc;
+}

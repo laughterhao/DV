@@ -1,0 +1,47 @@
+
+:root {
+    --main-color  : #437281;
+   
+}
+body {
+    background: var(--main-color);
+    width: 100vw;
+    height    : 100vh;
+}
+.sign-up-container{
+    height: 100%;
+    margin:0 auto;
+    & main{
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 10px 10px rgba(67, 114, 129, 0.714)
+    }
+    
+}
+
+.sign-up-form {
+    padding-top: 20px;
+    & h1 {
+        color      : #437281;
+        font-size  : 45px;
+        font-weight: bold;
+    }
+
+    .sign-up-btn {
+        color     : #fff;
+        width     : 100px;
+        background: var(--main-color);
+    }
+}
+
+.modal-footer{
+    .model-btn{
+        border: 1px solid var(--main-color);
+        color: var(--main-color);
+    }
+}
+
+.model-btn:hover{
+    background: var(--main-color);
+    color: #fff;
+}

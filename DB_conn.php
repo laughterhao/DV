@@ -1,7 +1,7 @@
 <?php
 $host ="localhost";
-$user = "Nic";
-$passeword = "123456";
+$user = "admin";
+$passeword = "12345";
 $dbname = "diving";
 $charset = 'utf8mb4';
 

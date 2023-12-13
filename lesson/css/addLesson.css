@@ -2,7 +2,7 @@
 :root {
     --main-color-: #437281;
     --hover-color-: #51899C;
-    --sidebar-with-: 16vw;
+    --sidebar-with-: 240px;
 }
 
 body {
@@ -57,6 +57,16 @@ header {
     position: relative;
     z-index: 1;
 
+    & .logo {
+        margin-right: 35px;
+
+        & a {
+            color: var(--main-color-);
+            font-size: 16px;
+            line-height: 50px;
+            font-weight: bold;
+        }
+    }
 }
 
 .sidebar {
@@ -67,8 +77,37 @@ header {
     top: 0;
     left: 0;
     z-index: 2;
+
+    & h1 {
+        font-size: 50px;
+    }
+
 }
 
+.main-li {
+    padding-inline: 0px;
+    letter-spacing: 1px;
+    width: 100%;
+
+    &:hover {
+        background: #335661;
+    }
+
+    & a {
+        display: block;
+        padding-left: 60px;
+        padding-block: 20px;
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+
+        & i {
+            margin-right: 10px;
+            font-size: 20px;
+
+        }
+    }
+}
 
 .right-content {
     width: calc(100% - var(--sidebar-with-));
@@ -85,6 +124,12 @@ header {
         >.breadcrumb {
             margin-top: 20px;
             color: var(--main-color-);
+            & a{
+                color: var(--main-color-);
+                &:hover{
+                    color: var(--hover-color-);
+                }
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require_once("../mysql-db-conn.php");
+require_once("./db_connect.php");
 
 $sql = "SELECT * FROM lesson";
 $result = $conn->query($sql);
@@ -17,6 +17,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <!-- font-awesome v6.5.1 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./css/addLesson.css">
 </head>
 
@@ -40,12 +41,28 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
     <!-- modal end -->
-    <header></header>
+    <header class="d-flex flex-row-reverse">
+        <div class="logo d-flex align-items-center">
+            <a href="" class=""><i class="bi bi-box-arrow-in-right me-2"></i>LOG OUT</a>
+        </div>
+    </header>
     <main>
-        <div class="sidebar"></div>
+        <div class="sidebar text-white">
+            <h1 class="my-4 text-center">DiVING</h1>
+            <ul class="row justify-content-center list-unstyle m-0 p-0 w-100">
+                <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+            </ul>
+        </div>
         <section class="right-content">
             <div class="body">
-                <div class="breadcrumb">課程管理 > 新增</div>
+            <div class="breadcrumb"><a href="lessonList.php">課程管理</a> > 編輯</div>
                 <form action="doAddLesson.php" method="post" enctype="multipart/form-data">
                     <div class="list-box scroll-x">
                         <div class="container">
@@ -125,7 +142,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
     <script>
         // cancel function
-        document.getElementById('cancel').addEventListener('click', function(){
+        document.getElementById('cancel').addEventListener('click', function() {
             location.href = 'http://localhost/DV/lesson/lessonList.php'
         })
     </script>

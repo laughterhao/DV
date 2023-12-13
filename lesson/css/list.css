@@ -1,6 +1,7 @@
 /* Global */
 :root {
     --main-color-: #437281;
+    --hover-color-: #51899C;
     --sidebar-with-: 240px;
 }
 
@@ -123,6 +124,9 @@ header {
         >.breadcrumb {
             margin-top: 20px;
             color: var(--main-color-);
+            >a:hover{
+                color: var(--hover-color-);
+            }
         }
     }
 }

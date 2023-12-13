@@ -66,7 +66,7 @@
 
                     <div class="col-6 ">
                         <label for="phone" class="">電話號碼</label>
-                        <input type="tel" class="form-control" name="phone">
+                        <input type="tel" class="form-control" name="phone" required>
                     </div>
 
 
@@ -82,7 +82,7 @@
 
                     <div class="mb-3">
                         <label for="info" class="form-label">教練介紹</label>
-                        <textarea class="form-control" id="info" name="info" rows="5" placeholder="介紹一下自己吧！"></textarea>
+                        <textarea class="form-control" id="info" name="info" rows="5" placeholder="介紹一下自己吧！" required></textarea>
                     </div>
 
                 </div>
@@ -129,6 +129,25 @@
                 URL.revokeObjectURL(output.src) // free memory
             }
         };
+    </script>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const phone = document.getElementsByName('phone')[0].value;
+
+            if (!emailRegex.test(email)) {
+                alert('請輸入有效的電子郵件地址');
+                return false;
+            }
+
+            if (!phoneRegex.test(phone)) {
+                alert('請輸入有效的10位數電話號碼');
+                return false;
+            }
+
+            return true;
+        }
     </script>
 </body>
 

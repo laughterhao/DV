@@ -3,10 +3,9 @@
 if (!isset($_GET["id"])) {
     header("location: coach-list.php");
 }
-
 $id = $_GET["id"]; //裝起來
 
-require("./coach_connect.php");
+require("..\mysql-db-conn.php");
 
 $sql = "SELECT c.*, GROUP_CONCAT(cl.license_id) AS license_ids
 -- 使用 GROUP_CONCAT(cl.license_id) 聚合函數，將 coach_license 中對應每個教練的 license_id 聯結成一個字串
@@ -65,14 +64,14 @@ $rows = $result->fetch_assoc();
             <nav class="main-nav col-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
-                    <li class="main-li"><a href="index.php"><i class="bi bi-intersect"></i>總覽</a></li>
-                    <li class="main-li"><a href="order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
-                    <li class="main-li"><a href="product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                    <li class="main-li"><a href="member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                    <li class="main-li"><a href="lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
                     <li class="main-li"><a href="coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                    <li class="main-li"><a href="coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+                    <li class="main-li"><a href="..\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
                 </ul>
             </nav>
 
@@ -89,7 +88,7 @@ $rows = $result->fetch_assoc();
                             <input type="hidden" name="id" value="<?= $rows["id"] ?>">
                             <div class="d-flex justify-content-between mt-4">
                                 <h4>編輯教練</h4>
-                                <!-- 把原本的a 改成button 就不是超連結了 因為要呼叫上面那個modal 
+                                <!-- 把原本的a 改成button 就不是超連結了 因為要呼叫上面那個modal
                     沒寫type=button的話 預設會是submit喔-->
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#alertModal" class="btn btn-danger text-white">刪除教練</button>
 

@@ -2,8 +2,7 @@
 
 session_start();
 
-require_once("db-connect.php");
-
+require("..\mysql-db-conn.php");
 
 if (!isset($_POST["email"])) {
     die("請從正常管道進入");
@@ -12,7 +11,6 @@ if (!isset($_POST["email"])) {
 $email = $_POST["email"];
 $password = $_POST["password"];
 $repassword = $_POST["repassword"];
-
 echo "$email,$password,$repassword";
 
 //檢查是否沒有填入值

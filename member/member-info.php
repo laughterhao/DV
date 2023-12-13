@@ -1,5 +1,5 @@
 <?php
-require_once("db-connect.php");
+require("..\mysql-db-conn.php");
 
 if (!isset($_GET["id"])) { //如果沒有得到id的值會導倒會員列表
     header("location: member-list.php");
@@ -13,12 +13,7 @@ $result = $conn->query($sql);
 $memberCount = $result->num_rows; //如果得到的id值的資料筆數為0
 $row = $result->fetch_assoc(); //只要抓一筆資料
 
-// var_dump($rows);
-
-
 ?>
-
-
 <!doctype html>
 <html lang="en">
 
@@ -41,15 +36,15 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
             <nav class="main-nav col-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
-                    <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
-                </ul>
+                    <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                    <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
+                    </ul>
             </nav>
 
             <div class=" col-10 px-0" style="margin-left: 16.66%;">

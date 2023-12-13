@@ -17,14 +17,14 @@
         <nav class="main-nav col-lg-2 p-0">
             <h1 class="my-4 text-center">DiVING</h1>
             <ul class="main-ul list-unstyle p-0">
-                <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                <li class="main-li"><a href="product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+               <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+               <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+               <li class="main-li"><a href="product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+               <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+               <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+               <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+               <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+               <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
             </ul>
         </nav>
 

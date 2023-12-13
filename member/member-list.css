@@ -4,7 +4,7 @@
 }
 
 .member-block {
-    /* width        : 77%; */
+    width        : 90%;
     height       : 90%;
     background   : #fff;
     padding      : 30px;
@@ -33,10 +33,10 @@
     & a:hover {
         color: var(--main-color);
     }
-    
-} 
+
+}
 .pagination {
-   
+
     & a {
         color: var(--main-color);
     }

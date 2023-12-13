@@ -36,7 +36,7 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
 </head>
 
 <body>
-    <main>
+    <main class="container-fluid p-0">
         <div class="row mx-0">
             <nav class="main-nav col-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>
@@ -52,7 +52,7 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                 </ul>
             </nav>
 
-            <div class="px-0">
+            <div class=" col-10 px-0" style="margin-left: 16.66%;">
                 <div class="main-top">
                     <a href="" class="logout"><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                 </div>
@@ -75,80 +75,83 @@ $row = $result->fetch_assoc(); //只要抓一筆資料
                     </div>
                 </div>
 
-
-                <?php if ($memberCount == 0) : ?>
-                    <h1>使用者不存在</h1>
-                <?php else : ?>
-                    <!-- 會員資訊 -->
-                    <div class="container-fluid m-0 p-0">
+                <div class="container-fluid m-0 p-3">
+                    <?php if ($memberCount == 0) : ?>
+                        <h1>使用者不存在</h1>
+                    <?php else : ?>
+                        <!-- 會員資訊 -->
                         <div class="diving-block row ">
-                            <div class="memberinfo-block">
-                                <form action="member-edit.php" method="post">
-                                    <a class="back-btn" href="member-list.php"><i class="bi bi-arrow-bar-left"></i>回到使用者列表</a>
-                                    <div class="d-flex justify-content-between my-2 ">
-                                        <h3>會員資訊</h3>
-                                        <div>
-                                            <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#blackModal">列入黑名單</button>
-                                            <a class="btn btn-sm" href="member-edit.php?id=<?= $row["id"] ?>">編輯</a>
+                            <div class="col-5">
+                                <div class="memberinfo-block">
+                                    <form action="member-edit.php" method="post">
+                                        <a class="back-btn" href="member-list.php"><i class="bi bi-arrow-bar-left"></i>回到使用者列表</a>
+                                        <div class="d-flex justify-content-between my-2 ">
+                                            <h3>會員資訊</h3>
+                                            <div>
+                                                <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#blackModal">列入黑名單</button>
+                                                <a class="btn btn-sm" href="member-edit.php?id=<?= $row["id"] ?>">編輯</a>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <table class="text-nowrap">
-                                        <tr>
-                                            <th>會員編號：</th>
-                                            <td><?= $row["id"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>姓名：</th>
-                                            <td id="tdInfo"><?= $row["name"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>性別：</th>
-                                            <td><?= $row["gender"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>生日：</th>
-                                            <td id="tdInfo"><?= $row["birth"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>信箱：</th>
-                                            <td id="tdInfo"><?= $row["email"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>電話：</th>
-                                            <td id="tdInfo"><?= $row["phone"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>地址：</th>
-                                            <td id="tdInfo"><?= $row["city"] . $row["address"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>註冊時間：</th>
-                                            <td><?= $row["created_at"] ?></td>
-                                        </tr>
-                                    </table>
+                                        <table class="text-nowrap">
+                                            <tr>
+                                                <th>會員編號：</th>
+                                                <td><?= $row["id"] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>姓名：</th>
+                                                <td id="tdInfo"><?= $row["name"] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>性別：</th>
+                                                <td><?= $row["gender"] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>生日：</th>
+                                                <td id="tdInfo"><?= $row["birth"] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>信箱：</th>
+                                                <td id="tdInfo"><?= $row["email"] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>電話：</th>
+                                                <td id="tdInfo"><?= $row["phone"] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>地址：</th>
+                                                <td id="tdInfo"><?= $row["city"] . $row["address"] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>註冊時間：</th>
+                                                <td><?= $row["created_at"] ?></td>
+                                            </tr>
+                                        </table>
 
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                             <!-- 訂單 -->
-                            <div class="order-block ">
-                                <h3 class="mb-4">歷史訂單</h3>
-                                <table>
-                                    <thead>
-                                        <tr class="text-nowrap">
-                                            <th>訂單號碼</th>
-                                            <th>訂單日期</th>
-                                            <th>訂單狀態</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                            <div class="col-7">
+                                <div class="order-block ">
+                                    <h3 class="mb-4">歷史訂單</h3>
+                                    <table>
+                                        <thead>
+                                            <tr class="text-nowrap">
+                                                <th>訂單號碼</th>
+                                                <th>訂單日期</th>
+                                                <th>訂單狀態</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-
+                </div>
+            <?php endif; ?>
             </div>
+        </div>
 
 
         </div>

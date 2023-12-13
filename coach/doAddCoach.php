@@ -1,6 +1,6 @@
 <!-- 命名=丟資料的用階梯式命名 利於找資料 -->
 <?php
-require_once("./coach_connect.php");
+require("..\mysql-db-conn.php");
 
 if (!isset($_POST["name"])) {
     echo "請循正常管道進入";
@@ -24,8 +24,8 @@ $skill = $_POST["skill"];
 $time = date('Y-m-d H:i:s'); //直接用php抓取現在時間
 // ★加上檢查的一些功能 每個欄位會要檢查的不一樣
 
-//如果user沒寫東西啦 給他顯示請輸入資料啦 就算你已經html加requied了也要  避免他輸入無效資料進去 前後端都要擋~~ 
-if (empty($name) || empty($email) || empty($phone)) {
+//如果user沒寫東西啦 給他顯示請輸入資料啦 就算你已經html加requied了也要  避免他輸入無效資料進去 前後端都要擋~~
+if (empty($name) || empty($gender) || empty($birth) || empty($email) || empty($phone) || empty($city) || empty($experience) || empty($license) || empty($info) || empty($skill)) {
     echo "請輸入資料";
     die;
 }

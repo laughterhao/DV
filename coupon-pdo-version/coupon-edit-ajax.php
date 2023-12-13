@@ -43,8 +43,8 @@ $couponCount = $stmt->rowCount();
                     確認刪除?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                    <a href="../api/doDeleteCoupon.php?id=<?= $row["id"] ?>" class="btn btn-danger">確認</a>
+                    <button type="button" class="btn" data-bs-dismiss="modal">取消</button>
+                    <a href="../api/doDeleteCoupon.php?id=<?= $row["id"] ?>" class="btn">確認</a>
                 </div>
             </div>
         </div>
@@ -55,14 +55,14 @@ $couponCount = $stmt->rowCount();
             <nav class="main-nav col-lg-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
-                    <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+                    <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                    <li class="main-li"><a href="coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
                 </ul>
             </nav>
 
@@ -72,7 +72,7 @@ $couponCount = $stmt->rowCount();
                 </div>
                 <div class="container">
                     <div class="py-2">
-                        <a class="btn btn-info text-white" href="coupon-list.php" title="回優惠券列表">
+                        <a class="btn" href="coupon-list.php" title="回優惠券列表">
                             <i class="bi bi-arrow-90deg-left"></i>
                         </a>
                     </div>
@@ -144,11 +144,11 @@ $couponCount = $stmt->rowCount();
                         </div>
                         <div class="py-2 d-flex justify-content-between">
                             <div>
-                                <button class="btn btn-info text-white" id="send">儲存</button>
-                                <a class="btn btn-info text-white" href="coupon.php?id=<?= $row["id"] ?>">取消</a>
+                                <button class="btn" id="send">儲存</button>
+                                <a class="btn" href="coupon.php?id=<?= $row["id"] ?>">取消</a>
                             </div>
                             <div>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#alertModal" class="btn btn-danger">刪除</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#alertModal" class="btn">刪除</button>
                             </div>
                         </div>
                 </div>

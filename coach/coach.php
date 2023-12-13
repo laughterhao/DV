@@ -6,7 +6,7 @@ if (!isset($_GET["id"])) {
 
 $id = $_GET["id"]; //裝起來
 
-require("./coach_connect.php");
+require("..\mysql-db-conn.php");
 
 $sql = " SELECT coach.*,  GROUP_CONCAT(license.name) AS license_names
 FROM coach
@@ -16,7 +16,7 @@ WHERE coach.id = $id";
 
 // 目的1: 合併coach表的id & coach_license表 的id (要抓coach_license.coach_id 跟 coach_license.license_id)
 
-// 目的2: 合併coach_license表 的id & license表的id (要顯示license.name) 
+// 目的2: 合併coach_license表 的id & license表的id (要顯示license.name)
 
 $result = $conn->query($sql);
 $userCount = $result->num_rows;
@@ -24,6 +24,7 @@ $userCount = $result->num_rows;
 
 $row = $result->fetch_assoc();
 // var_dump($row);
+
 ?>
 
 <!doctype html>
@@ -47,14 +48,14 @@ $row = $result->fetch_assoc();
             <nav class="main-nav col-lg-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
-                    <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+                    <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href="coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                    <li class="main-li"><a href="..\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
                 </ul>
             </nav>
 
@@ -102,7 +103,9 @@ $row = $result->fetch_assoc();
                                         </tr>
                                         <tr>
                                             <th>性別</th>
-                                            <td><?= $row["gender"] ?> </td>
+                                            <?php $genderText = ($row["gender"] == 1) ? '男' : '女';
+                                            ?>
+                                            <td><?= $genderText; ?> </td>
                                         </tr>
                                         <tr>
                                             <th>生日</th>

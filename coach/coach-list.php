@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once("./coach_connect.php");
+require("..\mysql-db-conn.php");
 
 $sqlTotal = "SELECT * FROM coach WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫
@@ -180,21 +180,20 @@ $result = $conn->query($sql);
       </div>
     </div>
   </div>
-
   <!-- Modal -->
   <div class="container-fluid">
     <main class="row">
       <nav class="main-nav col-2 p-0">
         <h1 class="my-4 text-center">DiVING</h1>
         <ul class="main-ul list-unstyle p-0">
-          <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+            <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+            <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+            <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+            <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+            <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+            <li class="main-li"><a href="coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+            <li class="main-li"><a href="..\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+            <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
         </ul>
       </nav>
 
@@ -283,13 +282,17 @@ $result = $conn->query($sql);
                   <tr>
                     <th scope="row"><?= $row["id"] ?></th>
                     <td><?= $row["name"] ?></td>
-                    <td><?= $row["gender"] ?></td>
+
+                    <?php $genderText = ($row["gender"] == 1) ? '男' : '女';
+                    ?>
+                    <td><?= $genderText; ?></td>
+
                     <td><?= $row["phone"] ?></td>
                     <td><?= $row["email"] ?></td>
                     <td><?= $row["skill"] ?></td>
                     <td><?= $row["experience"] ?></td>
                     <td><?= $row["city"] ?></td>
-                    <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href="doHideCoach.php?id=<?= $row["id"] ?>"><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
+                    <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href="doHideCoach.php?id=<?= $row["id"] ?>" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -301,8 +304,7 @@ $result = $conn->query($sql);
                   <ul class="pagination justify-content-center">
                     <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
                       <li class="page-item <?php if ($page == $i) echo "active"; ?> ">
-                      </li>
-                      <a class="page-link" href="coach-list.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
+                        <a class="page-link" href="coach-list.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
                       </li>
                     <?php endfor; ?>
                   </ul>
@@ -331,6 +333,7 @@ $result = $conn->query($sql);
       }
     };
   </script>
+
 
 </body>
 

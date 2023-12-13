@@ -1,5 +1,5 @@
 <?php
-require_once("./coach_connect.php");
+require("..\mysql-db-conn.php");
 // 之後可以自己加上 最後更新時間
 // 如果每次更新都記錄 就是log =幫助檢查所有使用者行為 是後端在作的
 
@@ -10,7 +10,6 @@ if (!isset($_POST["name"])) {
 }
 
 $id = $_POST["id"];
-
 $name = $_POST["name"];
 $gender = $_POST["gender"];
 $birth = $_POST["birth"];
@@ -18,7 +17,6 @@ $email = $_POST["email"];
 $phone = $_POST["phone"];
 $city = $_POST["city"];
 $experience = $_POST["experience"];
-
 $info = $_POST["info"];
 $skill = $_POST["skill"];
 $time = date('Y-m-d H:i:s');

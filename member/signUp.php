@@ -2,7 +2,7 @@
 
 session_start();
 
-require("..\mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 if (!isset($_POST["email"])) {
     die("請從正常管道進入");

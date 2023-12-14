@@ -1,6 +1,6 @@
 <?php
 
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 // if(!isset($_POST["name"])){
 //     echo "請循正常管道進入";

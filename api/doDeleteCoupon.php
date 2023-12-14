@@ -1,6 +1,6 @@
 <?php
 
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 $id = $_GET["id"];
 

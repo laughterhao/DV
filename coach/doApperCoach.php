@@ -1,7 +1,7 @@
 <!--  軟刪除 要用update -->
 
 <?php
-require("..\mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 if (!isset($_GET["id"])) {
     echo "請循正常管道進入此頁";

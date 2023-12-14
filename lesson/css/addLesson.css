@@ -1,0 +1,159 @@
+/* Global */
+:root {
+    --main-color-: #437281;
+    --hover-color-: #51899C;
+    --sidebar-with-: 240px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* font-size: 14px; */
+    color: var(--main-color-);
+    /* 不讓多餘的畫面造成滾動 */
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: none;
+}
+
+img:empty {
+    color: #335661;
+}
+
+.btn {
+    font-size: 14px;
+    color: var(--main-color-);
+    border: 1px solid #ccc;
+
+    &:hover {
+        color: #fff;
+        background-color: var(--main-color-);
+    }
+}
+
+.object-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #ccc;
+}
+
+/* header */
+header {
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    box-shadow: 0 2px 10px #ccc;
+    position: relative;
+    z-index: 1;
+
+    & .logo {
+        margin-right: 35px;
+
+        & a {
+            color: var(--main-color-);
+            font-size: 16px;
+            line-height: 50px;
+            font-weight: bold;
+        }
+    }
+}
+
+.sidebar {
+    width: var(--sidebar-with-);
+    height: 100%;
+    background-color: var(--main-color-);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    & h1 {
+        font-size: 50px;
+    }
+
+}
+
+.main-li {
+    padding-inline: 0px;
+    letter-spacing: 1px;
+    width: 100%;
+
+    &:hover {
+        background: #335661;
+    }
+
+    & a {
+        display: block;
+        padding-left: 60px;
+        padding-block: 20px;
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+
+        & i {
+            margin-right: 10px;
+            font-size: 20px;
+
+        }
+    }
+}
+
+.right-content {
+    width: calc(100% - var(--sidebar-with-));
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: auto;
+
+    & .body {
+        padding: 50px 20px 0;
+        position: relative;
+
+        & .breadcrumb {
+            margin-top: 20px;
+            color: var(--main-color-);
+            & a{
+                color: var(--main-color-);
+                &:hover{
+                    color: var(--hover-color-);
+                }
+            }
+        }
+    }
+}
+
+.list-box {
+    width: 100%;
+    padding: 12px 24px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow-x: auto;
+
+    & h3 {
+        font-size: 20px;
+        font-weight: normal;
+    }
+    & textarea{
+        padding: 12px;
+    }
+}
+
+.foot {
+    margin: 20px 0;
+}   

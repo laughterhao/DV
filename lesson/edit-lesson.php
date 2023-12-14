@@ -87,11 +87,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                     <div class="row align-items-center my-3 pe-0">
                                         <label class="col-2" for="info">課程簡介</label>
-                                        <textarea rows="4" name="info" id="info" class="col-10 d-inline-block"></textarea>
+                                        <textarea rows="4" name="info" id="info" class="col-10 d-inline-block"><?= $row["info"] ?></textarea>
                                     </div>
                                     <div class="row align-items-center my-3 pe-0">
                                         <label for="" class="col-2">課程內容</label>
-                                        <textarea rows="8" name="content" id="content" class="col-10 d-inline-block"></textarea>
+                                        <textarea rows="8" name="content" id="content" class="col-10 d-inline-block"><?= $row["content"] ?></textarea>
                                     </div>
                                     <h3 class="col-12 border-bottom my-3">課程分類</h3>
                                     <div class="col-6 my-3">

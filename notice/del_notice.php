@@ -1,5 +1,5 @@
 <?php
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 $id = $_GET['id'];
 $sql = "UPDATE notice SET valid = 0 WHERE id = :id ";
 $stmt = $conn->prepare($sql);

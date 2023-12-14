@@ -6,7 +6,7 @@ if (!isset($_GET["id"])) {
 
 $id = $_GET["id"]; //裝起來
 
-require("..\mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 $sql = " SELECT coach.*,  GROUP_CONCAT(license.name) AS license_names
 FROM coach

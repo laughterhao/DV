@@ -5,7 +5,7 @@ if (!isset($_GET["id"])) {
 
 $id = $_GET["id"];
 
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 $stmt = $conn->prepare('SELECT * FROM `coupon` WHERE id =:id ');
 $stmt->execute([':id' => $id]);

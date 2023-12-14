@@ -1,6 +1,6 @@
 <?php
 
-require("..\mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 $id= $_GET["id"];
 

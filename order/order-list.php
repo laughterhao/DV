@@ -1,5 +1,5 @@
 <?php
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 $stmtTotal = $conn->prepare('SELECT * FROM order_data');
 $stmtTotal->execute();
@@ -76,7 +76,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $row["payment"] ?></td>
                     <td><?= $row["total_price"] ?></td>
                     <td>
-                      <a class="btn btn-info text-white" href="order.php?id=<?= $row["id"] ?>" title="詳細資料"><i class="bi bi-info-circle-fill"></i></a>
+                      <a class="btn" href="order-info.php?id=<?= $row["id"] ?>" title="詳細資料"><i class="bi bi-info-circle-fill"></i></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>

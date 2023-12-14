@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-require_once("../mysql-db-conn.php");
-=======
 require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
->>>>>>> origin/main
 session_start();
 //得出資料總筆數
 $sqlTotal = "SELECT * FROM member WHERE valid=1"; //得出所有資料

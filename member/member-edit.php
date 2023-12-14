@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-require("../mysql-db-conn.php");
-=======
 require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
->>>>>>> origin/main
 
 if (!isset($_GET["id"])) { //如果沒有得到id的值會導倒會員列表
     header("location: member-list.php");

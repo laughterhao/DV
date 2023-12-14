@@ -76,11 +76,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $row["payment"] ?></td>
                     <td><?= $row["total_price"] ?></td>
                     <td>
-<<<<<<< HEAD
-                      <a class="btn btn-info text-white" href="order-info.php?id=<?= $row["id"] ?>" title="詳細資料"><i class="bi bi-info-circle-fill"></i></a>
-=======
                       <a class="btn" href="order-info.php?id=<?= $row["id"] ?>" title="詳細資料"><i class="bi bi-info-circle-fill"></i></a>
->>>>>>> origin/main
                     </td>
                   </tr>
                 <?php endforeach; ?>

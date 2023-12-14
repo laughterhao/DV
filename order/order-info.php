@@ -7,7 +7,7 @@ $stmt = $conn->prepare('SELECT product.price AS price,product.name AS name, orde
 $stmt->execute([':id' => $id]);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmtData = $conn->prepare('SELECT order_data.*, member.name AS name FROM order_data JOIN member ON order_data.member_id = member.id WHERE order_data.id =:id');
+$stmtData = $conn->prepare('SELECT order_data.*, member.* FROM order_data JOIN member ON order_data.member_id = member.id WHERE order_data.id =:id');
 $stmtData->execute([':id' => $id]);
 $rowData = $stmtData->fetch();
 

@@ -1,6 +1,6 @@
 <?php
 
-require("..\mysql-db-conn.php");
+require("../mysql-db-conn.php");
 
 $id= $_GET["id"];
 

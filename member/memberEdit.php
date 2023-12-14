@@ -1,6 +1,6 @@
 <?php
 
-require("..\mysql-db-conn.php");
+require("../mysql-db-conn.php");
 
 //先確認一定是透過post來的
 if (!isset($_POST["name"])) {

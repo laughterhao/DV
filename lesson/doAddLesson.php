@@ -7,22 +7,16 @@ require_once("../mysql-db-conn.php");
 // }
 
 $image = "01.jpg";
-$name = $_POST["name"];
-$info = $_POST["info"];
-$content = $_POST["content"];
-$sort = $_POST["sort"];
-$location = $_POST["location"];
-$price = $_POST["price"];
-$maxPerson = $_POST["max-person"];
+$name = "level1課程";
+$price = 16000;
 $time = date("Y-m-d H:i:s");
 
-
-$sql = "INSERT INTO lesson (image, name, info, content, sort, location,  price, max_person, valid, created_at)
-VALUES ('$image', '$name', '$info', '$content', '$sort', '$location', '$price', '$maxPerson', '1', '$time')";
+$sql = "INSERT INTO lesson (image, name, price, valid, created_at)
+VALUES ('$image', '$name', '$price', '1', '$time')";
 
 
 if ($conn->query($sql) === TRUE) {
-    header('location: ./lessonList.php');
+    echo "新增成功";
 } else {
     echo "新增錯誤: " . $conn->error;
 }

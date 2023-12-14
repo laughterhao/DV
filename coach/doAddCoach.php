@@ -34,7 +34,7 @@ if ($_FILES["imgfile"]["error"] == 0) {
     $img_filename = $_FILES["imgfile"]["name"];
     $img_tmp_name = $_FILES["imgfile"]["tmp_name"];
 
-    if (move_uploaded_file($img_tmp_name, "./upload/" . $img_filename)) {
+    if (move_uploaded_file($img_tmp_name, "../images/coach/" . $img_filename)) {
         $sql = "INSERT INTO coach (name, gender, birth, email, phone, city, experience, info, skill, img, created_at, valid)
         VALUES ('$name', '$gender', '$birth','$email', '$phone', '$city', '$experience', '$info', '$skill', '$img_filename', '$time', 1)";
     } else {

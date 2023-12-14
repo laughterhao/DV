@@ -147,7 +147,10 @@
                                         <tr class="table-primary">
                                             <?php foreach ($rows as $row) : ?>
                                             <td scope="row">
-                                                <img src="https://picsum.photos/50/50/?random=10">
+                                                <figure class=" object-fit-cover m-auto" style=" width :50px; height:50px
+                                                ">
+                                                <img class="w-100 h-100"src="../images/notice/<?= $row["Main_img"]?>">
+                                                </figure>
                                             </td>
                                             <td><?= $row['Title'] ?></td>
                                             <td><?= $row['Content'] ?></td>

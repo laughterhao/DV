@@ -59,6 +59,7 @@ body {
     height: 50px;
     background: #fff;
     box-shadow: 0 3px 5px #c3c3c3;
+    z-index: 999;
 
     & a {
         position: absolute;

@@ -1,14 +1,15 @@
 /* Global */
 :root {
     --main-color-: #437281;
-    --sidebar-with-: 16vw;
+    --hover-color-: #51899C;
+    --sidebar-with-: 240px;
 }
 
 body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    font-size: 14px;
+    /* font-size: 14px; */
     color: var(--main-color-);
     /* 不讓多餘的畫面造成滾動 */
 }
@@ -22,8 +23,8 @@ a {
     text-decoration: none;
 }
 
-.row{
-    margin-block: 16px;   
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: none;
 }
 
 .btn {
@@ -56,6 +57,16 @@ header {
     position: relative;
     z-index: 1;
 
+    & .logo {
+        margin-right: 35px;
+
+        & a {
+            color: var(--main-color-);
+            font-size: 16px;
+            line-height: 50px;
+            font-weight: bold;
+        }
+    }
 }
 
 .sidebar {
@@ -66,8 +77,37 @@ header {
     top: 0;
     left: 0;
     z-index: 2;
+
+    & h1 {
+        font-size: 50px;
+    }
+
 }
 
+.main-li {
+    padding-inline: 0px;
+    letter-spacing: 1px;
+    width: 100%;
+
+    &:hover {
+        background: #335661;
+    }
+
+    & a {
+        display: block;
+        padding-left: 60px;
+        padding-block: 20px;
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+
+        & i {
+            margin-right: 10px;
+            font-size: 20px;
+
+        }
+    }
+}
 
 .right-content {
     width: calc(100% - var(--sidebar-with-));
@@ -84,6 +124,12 @@ header {
         >.breadcrumb {
             margin-top: 20px;
             color: var(--main-color-);
+            & a{
+                color: var(--main-color-);
+                &:hover{
+                    color: var(--hover-color-);
+                }
+            }
         }
     }
 }
@@ -99,20 +145,15 @@ header {
         font-size: 20px;
         font-weight: normal;
     }
-    & h4{
-        font-size: 14px;
-        font-weight: normal;
-        margin: 0;
-        line-height: 2;
+    & .dropzone{
+        height: 240px;
+        border: 1px dashed #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    & .pic{
-        width: 240px;
-        height: 200px;
-        /* border: 1px solid #ccc; */
-        
-    }
-    & .input-height{
-        height: 160px;
+    & textarea{
+        padding: 12px;
     }
 }
 

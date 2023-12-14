@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
+require(".." . DIRECTORY_SEPARATOR . "mysql-db-conn.php");
 
 $sqlTotal = "SELECT * FROM coach WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫
@@ -186,14 +186,14 @@ $result = $conn->query($sql);
       <nav class="main-nav col-2 p-0">
         <h1 class="my-4 text-center">DiVING</h1>
         <ul class="main-ul list-unstyle p-0">
-            <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
-            <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
-            <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-            <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
-            <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
-            <li class="main-li"><a href="coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
-            <li class="main-li"><a href="..\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
-            <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
+          <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+          <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+          <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+          <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+          <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+          <li class="main-li"><a href="coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+          <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+          <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
         </ul>
       </nav>
 
@@ -207,7 +207,7 @@ $result = $conn->query($sql);
           <div class="d-grid gap-2 d-flex justify-content-between">
             <h3>教練管理</h3>
             <div>
-              <a class="btn my-3 " data-bs-toggle="modal" data-bs-target="#staticBackdrop">新增教練</a>
+              <a class="btn my-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">新增教練</a>
               <!-- href="add-coach.php" -->
               <a class="btn my-3" href="coach-hide-list.php">已隱藏教練</a>
             </div>
@@ -246,7 +246,7 @@ $result = $conn->query($sql);
                   排序依據
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item <?php if ($order == 1) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=1">ID-小到大</a></li>
+                  <li><a id="btn" class="dropdown-item <?php if ($order == 1) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=1">ID-小到大</a></li>
                   <li><a class="dropdown-item <?php if ($order == 2) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=2">ID-大到小</a></li>
                   <li><a class="dropdown-item <?php if ($order == 3) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=3">教學年資-小到大</a></li>
                   <li><a class="dropdown-item dropdown-item <?php if ($order == 4) echo "active" ?> " href="coach-list.php?page=<?= $page ?>&order=4">教學年資-大到小</a></li>
@@ -304,7 +304,7 @@ $result = $conn->query($sql);
                   <ul class="pagination justify-content-center">
                     <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
                       <li class="page-item <?php if ($page == $i) echo "active"; ?> ">
-                        <a class="page-link" href="coach-list.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
+                        <a class="btn page-link" href="coach-list.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
                       </li>
                     <?php endfor; ?>
                   </ul>

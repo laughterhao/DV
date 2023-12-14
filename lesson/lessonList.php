@@ -13,7 +13,7 @@ if (isset($_GET["search"])) {
     $search = $_GET["search"];
     $sql = "SELECT lesson.*, location.name AS location_name FROM lesson
     JOIN location ON lesson.location = location.id
-    WHERE (lesson.name LIKE '%$search%' OR lesson.location LIKE '%$search%') AND (valid = 1 OR valid = 0)
+    WHERE (lesson.name LIKE '%$search%' OR location.name LIKE '%$search%') AND (valid = 1 OR valid = 0)
     ORDER BY id DESC";
 } elseif (isset($_GET["page"]) && isset($_GET["order"])) {
     $page = $_GET["page"];
@@ -90,7 +90,6 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <div class="breadcrumb">
                     <a href="lessonList.php" class="text-main-color">課程管理</a>
                 </div>
-                
                 <div class="list-box">
                     <div class="list-action text-nowrap">
                         <div class="d-flex justify-content-between align-items-center">

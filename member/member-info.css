@@ -1,0 +1,45 @@
+:root {
+    --main-color  : #437281;
+    --second-color: #eee ;
+}
+
+.diving-block{
+    /* width: 80%; */
+    /* margin-left:280px; */
+    margin-top: 40px;
+    height: 90%;
+    & h3{
+        color: var(--main-color);
+    }
+}
+.memberinfo-block{
+    /* width: 40%; */
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    & th{
+        padding-block: 20px;
+        color: var(--main-color);
+        margin-top: 20px;
+    }
+}
+.back-btn{
+    text-decoration: none;
+    color: #adadad;
+}
+.back-btn:hover{
+    color: var(--main-color);
+}
+.order-block{
+    /* width: 55%; */
+    height: 100%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+   /* margin-left: 20px; */
+
+}
+.okbtn{
+    background: var(--main-color);
+    color: #fff;
+}

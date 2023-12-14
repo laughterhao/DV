@@ -1,0 +1,57 @@
+:root {
+    --main-color  : #437281;
+    --second-color: #eee;
+}
+
+.member-block {
+    width        : 90%;
+    height       : 90%;
+    background   : #fff;
+    padding      : 30px;
+    margin-top   : 20px;
+    margin-left  : 240px;
+    border-radius: 10px;
+
+    & h3 {
+        color: var(--main-color);
+    }
+}
+
+.filter-block {
+    width: 50%;
+}
+
+.member-table {
+    & th {
+        color: var(--main-color);
+    }
+}
+.order-btn{
+    & a {
+        color: #ccc;
+    }
+    & a:hover {
+        color: var(--main-color);
+    }
+
+}
+.pagination {
+
+    & a {
+        color: var(--main-color);
+    }
+}
+
+.page-link:hover {
+    background: var(--main-color);
+    color     : #fff;
+}
+
+.page-link {
+    &:focus {
+        box-shadow: none;
+        background: var(--main-color);
+        color     : #fff;
+    }
+
+}

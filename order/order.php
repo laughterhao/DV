@@ -7,17 +7,20 @@ $id = $_GET["id"];
 
 require_once("../DB_conn.php");
 
-$stmt = $conn->prepare('SELECT * FROM `coupon` WHERE id =:id ');
+$stmt = $conn->prepare('SELECT product.price AS price, order_detail.* FROM order_detail JOIN product ON product.id = order_detail.product_id WHERE order_id =:id');
 $stmt->execute([':id' => $id]);
-$row = $stmt->fetch();
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $couponCount = $stmt->rowCount();
 
+$totalPrice=0;
+
 ?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>優惠券</title>
+    <title>訂單</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,12 +38,12 @@ $couponCount = $stmt->rowCount();
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
                     <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
-                    <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
                     <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
                     <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
                     <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
                     <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                    <li class="main-li"><a href="coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
                     <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
                 </ul>
             </nav>
@@ -51,49 +54,33 @@ $couponCount = $stmt->rowCount();
                 </div>
                 <div class="container">
                     <div class="py-2">
-                        <a class="btn" href="coupon-list.php" title="回優惠券列表">
+                        <a class="btn btn-info text-white" href="order-list.php" title="回訂單列表">
                             <i class="bi bi-arrow-90deg-left"></i>
                         </a>
                     </div>
                     <?php if ($couponCount == 0) : ?>
-                        <h1>優惠券不存在</h1>
+                        <h1>訂單不存在</h1>
                     <?php else : ?>
                         <table class="table table-bordered">
                             <tr>
-                                <th>ID</th>
-                                <td><?= $row["id"] ?></td>
+                                <th>產品</th>
+                                <th>單價</th>
+                                <th>數量</th>
+                                <th>總價</th>
                             </tr>
+                        <?php foreach ($rows as $row) : ?>
                             <tr>
-                                <th>優惠券名稱</th>
-                                <td><?= $row["name"] ?></td>
+                                <td><?=$row["product_id"]?></td>
+                                <td><?=$row["price"]?></td>
+                                <td><?=$row["number"]?></td>
+                                <td><?=$row["price"]*$row["number"]?></td>
                             </tr>
-                            <tr>
-                                <th>優惠碼</th>
-                                <td><?= $row["code"] ?></td>
-                            </tr>
-                            <tr>
-                                <th>可使用人數</th>
-                                <td><?= $row["max_count"] ?></td>
-                            </tr>
-                            <tr>
-                                <th>以使用人數</th>
-                                <td><?= $row["used_count"] ?></td>
-                            </tr>
-                            <tr>
-                                <th>折扣金額</th>
-                                <td>
-                                    <?php if (isset($row["discount_pa"])) : ?><?= $row["discount_pa"] ?>折
-                                    <?php elseif (isset($row["discount_cash"])) : ?><?= $row["discount_cash"] ?>NTD
-                                <?php endif; ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>可使用時間</th>
-                                <td><?= $row["start"] ?> ~ <?= $row["end"] ?></td>
-                            </tr>
+                        <?php $totalPrice += $row["price"]*$row["number"] ?>
+                        <?php endforeach; ?>
                         </table>
+                        <h1>合計<?=$totalPrice?></h1>
                         <div class="py-2">
-                            <a class="btn" href="coupon-edit-ajax.php?id=<?= $row["id"] ?>" title="修改資料">
+                            <a class="btn btn-info text-white" href="edit_order.php?id=<?= $row["id"] ?>" title="修改資料">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
                         </div>

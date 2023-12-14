@@ -103,8 +103,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="backe-template.css?time<?= time() ?>">
-    <link rel="stylesheet" href="member-list.css">
+    <link rel="stylesheet" href="backe-template.css">
+    <link rel="stylesheet" href="member-list.css?time<?= time() ?>">
 
 
 </head>
@@ -237,9 +237,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC); //把搜尋結果陣列出來
                                 <!-- 頁數 -->
                                 <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
                                     <?php if (isset($_SESSION["search"])) : ?>
-                                        <li class="page-item"><a class="page-link" href="member-list.php?page=<?= $i ?>&search=<?= $_SESSION["search"] ?>"><?= $i ?></a></li>
+                                        <li class="page-item <?php if ($page == $i) echo 'active'; ?>"><a class="page-link " href="member-list.php?page=<?= $i ?>&search=<?= $_SESSION["search"] ?>"><?= $i ?></a></li>
                                     <?php else : ?>
-                                        <li class="page-item"><a class="page-link" href="member-list.php?page=<?= $i ?>"><?= $i ?></a></li>
+                                        <li class="page-item <?php if ($page == $i) echo 'active'; ?>"><a class="page-link >" href="member-list.php?page=<?= $i ?>"><?= $i ?></a></li>
                                     <?php endif; ?>
                                 <?php endfor; ?>
 

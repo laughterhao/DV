@@ -50,8 +50,13 @@
 .page-link {
     &:focus {
         box-shadow: none;
-        background: var(--main-color);
-        color     : #fff;
+        
     }
 
 }
+.active>.page-link, .page-link.active {
+    background: var(--main-color);
+        color     : #fff;
+        border:1px solid var(--main-color);;
+}
+

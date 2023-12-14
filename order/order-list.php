@@ -1,5 +1,5 @@
 <?php
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 $stmtTotal = $conn->prepare('SELECT * FROM order_data');
 $stmtTotal->execute();
@@ -38,14 +38,14 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <div class="col-2 main-nav p-0">
         <h1 class="my-4 text-center">DiVING</h1>
         <ul class="main-ul list-unstyle p-0">
-          <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+            <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+            <li class="main-li"><a href="order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+            <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+            <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+            <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+            <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+            <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+            <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
         </ul>
       </div>
       <div class="col-10 p-0" style="margin-left:16.66%;">
@@ -76,7 +76,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $row["payment"] ?></td>
                     <td><?= $row["total_price"] ?></td>
                     <td>
-                      <a class="btn btn-info text-white" href="order.php?id=<?= $row["id"] ?>" title="詳細資料"><i class="bi bi-info-circle-fill"></i></a>
+                      <a class="btn" href="order-info.php?id=<?= $row["id"] ?>" title="詳細資料"><i class="bi bi-info-circle-fill"></i></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>

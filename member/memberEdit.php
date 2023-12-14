@@ -1,6 +1,6 @@
 <?php
 
-require_once("db-connect.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 //先確認一定是透過post來的
 if (!isset($_POST["name"])) {
@@ -21,7 +21,7 @@ $address = $_POST["address"];
 // exit;
 
 
-$sql = "UPDATE member 
+$sql = "UPDATE member
 SET name='$name',gender='$gender', birth='$birth', email='$email', phone='$phone', city='$city',address='$address'
 WHERE id=$id";
 

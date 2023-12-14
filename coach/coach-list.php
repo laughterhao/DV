@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once("./coach_connect.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 $sqlTotal = "SELECT * FROM coach WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫
@@ -186,14 +186,14 @@ $result = $conn->query($sql);
       <nav class="main-nav col-2 p-0">
         <h1 class="my-4 text-center">DiVING</h1>
         <ul class="main-ul list-unstyle p-0">
-          <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-          <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+            <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+            <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+            <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+            <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+            <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+            <li class="main-li"><a href="coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+            <li class="main-li"><a href="..\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+            <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
         </ul>
       </nav>
 

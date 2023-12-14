@@ -1,13 +1,13 @@
 <?php
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 
 $id=$_GET["id"];
-$stmt = $conn->prepare('SELECT product.price AS price,product.name AS name, order_detail.* FROM order_detail JOIN product ON product.id = order_detail.product_id WHERE order_id =:id');
+$stmt = $conn->prepare('SELECT product.price AS price, product.name AS name, product.img AS img, order_detail.* FROM order_detail JOIN product ON product.id = order_detail.product_id WHERE order_id =:id');
 $stmt->execute([':id' => $id]);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmtData = $conn->prepare('SELECT order_data.*, member.name AS name FROM order_data JOIN member ON order_data.member_id = member.id WHERE order_data.id =:id');
+$stmtData = $conn->prepare('SELECT order_data.*,member.* FROM order_data JOIN member ON order_data.member_id = member.id WHERE order_data.id =:id');
 $stmtData->execute([':id' => $id]);
 $rowData = $stmtData->fetch();
 
@@ -36,14 +36,14 @@ $totalPrice=0;
             <nav class="main-nav col-2 p-0">
                 <h1 class="my-4 text-center">DiVING</h1>
                 <ul class="main-ul list-unstyle p-0">
-                    <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                    <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+                    <li class="main-li"><a href="..\"><i class="bi bi-intersect"></i>總覽</a></li>
+                    <li class="main-li"><a href="order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                    <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                    <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                    <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                    <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                    <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                    <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
                 </ul>
             </nav>
 
@@ -85,7 +85,7 @@ $totalPrice=0;
                                         </tr>
                                         <tr>
                                             <th>訂單狀態：</th>
-                                            <td> <button class="stutas-btn btn btn-sm"><?=$rowData["order_status"]?></button></td>
+                                            <td> <button class="btn btn-sm"><?=$rowData["order_status"]?></button></td>
                                         </tr>
                                         <tr>
                                             <th>付款狀態：</th>
@@ -112,15 +112,15 @@ $totalPrice=0;
                                         </tr>
                                         <tr>
                                             <th>信箱：</th>
-                                            <td><?=$row["email"]?></td>
+                                            <td><?=$rowData["email"]?></td>
                                         </tr>
                                         <tr>
                                             <th>電話：</th>
-                                            <td><?=$row["phone"]?></td>
+                                            <td><?=$rowData["phone"]?></td>
                                         </tr>
                                         <tr>
                                             <th>送貨地址：</th>
-                                            <td><?=$row["city"].$row["address"]?></td>
+                                            <td><?=$rowData["city"].$rowData["address"]?></td>
                                         </tr>
 
                                     </table>
@@ -141,8 +141,8 @@ $totalPrice=0;
                             <div>
                                 <?php foreach ($rows as $row) : ?>
                                 <div class="d-flex align-items-center">
-                                    <figure class="figure me-3 mb-0">
-                                        <img class="figure-img img-fluid m-0" src="4.png" alt="">
+                                    <figure class="figure me-3 mb-3">
+                                        <img class="figure-img img-fluid m-0 h-100" src="../diving-images/<?=$row["img"]?>" alt="">
                                     </figure>
                                     <div>
                                         <h5><?=$row["name"]?></h5>

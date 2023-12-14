@@ -1,5 +1,5 @@
 <?php
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 $stmtTotal = $conn->prepare('SELECT * FROM coupon WHERE valid=1');
 $stmtTotal->execute();
@@ -28,8 +28,6 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
   <script defer src="../js/script.js"></script>
 
-  <link rel="stylesheet" href="../css/backe-template.css">
-
 </head>
 
 <body>
@@ -53,7 +51,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
         </div>
         <div class="container">
-          <a class="btn" href="add-coupon-ajax.php" title="增加優惠券"><i class="bi bi-person-fill-add"></i></a>
+          <div class="py-2">
+            <a class="btn" href="add-coupon-ajax.php" title="增加優惠券"><i class="bi bi-person-fill-add"></i></a>
+          </div>
           <?php if ($totalCouponCount > 0) : ?>
             <table id="example" class="table table-bordered">
               <thead>
@@ -62,7 +62,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <th>優惠券名稱</th>
                   <th>優惠碼</th>
                   <th>可使用人數</th>
-                  <th>以使用人數</th>
+                  <th>已使用人數</th>
                   <th>折扣金額</th>
                   <th>可使用時間</th>
                   <th>詳細</th>

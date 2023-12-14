@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require("..\mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 $sqlTotal = "SELECT * FROM coach WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal); //去抓資料庫
@@ -192,7 +192,7 @@ $result = $conn->query($sql);
             <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
             <li class="main-li"><a href="..\lesson\lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
             <li class="main-li"><a href="coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
-            <li class="main-li"><a href="..\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+            <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
             <li class="main-li"><a href="..\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
         </ul>
       </nav>

@@ -1,6 +1,6 @@
 <!-- 命名=丟資料的用階梯式命名 利於找資料 -->
 <?php
-require("..\mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 if (!isset($_POST["name"])) {
     echo "請循正常管道進入";
@@ -34,7 +34,7 @@ if ($_FILES["imgfile"]["error"] == 0) {
     $img_filename = $_FILES["imgfile"]["name"];
     $img_tmp_name = $_FILES["imgfile"]["tmp_name"];
 
-    if (move_uploaded_file($img_tmp_name, "./upload/" . $img_filename)) {
+    if (move_uploaded_file($img_tmp_name, "../images/coach/" . $img_filename)) {
         $sql = "INSERT INTO coach (name, gender, birth, email, phone, city, experience, info, skill, img, created_at, valid)
         VALUES ('$name', '$gender', '$birth','$email', '$phone', '$city', '$experience', '$info', '$skill', '$img_filename', '$time', 1)";
     } else {

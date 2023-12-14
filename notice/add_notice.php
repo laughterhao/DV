@@ -40,14 +40,9 @@
 
             <div class="continer mx-auto">
                <h2 class="text-center mt-5">新增公告</h2>
-               <form action="do_add_notice.php" method="post">
+               <form action="do_add_notice.php" method="post" enctype="multipart/form-data">
                   <div class="row mx-5">
                      <div class="col-md-6">
-                        <div class="mb-3">
-                           <label for="title_img" class="form-label">縮圖</label>
-                           <input type="text" class="form-control" id="title_img" name="title_img" />
-                           <div class="form-text">上傳縮圖</div>
-                        </div>
                         <div class="mb-3">
                            <label for="title" class="form-label">標題</label>
                            <input type="text" class="form-control" id="title" name="title" />
@@ -67,7 +62,7 @@
                         </div>
                         <div class="mb-3">
                            <label for="img" class="form-label">圖片</label>
-                           <input type="text" class="form-control" id="img" name="img" />
+                           <input type="file" class="form-control" id="img" name="img" />
                            <div class="form-text">上傳圖片</div>
                         </div>
                         <div class="mb-3">

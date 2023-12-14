@@ -1,5 +1,5 @@
 <?php
-require_once("../mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 $sqlTotal = " SELECT * FROM product WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal);
@@ -177,7 +177,7 @@ $result = $conn->query($sql);
                                                 <td>
                                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                                         <div class="ratio ratio-1x1 object-fit-cover">
-                                                            <img class="img-fluid" src="../diving-images/<?= $row["img"] ?>" alt="產品圖片">
+                                                            <img class="img-fluid" src="../images/product/<?= $row["img"] ?>" alt="產品圖片">
                                                         </div>
                                                     </div>
                                                 </td>

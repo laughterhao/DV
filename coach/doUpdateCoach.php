@@ -1,5 +1,5 @@
 <?php
-require("..\mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 // 之後可以自己加上 最後更新時間
 // 如果每次更新都記錄 就是log =幫助檢查所有使用者行為 是後端在作的
 
@@ -78,7 +78,7 @@ if ($_FILES["newImgfile"]["error"] === UPLOAD_ERR_NO_FILE) {
 } else {
     $newImagePath = $_FILES["newImgfile"]["name"];
     // 檢查是否有檔案被上傳
-    if (move_uploaded_file($_FILES["newImgfile"]["tmp_name"],  "./upload/" . $newImagePath)) {
+    if (move_uploaded_file($_FILES["newImgfile"]["tmp_name"],  "../images/coach/" . $newImagePath)) {
         // 如果成功上傳新圖片，你可以在這裡更新資料庫中的圖片路徑
         $sql = "UPDATE coach SET img = '$newImagePath' WHERE id=$id";
         if ($conn->query($sql) === TRUE) {

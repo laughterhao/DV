@@ -1,5 +1,5 @@
 <?php
-require_once("../mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 
 
@@ -31,7 +31,7 @@ VALUES ('$name', '$size', '$count', '$price', '$info', '$time', 1, '$fileName')"
 
 
 if($_FILES["file"]["error"]==0){
-    move_uploaded_file($_FILES["file"]["tmp_name"], "../diving-images/".$_FILES["file"]["name"]);
+    move_uploaded_file($_FILES["file"]["tmp_name"], "../images/product/".$_FILES["file"]["name"]);
     echo "上傳成功";
 }else{
     echo "上傳失敗";

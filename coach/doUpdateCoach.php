@@ -1,5 +1,5 @@
 <?php
-require("..\mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 // 之後可以自己加上 最後更新時間
 // 如果每次更新都記錄 就是log =幫助檢查所有使用者行為 是後端在作的
 

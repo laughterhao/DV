@@ -1,5 +1,5 @@
 <?php
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 $stmtTotal = $conn->prepare('SELECT * FROM coupon WHERE valid=1');
 $stmtTotal->execute();

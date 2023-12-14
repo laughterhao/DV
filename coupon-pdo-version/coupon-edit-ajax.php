@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 if (!isset($_GET["id"])) {
     header("location: coupon-list.php");

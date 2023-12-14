@@ -1,5 +1,5 @@
 <?php
-require_once("../mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 
 if(!isset($_POST["name"])){

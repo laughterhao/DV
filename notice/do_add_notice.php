@@ -1,5 +1,5 @@
 <?php
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 $title_img = $_POST["title_img"];
 $title = $_POST["title"];
 $sort = $_POST["sort"];

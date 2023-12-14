@@ -25,7 +25,7 @@ if($fileName == ''){
 
 
 if($_FILES["file"]["error"]==0){
-    move_uploaded_file($_FILES["file"]["tmp_name"], "../diving-images/".$_FILES["file"]["name"]);
+    move_uploaded_file($_FILES["file"]["tmp_name"], "../images/product/".$_FILES["file"]["name"]);
     echo "上傳成功";
 
 }else{

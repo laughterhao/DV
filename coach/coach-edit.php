@@ -95,7 +95,7 @@ $rows = $result->fetch_assoc();
                             </div>
 
                             <div class="col-4">
-                                <img class="ratio ratio-1x1 mb-4 img-thumbnail rounded-circle my-3 object-fit-cover" id="output" src="./upload/<?= $rows["img"] ?>" style="height: 300px;" />
+                                <img class="ratio ratio-1x1 mb-4 img-thumbnail rounded-circle my-3 object-fit-cover" id="output" src="../images/coach/<?= $rows["img"] ?>" style="height: 300px;" />
                                 <input class="form-control" type="file" accept="image/*" onchange="loadFile(event)" id="newImgfile" name="newImgfile">
 
                                 <div>

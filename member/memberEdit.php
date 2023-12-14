@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 require("../mysql-db-conn.php");
+=======
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
+>>>>>>> origin/main
 
 //先確認一定是透過post來的
 if (!isset($_POST["name"])) {

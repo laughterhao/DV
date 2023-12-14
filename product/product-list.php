@@ -1,5 +1,5 @@
 <?php
-require_once("../mysql-db-conn.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 $sqlTotal = " SELECT * FROM product WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal);

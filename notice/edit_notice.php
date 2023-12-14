@@ -1,5 +1,5 @@
 <?php
-require_once('../DB_conn.php');// 連接資料庫
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");// 連接資料庫
 //取得前台變數
 $id = $_POST["id"];
 $title_img = $_POST["title_img"];

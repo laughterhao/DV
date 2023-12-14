@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 require("../mysql-db-conn.php");
+=======
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
+>>>>>>> origin/main
 
 $id= $_GET["id"];
 

@@ -1,13 +1,17 @@
 <?php
-require_once("../DB_conn.php");
+require("..". DIRECTORY_SEPARATOR ."DB_conn.php");
 
 
 $id=$_GET["id"];
-$stmt = $conn->prepare('SELECT product.price AS price,product.name AS name, order_detail.* FROM order_detail JOIN product ON product.id = order_detail.product_id WHERE order_id =:id');
+$stmt = $conn->prepare('SELECT product.price AS price, product.name AS name, product.img AS img, order_detail.* FROM order_detail JOIN product ON product.id = order_detail.product_id WHERE order_id =:id');
 $stmt->execute([':id' => $id]);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+<<<<<<< HEAD
 $stmtData = $conn->prepare('SELECT order_data.*, member.* FROM order_data JOIN member ON order_data.member_id = member.id WHERE order_data.id =:id');
+=======
+$stmtData = $conn->prepare('SELECT order_data.*,member.* FROM order_data JOIN member ON order_data.member_id = member.id WHERE order_data.id =:id');
+>>>>>>> origin/main
 $stmtData->execute([':id' => $id]);
 $rowData = $stmtData->fetch();
 
@@ -85,7 +89,7 @@ $totalPrice=0;
                                         </tr>
                                         <tr>
                                             <th>訂單狀態：</th>
-                                            <td> <button class="stutas-btn btn btn-sm"><?=$rowData["order_status"]?></button></td>
+                                            <td> <button class="btn btn-sm"><?=$rowData["order_status"]?></button></td>
                                         </tr>
                                         <tr>
                                             <th>付款狀態：</th>
@@ -112,15 +116,15 @@ $totalPrice=0;
                                         </tr>
                                         <tr>
                                             <th>信箱：</th>
-                                            <td><?=$row["email"]?></td>
+                                            <td><?=$rowData["email"]?></td>
                                         </tr>
                                         <tr>
                                             <th>電話：</th>
-                                            <td><?=$row["phone"]?></td>
+                                            <td><?=$rowData["phone"]?></td>
                                         </tr>
                                         <tr>
                                             <th>送貨地址：</th>
-                                            <td><?=$row["city"].$row["address"]?></td>
+                                            <td><?=$rowData["city"].$rowData["address"]?></td>
                                         </tr>
 
                                     </table>
@@ -141,8 +145,8 @@ $totalPrice=0;
                             <div>
                                 <?php foreach ($rows as $row) : ?>
                                 <div class="d-flex align-items-center">
-                                    <figure class="figure me-3 mb-0">
-                                        <img class="figure-img img-fluid m-0" src="4.png" alt="">
+                                    <figure class="figure me-3 mb-3">
+                                        <img class="figure-img img-fluid m-0 h-100" src="../diving-images/<?=$row["img"]?>" alt="">
                                     </figure>
                                     <div>
                                         <h5><?=$row["name"]?></h5>

@@ -9,7 +9,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    font-size: 14px;
+    /* font-size: 14px; */
     color: var(--main-color-);
     /* 不讓多餘的畫面造成滾動 */
 }
@@ -23,9 +23,9 @@ a {
     text-decoration: none;
 }
 
-/* .row{
-    margin-block: 16px;   
-} */
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: none;
+}
 
 .btn {
     font-size: 14px;
@@ -152,9 +152,8 @@ header {
         justify-content: center;
         align-items: center;
     }
-
-    & .input-style{
-        height: 160px;
+    & textarea{
+        padding: 12px;
     }
 }
 

@@ -107,7 +107,6 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                 </thead>
                                 <tbody>
                                     <?php foreach ($rows as $row) : ?>
-                                        <!-- modal start -->
                                         <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
@@ -125,7 +124,6 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- modal end -->
                                         <tr class="text-center">
                                             <td><input type="checkbox" class="checkbox" id="<?= $row["id"] ?>"></td>
                                             <td>
@@ -148,7 +146,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                             <td><?= $row["location_name"] ?></td>
                                             <td><?= $row["created_at"] ?></td>
                                             <td>
-                                                <div class="modal fade" id="alertModalY" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                                <div class="modal fade" id="alertModalY<?= $row["id"] ?>" tabindex="-1" aria-labelledby="" aria-hidden="true">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -165,7 +163,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal fade" id="alertModalN" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                                <div class="modal fade" id="alertModalN<?= $row["id"] ?>" tabindex="-1" aria-labelledby="" aria-hidden="true">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -183,8 +181,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                     </div>
                                                 </div>
                                                 <div class="btn-group">
-                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#alertModalY" class="btn">上架</button>
-                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#alertModalN" class="btn">下架</button>
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#alertModalY<?= $row["id"] ?>" class="btn">上架</button>
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#alertModalN<?= $row["id"] ?>" class="btn">下架</button>
                                                     <a href="edit-Lesson.php?id=<?= $row["id"] ?>" class="btn">編輯</a>
                                                 </div>
                                             </td>

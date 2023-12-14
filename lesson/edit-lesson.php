@@ -72,35 +72,40 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                 <?php foreach ($rows as $row) : ?>
                                     <input type="hidden" name="id" value="<?= $row["id"] ?>">
                                     <h3 class="col-12 border-bottom pb-1">課程資訊</h3>
-                                    <div class="row align-items-center">
+                                    <div class="row align-items-center my-3">
                                         <span for="" class="col-2">課程圖片</span>
                                         <div class="col-4 dropzone">
                                             <div class="row justify-content-center fs-4">
-                                                拖放圖片到這裡
-                                                <button type="button" class="btn col-4 mt-2">新增圖片</button>
+                                                <button type="button" class="btn col mt-2">新增圖片</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <label for="name" class="col-2">課程名稱</label>
-                                    <input type="text" name="name" id="name" class="col-10 d-inline-block" value="<?= $row["name"] ?>" autocomplete="name">
-                                    <label class="col-2" for="info">課程簡介</label>
-                                    <input type="text" name="info" id="info" class="col-12 d-inline-block ms-2 input-style" value="<?= $row["info"] ?>">
-                                    <label for="content" class="col-2">課程內容</label>
-                                    <input type="text" name="content" id="content" class="col-12 d-inline-block ms-2 input-style" value="<?= $row["content"] ?>">
-                                    <h3 class="col-12 border-bottom pb-1">分類</h3>
-                                    <div class="col-6">
-                                        <label for="sort" class="col-3 py-1">所屬分類</label>
-                                        <select name="sort" id="sort" class="col-6">
-                                            <option value="">請選擇</option>
+                                    <div class="row align-items-center my-3 pe-0">
+                                        <label for="name" class="col-2">課程名稱</label>
+                                        <input type="text" name="name" id="name" class="col" value="<?= $row["name"] ?>" autocomplete="name">
+                                    </div>
+                                    <div class="row align-items-center my-3 pe-0">
+                                        <label class="col-2" for="info">課程簡介</label>
+                                        <textarea rows="4" name="info" id="info" class="col-10 d-inline-block"></textarea>
+                                    </div>
+                                    <div class="row align-items-center my-3 pe-0">
+                                        <label for="" class="col-2">課程內容</label>
+                                        <textarea rows="8" name="content" id="content" class="col-10 d-inline-block"></textarea>
+                                    </div>
+                                    <h3 class="col-12 border-bottom my-3">課程分類</h3>
+                                    <div class="col-6 my-3">
+                                        <label for="sort" class="col-2 py-1">所屬分類</label>
+                                        <select name="sort" id="sort" class="col-3">
+                                            <option value="0">請選擇</option>
                                             <option value="1">自由潛水</option>
                                             <option value="2">水肺潛水</option>
                                             <option value="3">技術潛水</option>
                                         </select>
                                     </div>
-                                    <div class="col-6">
-                                        <label for="location" class="col-3 py-1">所屬地區</label>
-                                        <select name="location" id="location" class="col-6">
-                                            <option value="">請選擇</option>
+                                    <div class="col-6 my-3">
+                                        <label for="location" class="col-2 py-1">所屬地區</label>
+                                        <select name="location" id="location" class="col-3">
+                                            <option value="0">請選擇</option>
                                             <option value="1">東北角</option>
                                             <option value="2">澎湖</option>
                                             <option value="3">小琉球</option>
@@ -109,18 +114,18 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                             <option value="6">綠島</option>
                                         </select>
                                     </div>
-                                    <h3 class="col-12 border-bottom pb-1">價格和數量</h3>
-                                    <div class="col-6">
-                                        <label for="price">原價</label>
-                                        <input type="text" name="price" id="price" value="<?= $row["price"] ?>">
+                                    <h3 class="col-12 border-bottom my-3">價格和數量</h3>
+                                    <div class="col-6 my-3">
+                                        <label for="price" class="col-2">原價</label>
+                                        <input type="text" name="price" class="col-3" id="price" value="<?= $row["price"] ?>">
                                     </div>
-                                    <div class="col-6">
-                                        <label for="max-person">人數上限</label>
-                                        <input type="text" name="max_person" id="max-person" value="<?= $row["max_person"] ?>">
+                                    <div class="col-6 my-3">
+                                        <label for="max-person" class="col-2">人數上限</label>
+                                        <input type="text" name="max_person" class="col-3" id="max-person" value="<?= $row["max_person"] ?>">
                                     </div>
-                                    <div class="col-6">
-                                        <label for="onSale">特價</label>
-                                        <input type="text" name="onSale" id="onSale">
+                                    <div class="col-6 my-3">
+                                        <label for="onSale" class="col-2">特價</label>
+                                        <input type="text" name="onSale" class="col-3" id="onSale">
                                     </div>
                                 <?php endforeach; ?>
                             </div>
@@ -154,7 +159,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
         // cancel function
         document.getElementById('cancel').addEventListener('click', function() {
-            location.href = 'http://localhost/DV/lesson/lessonList.php';
+            location.href = 'http://localhost/DV/lesson/lessonList.php'
         })
     </script>
 </body>

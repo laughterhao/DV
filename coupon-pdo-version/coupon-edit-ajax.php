@@ -71,15 +71,15 @@ $couponCount = $stmt->rowCount();
                     <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                 </div>
                 <div class="container">
-                    <div class="py-2">
-                        <a class="btn" href="coupon-list.php" title="回優惠券列表">
-                            <i class="bi bi-arrow-90deg-left"></i>
-                        </a>
-                    </div>
                     <?php if ($couponCount == 0) : ?>
                         <h1>優惠券不存在</h1>
                     <?php else : ?>
-                        <div class="container" style="height: 77.6vh;">
+                        <div class="container">
+                            <div class="py-2">
+                                <a class="btn" href="coupon-list.php" title="回優惠券列表">
+                                    <i class="bi bi-arrow-90deg-left"></i>
+                                </a>
+                            </div>
                             <table class="table table-bordered">
                                 <input type="hidden" name="id" id="id" value="<?= $row["id"] ?>">
                                 <tr>
@@ -141,14 +141,14 @@ $couponCount = $stmt->rowCount();
                                     </td>
                                 </tr>
                             </table>
-                        </div>
-                        <div class="py-2 d-flex justify-content-between">
-                            <div>
-                                <button class="btn" id="send">儲存</button>
-                                <a class="btn" href="coupon.php?id=<?= $row["id"] ?>">取消</a>
-                            </div>
-                            <div>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#alertModal" class="btn">刪除</button>
+                            <div class="py-2 d-flex justify-content-between">
+                                <div>
+                                    <button class="btn" id="send">儲存</button>
+                                    <a class="btn" href="coupon.php?id=<?= $row["id"] ?>">取消</a>
+                                </div>
+                                <div>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#alertModal" class="btn">刪除</button>
+                                </div>
                             </div>
                         </div>
                 </div>

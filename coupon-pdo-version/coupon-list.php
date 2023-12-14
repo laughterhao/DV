@@ -62,7 +62,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <th>優惠券名稱</th>
                   <th>優惠碼</th>
                   <th>可使用人數</th>
-                  <th>以使用人數</th>
+                  <th>已使用人數</th>
                   <th>折扣金額</th>
                   <th>可使用時間</th>
                   <th>詳細</th>

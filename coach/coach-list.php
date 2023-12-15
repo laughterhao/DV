@@ -292,7 +292,7 @@ $result = $conn->query($sql);
                     <td><?= $row["skill"] ?></td>
                     <td><?= $row["experience"] ?></td>
                     <td><?= $row["city"] ?></td>
-                    <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href="doHideCoach.php?id=<?= $row["id"] ?>" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
+                    <td><a href="coach.php?id=<?= $row["id"] ?>"><i class="bi bi-info-circle" title="詳細資料"></i></a><a href="coach-edit.php?id=<?= $row["id"] ?>"><i class="bi bi-pencil-square text-info ms-4" title="編輯"></i></a><a href="doHideCoach.php?id=<?= $row["id"] ?>"><i class="bi bi-ban ms-4" title="隱藏"></i></a></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>

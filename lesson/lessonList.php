@@ -13,16 +13,34 @@ if (isset($_GET["search"])) {
     $search = $_GET["search"];
     $sql = "SELECT lesson.*, location.name AS location_name FROM lesson
     JOIN location ON lesson.location = location.id
-    WHERE (lesson.name LIKE '%$search%' OR lesson.location LIKE '%$search%') AND (valid = 1 OR valid = 0)
+    WHERE (lesson.name LIKE '%$search%' OR location.name LIKE '%$search%') AND (valid = 1 OR valid = 0)
     ORDER BY id DESC";
-} elseif (isset($_GET["page"])) {
+} elseif (isset($_GET["page"]) && isset($_GET["order"])) {
     $page = $_GET["page"];
+    $order = $_GET["order"];
+    switch ($order) {
+        case 1:
+            $orderSql = "id DESC";
+            break;
+        case 2:
+            $orderSql = "id ASC";
+            break;
+        case 3:
+            $orderSql = "price ASC";
+            break;
+        case 4:
+            $orderSql = "price DESC";
+            break;
+        default:
+            $orderSql = "id DESC";
+    }
     $startItem = ($page - 1) * $perPage;
     $sql = "SELECT lesson.*, location.name AS location_name FROM lesson
     JOIN location ON lesson.location = location.id
-    WHERE valid=1 OR valid=0 ORDER BY id DESC LIMIT $startItem,$perPage";
+    WHERE valid=1 OR valid=0 ORDER BY $orderSql LIMIT $startItem,$perPage";
 } else {
     $page = 1;
+    $order = 1;
     $sql = "SELECT lesson.*, location.name AS location_name FROM lesson
     JOIN location ON lesson.location = location.id
     WHERE valid=1 OR valid=0 ORDER BY id DESC LIMIT 0,$perPage";
@@ -95,7 +113,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <form action="editStatus.php" method="post">
                             <table class="table text-nowrap">
                                 <thead>
-                                    <tr class="text-center">
+                                    <tr class="text-center align-middle">
                                         <th class="selectAll"><input type="checkbox" id="selectAll"></th>
                                         <th class="img">圖片</th>
                                         <th class="name">課程名稱</th>
@@ -103,92 +121,103 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                         <th class="status">上架狀態</th>
                                         <th class="status">地區</th>
                                         <th class="created-at">建立日期</th>
-                                        <th class="edit-box"></th>
+                                        <th class="edit-box">
+                                            <div class="btn-group">
+                                                <a class="btn
+                                                <?php if ($order == 1) echo "btnActive"?>" href="lessonList.php?page=<?= $page ?>&order=1">新到舊 <i class="bi bi-sort-down-alt"></i></a>
+                                                <a class="btn
+                                                <?php if ($order == 2) echo "btnActive"?>" href="lessonList.php?page=<?= $page ?>&order=2">舊到新 <i class="bi bi-sort-down"></i></a>
+                                                <a class="btn
+                                                <?php if ($order == 3) echo "btnActive"?>" href="lessonList.php?page=<?= $page ?>&order=3">價格 <i class="bi bi-sort-down-alt"></i></a>
+                                                <a class="btn
+                                                <?php if ($order == 4) echo "btnActive"?>" href="lessonList.php?page=<?= $page ?>&order=4">價格 <i class="bi bi-sort-down"></i></a>
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($rows as $row) : ?>
-                                        <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
-                                            <div class="modal-dialog modal-sm">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">警告</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <div class=" modal fade" id="alertModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">警告</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                確定要"刪除"當前所選課程？
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="doDeleteLesson.php?id=<?= $row["id"] ?>" class="btn btn-danger text-white" id="modalBtnY">確認</a>
+                                                                <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal" id="modalBtnN">取消</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        確定要"刪除"當前所選課程？
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <a href="doDeleteLesson.php?id=<?= $row["id"] ?>" class="btn btn-danger text-white" id="modalBtnY">確認</a>
-                                                        <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal" id="modalBtnN">取消</button>
+                                            </div>
+                                    <tr class="text-center">
+                                        <td><input type="checkbox" class="checkbox" id="<?= $row["id"] ?>"></td>
+                                        <td>
+                                            <img src="./images/<?= $row["image"] ?>" alt="" class="object-fit">
+                                        </td>
+                                        <td><?= $row["name"] ?></td>
+                                        <td>$<?= number_format($row["price"]) ?></td>
+                                        <td>
+                                            <?php
+                                            $valid = $row["valid"];
+                                            switch ($valid):
+                                                case 0: ?>
+                                                    <span class="<?= ($row["valid"] == 0) ? 'inactive' : 'active' ?>">下架</span>
+                                                <?php break;
+                                                case 1: ?>
+                                                    <span class="<?= ($row["valid"] == 1) ? 'active' : 'inactive' ?>">上架</span>
+                                            <?php break;
+                                            endswitch ?>
+                                        </td>
+                                        <td><?= $row["location_name"] ?></td>
+                                        <td><?= $row["created_at"] ?></td>
+                                        <td>
+                                            <div class="modal fade" id="alertModalY<?= $row["id"] ?>" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">警告</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            確定要執行上架？
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" name="sale" value="<?= $row["id"] ?>" class="btn">確認</button>
+                                                            <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal" id="modalBtnN">取消</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <tr class="text-center">
-                                            <td><input type="checkbox" class="checkbox" id="<?= $row["id"] ?>"></td>
-                                            <td>
-                                                <img src="./images/<?= $row["image"] ?>" alt="" class="object-fit">
-                                            </td>
-                                            <td><?= $row["name"] ?></td>
-                                            <td>$<?= number_format($row["price"]) ?></td>
-                                            <td>
-                                                <?php
-                                                $valid = $row["valid"];
-                                                switch ($valid):
-                                                    case 0: ?>
-                                                        <span class="<?= ($row["valid"] == 0) ? 'inactive' : 'active' ?>">下架</span>
-                                                    <?php break;
-                                                    case 1: ?>
-                                                        <span class="<?= ($row["valid"] == 1) ? 'active' : 'inactive' ?>">上架</span>
-                                                <?php break;
-                                                endswitch ?>
-                                            </td>
-                                            <td><?= $row["location_name"] ?></td>
-                                            <td><?= $row["created_at"] ?></td>
-                                            <td>
-                                                <div class="modal fade" id="alertModalY<?= $row["id"] ?>" tabindex="-1" aria-labelledby="" aria-hidden="true">
-                                                    <div class="modal-dialog modal-sm">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">警告</h1>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                確定要執行上架？
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="submit" name="sale" value="<?= $row["id"] ?>" class="btn">確認</button>
-                                                                <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal" id="modalBtnN">取消</button>
-                                                            </div>
+                                            <div class="modal fade" id="alertModalN<?= $row["id"] ?>" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">警告</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            確定要執行下架？
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" name="unsale" value="<?= $row["id"] ?>" class="btn">確認</button>
+                                                            <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal" id="modalBtnN">取消</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal fade" id="alertModalN<?= $row["id"] ?>" tabindex="-1" aria-labelledby="" aria-hidden="true">
-                                                    <div class="modal-dialog modal-sm">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">警告</h1>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                確定要執行下架？
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="submit" name="unsale" value="<?= $row["id"] ?>" class="btn">確認</button>
-                                                                <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal" id="modalBtnN">取消</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#alertModalY<?= $row["id"] ?>" class="btn">上架</button>
-                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#alertModalN<?= $row["id"] ?>" class="btn">下架</button>
-                                                    <a href="edit-Lesson.php?id=<?= $row["id"] ?>" class="btn">編輯</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach ?>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button type="button" data-bs-toggle="modal" data-bs-target="#alertModalY<?= $row["id"] ?>" class="btn">上架</button>
+                                                <button type="button" data-bs-toggle="modal" data-bs-target="#alertModalN<?= $row["id"] ?>" class="btn">下架</button>
+                                                <a href="edit-Lesson.php?id=<?= $row["id"] ?>" class="btn">編輯</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
                                 </tbody>
                             </table>
                     </div>
@@ -204,7 +233,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                             </li>
                             <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
                                 <li class="btn page-item <?php if ($page == $i) echo "page-active" ?>">
-                                    <a class="page-link" href="lessonList.php?page=<?= $i ?>"><?= $i ?></a>
+                                    <a class="page-link" href="lessonList.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
                                 </li>
                             <?php endfor ?>
                             <li class="btn page-item">

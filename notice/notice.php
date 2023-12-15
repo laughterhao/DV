@@ -59,9 +59,12 @@
                                 <input type="date" class="form-control" id="end_date" name="end_date" value="<?= $row['Exp_date'] ?>" />
                                 <div class="form-text">輸入內容</div>
                             </div>
-                            <button type="submit" class="btn">
+                            <button type="submit" class="btn border border-dark">
                                 送出
                             </button>
+                            <a href="notice.php" type="button" class="btn border border-dark">
+                                取消
+                            </a>
                         </form>
                         <input type="hidden" id="modalId" value="">
                     </div>
@@ -101,7 +104,7 @@
                     <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
                     <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
                     <li class="main-li"><a href="notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
-                    </ul>
+                </ul>
             </nav>
 
             <div class="col-lg-10 px-0" style="margin-left: 16.66%;">
@@ -109,7 +112,7 @@
                     <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
                 </div>
                 <div class="continer">
-                    <div class="row m-3">
+                    <div class="row mx-5">
                         <div class="pt-5">
                             <h2 class="text-center">最新公告</h2>
                         </div>
@@ -146,22 +149,22 @@
                                     <tbody class="table-group-divider nowrap">
                                         <tr class="table-primary">
                                             <?php foreach ($rows as $row) : ?>
-                                            <td scope="row">
-                                                <figure class=" object-fit-cover m-auto" style=" width :50px; height:50px
+                                                <td scope="row">
+                                                    <figure class=" object-fit-cover m-auto" style=" width :50px; height:50px
                                                 ">
-                                                <img class="w-100 h-100"src="../images/notice/<?= $row["Main_img"]?>">
-                                                </figure>
-                                            </td>
-                                            <td><?= $row['Title'] ?></td>
-                                            <td><?= $row['Content'] ?></td>
-                                            <td><?= $row['Main_img'] ?></td>
-                                            <td><?= $row['Create_at'] ?></td>
-                                            <td><?= $row['Exp_date'] ?></td>
-                                            <td class="text-nowrap">
-                                                <a type="button" class="btn border border-dark" data-bs-toggle="modal" data-bs-target="#edit-<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>"><i class="bi bi-pencil-square"></i></a>
+                                                        <img class="w-100 h-100" src="../images/notice/<?= $row["Main_img"] ?>">
+                                                    </figure>
+                                                </td>
+                                                <td><?= $row['Title'] ?></td>
+                                                <td><?= $row['Content'] ?></td>
+                                                <td><?= $row['Main_img'] ?></td>
+                                                <td><?= $row['Create_at'] ?></td>
+                                                <td><?= $row['Exp_date'] ?></td>
+                                                <td class="text-nowrap">
+                                                    <a type="button" class="btn border border-dark" data-bs-toggle="modal" data-bs-target="#edit-<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>"><i class="bi bi-pencil-square"></i></a>
 
-                                                <a type="button" class="btn border border-dark" data-bs-toggle="modal" data-bs-target="#del-<?= $row["id"] ?>" data-id="<?php echo $row['id']; ?>"><i class="bi bi-trash3"></i></a>
-                                            </td>
+                                                    <a type="button" class="btn border border-dark" data-bs-toggle="modal" data-bs-target="#del-<?= $row["id"] ?>" data-id="<?php echo $row['id']; ?>"><i class="bi bi-trash3"></i></a>
+                                                </td>
                                         </tr>
                                     <?php endforeach ?>
                                     </tbody>

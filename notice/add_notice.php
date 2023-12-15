@@ -38,28 +38,35 @@
 
 
 
-            <div class="continer mx-auto">
+            <div class="continer ">
                <h2 class="text-center mt-5">新增公告</h2>
-               <form action="do_add_notice.php" method="post" enctype="multipart/form-data">
-                  <div class="row mx-5">
+               <form action="do_add_notice.php" method="post" enctype="multipart/form-data" class="border  border-dark-subtle border-2 m-4 py-2 px-1">
+                  <div class="row m-2">
                      <div class="col-md-6">
                         <div class="mb-3">
                            <label for="title" class="form-label">標題</label>
-                           <input type="text" class="form-control" id="title" name="title" />
+                           <input type="text" class="form-control" id="title" name="title" placeholder="輸入標題" />
                            <div class="form-text">輸入標題</div>
                         </div>
                         <div class="mb-3">
-                           <label for="sort" class="form-label">類別</label>
-                           <input type="text" class="form-control" id="sort" name="sort" />
-                           <div class="form-text">輸入類別</div>
+                           <div class="content">
+                              <textarea class="form-control" placeholder="輸入內容" id="content" style="height: 170px" name="content"></textarea>
+                           </div>
                         </div>
+                        <button type="submit" class="btn border border-dark">
+                           送出
+                        </button>
+                        <a href="notice.php" type="button" class="btn border border-dark">
+                           取消
+                        </a>
                      </div>
                      <div class="col-md-6">
-                        <div class="mb-3">
-                           <label for="content" class="form-label">內文</label>
-                           <textarea type="text" class="form-control" id="content" name="content"></textarea>
-                           <div class="form-text">輸入內容</div>
-                        </div>
+                        <select class="form-select form-select-lg my-4" aria-label="Large select example" name="sort">
+                           <option selected>選擇公告類別</option>
+                           <option value="1">體驗</option>
+                           <option value="2">深潛</option>
+                           <option value="3">自由潛水</option>
+                        </select>
                         <div class="mb-3">
                            <label for="img" class="form-label">圖片</label>
                            <input type="file" class="form-control" id="img" name="img" />
@@ -68,19 +75,13 @@
                         <div class="mb-3">
                            <label for="end_date" class="form-label">下架時間</label>
                            <input type="date" class="form-control" id="end_date" name="end_date" />
-                           <div class="form-text">輸入內容</div>
+
                         </div>
+
                      </div>
                   </div>
-
-
-
-
-
-                  <button type="submit" class="btn border border-dark">
-                     Submit
-                  </button>
                </form>
+
             </div>
          </div>
       </main>

@@ -1,7 +1,8 @@
 <?php
 $id = $_GET["id"];
 
-require_once("./db_connect.php");
+// require_once("./db_connect.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 $sql = "SELECT * FROM lesson WHERE id = $id AND valid = 1";
 $result = $conn->query($sql);
@@ -24,25 +25,6 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body>
-    <!-- modal -->
-    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">警告</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    是否確定要上架？
-                </div>
-                <div class="modal-footer">
-                    <a href="doDeleteUser.php" class="btn btn-danger">確認</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- modal end -->
     <header class="d-flex flex-row-reverse">
         <div class="logo d-flex align-items-center">
             <a href="" class=""><i class="bi bi-box-arrow-in-right me-2"></i>LOG OUT</a>
@@ -52,20 +34,38 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         <div class="sidebar text-white">
             <h1 class="my-4 text-center">DiVING</h1>
             <ul class="row justify-content-center list-unstyle m-0 p-0 w-100">
-                <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-bag-fill"></i>商品及分類</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
-                <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+            <li class="main-li"><a href="#"><i class="bi bi-intersect"></i>總覽</a></li>
+                <li class="main-li"><a href="..\order\order-list.php"><i class="bi bi-file-text"></i>訂單管理</a></li>
+                <li class="main-li"><a href="..\product\product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                <li class="main-li"><a href="..\member\member-list.php"><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                <li class="main-li"><a href="lessonList.php"><i class="bi bi-tv"></i>課程管理</a></li>
+                <li class="main-li"><a href="..\coach\coach-list.php"><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                <li class="main-li"><a href="..\coupon-pdo-version\coupon-list.php"><i class="bi bi-shop-window"></i>行銷</a></li>
+                <li class="main-li"><a href=".\notice\notice.php"><i class="bi bi-megaphone"></i>公告</a></li>
             </ul>
         </div>
         <section class="right-content">
             <div class="body">
                 <div class="breadcrumb"><a href="lessonList.php">課程管理</a> > 編輯</div>
                 <form action="doUpdateLesson.php" method="post" enctype="multipart/form-data" id="edit">
+                    <!-- modal -->
+                    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">通知</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    編輯成功！
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn">確認</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal end -->
                     <div class="list-box scroll-x">
                         <div class="container">
                             <div class="row align-items-center my-3">
@@ -74,10 +74,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                     <h3 class="col-12 border-bottom pb-1">課程資訊</h3>
                                     <div class="row align-items-center my-3">
                                         <span for="" class="col-2">課程圖片</span>
-                                        <div class="col-4 dropzone">
-                                            <div class="row justify-content-center fs-4">
-                                                <button type="button" class="btn col mt-2">新增圖片</button>
+                                        <div class="col-4">
+                                            <div class="ratio ratio-1x1">
+                                                <img class="img-fluid" id="previewImage" src="./images/<?= $row["image"] ?>" alt="">
                                             </div>
+                                            <input type="file" class="mt-2 form-control" id="file" name="file" onchange="previewFile()"></input>
                                         </div>
                                     </div>
                                     <div class="row align-items-center my-3 pe-0">
@@ -86,11 +87,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                     <div class="row align-items-center my-3 pe-0">
                                         <label class="col-2" for="info">課程簡介</label>
-                                        <textarea rows="4" name="info" id="info" class="col-10 d-inline-block"></textarea>
+                                        <textarea rows="4" name="info" id="info" class="col-10 d-inline-block"><?= $row["info"] ?></textarea>
                                     </div>
                                     <div class="row align-items-center my-3 pe-0">
                                         <label for="" class="col-2">課程內容</label>
-                                        <textarea rows="8" name="content" id="content" class="col-10 d-inline-block"></textarea>
+                                        <textarea rows="8" name="content" id="content" class="col-10 d-inline-block"><?= $row["content"] ?></textarea>
                                     </div>
                                     <h3 class="col-12 border-bottom my-3">課程分類</h3>
                                     <div class="col-6 my-3">
@@ -135,7 +136,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="foot">
                         <div class="d-flex flex-row-reverse">
                             <div class="btn-group">
-                                <button type="submit" class="btn">儲存</button>
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#alertModal">儲存</button>
                                 <button type="button" class="btn" id="cancel">取消</button>
                             </div>
                         </div>
@@ -161,6 +162,22 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         document.getElementById('cancel').addEventListener('click', function() {
             location.href = 'http://localhost/DV/lesson/lessonList.php'
         })
+
+        function previewFile() {
+            const preview = document.getElementById('previewImage');
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = ''; // 清空预览
+            }
+        }
     </script>
 </body>
 

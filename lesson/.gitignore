@@ -2,3 +2,4 @@
 *.vscode
 test.php
 scroll.html
+db_connect.php

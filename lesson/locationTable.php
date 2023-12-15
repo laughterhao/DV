@@ -1,5 +1,6 @@
 <?php
-require_once("../mysql-db-conn.php");
+// require_once("./db_connect.php");
+require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
 
 // 建立課程資料表
 $sql = "CREATE TABLE location (

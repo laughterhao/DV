@@ -6,7 +6,7 @@ if (!isset($_GET["id"])) {
 
 $id = $_GET["id"]; //裝起來
 
-require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
+require(".." . DIRECTORY_SEPARATOR . "mysql-db-conn.php");
 
 $sql = " SELECT coach.*,  GROUP_CONCAT(license.name) AS license_names
 FROM coach
@@ -77,7 +77,7 @@ $row = $result->fetch_assoc();
                         <div class="container ">
                             <div class="row">
                                 <div class="col-md-5 table-responsive">
-                                    <img class="mb-4 img-thumbnail rounded-circle my-3 object-fit-cover" src="./upload/<?= $row["img"] ?>" alt="<?= $row["img"] ?>" style="height: 300px;">
+                                    <img class="mb-4 img-thumbnail rounded-circle my-3 object-fit-cover" src="../images/coach/<?= $row["img"] ?>" alt="<?= $row["img"] ?>" style="height: 300px;">
                                     <table class="table table-bordered ">
                                         <tr>
                                             <th>教學年資</th>

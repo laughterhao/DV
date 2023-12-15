@@ -5,7 +5,7 @@ if (!isset($_GET["id"])) {
 }
 $id = $_GET["id"]; //裝起來
 
-require("..". DIRECTORY_SEPARATOR ."mysql-db-conn.php");
+require(".." . DIRECTORY_SEPARATOR . "mysql-db-conn.php");
 
 $sql = "SELECT c.*, GROUP_CONCAT(cl.license_id) AS license_ids
 -- 使用 GROUP_CONCAT(cl.license_id) 聚合函數，將 coach_license 中對應每個教練的 license_id 聯結成一個字串

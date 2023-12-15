@@ -27,6 +27,10 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
     outline: none;
 }
 
+img:empty {
+    color: #335661;
+}
+
 .btn {
     font-size: 14px;
     color: var(--main-color-);
@@ -117,11 +121,11 @@ header {
     right: 0;
     overflow-y: auto;
 
-    >.body {
+    & .body {
         padding: 50px 20px 0;
         position: relative;
 
-        >.breadcrumb {
+        & .breadcrumb {
             margin-top: 20px;
             color: var(--main-color-);
             & a{
@@ -145,13 +149,6 @@ header {
         font-size: 20px;
         font-weight: normal;
     }
-    & .dropzone{
-        height: 240px;
-        border: 1px dashed #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
     & textarea{
         padding: 12px;
     }
@@ -159,4 +156,4 @@ header {
 
 .foot {
     margin: 20px 0;
-}
+}   

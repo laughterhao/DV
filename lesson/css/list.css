@@ -235,6 +235,11 @@ header {
     color: var(--main-color-);
 }
 
+.btnActive{
+    color: #fff;
+    background: var(--main-color-);
+}
+
 .page-active{
     color: #fff;
     background-color: var(--main-color-);
